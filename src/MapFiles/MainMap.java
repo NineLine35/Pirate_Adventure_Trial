@@ -59,11 +59,27 @@ public class MainMap {
 
     //Class to hold coordinates of player
     public static class Coordinates{
-         int row;
-         int column;
+         private int row;
+         private int column;
 
         public Coordinates(int row, int column) {
             this.row = row;
+            this.column = column;
+        }
+
+        public int getRow() {
+            return row;
+        }
+
+        public void setRow(int row) {
+            this.row = row;
+        }
+
+        public int getColumn() {
+            return column;
+        }
+
+        public void setColumn(int column) {
             this.column = column;
         }
     }
@@ -79,6 +95,42 @@ public class MainMap {
                  returnCoord.row = x-1;
                  returnCoord.column = y;
                  break;
+
+             case  SOUTH:
+                 returnCoord.row = x+1;
+                 returnCoord.column =y;
+                 break;
+
+             case WEST:
+                 returnCoord.row = x;
+                 returnCoord.column =y-1;
+                 break;
+
+             case EAST:
+                 returnCoord.row = x;
+                 returnCoord.column =y+1;
+                 break;
+
+             case NORTHEAST:
+                 returnCoord.row = x-1;
+                 returnCoord.column =y+1;
+                 break;
+
+             case NORTHWEST:
+                 returnCoord.row = x-1;
+                 returnCoord.column =y-1;
+                 break;
+
+             case SOUTHEAST:EAST:
+                 returnCoord.row = x+1;
+                 returnCoord.column =y+1;
+                 break;
+
+             case SOUTHWEST:
+                 returnCoord.row = x+1;
+                 returnCoord.column =y-1;
+                 break;
+
          }
 
          return returnCoord;
