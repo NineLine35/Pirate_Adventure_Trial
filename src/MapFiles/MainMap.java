@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class MainMap {
 
+    //Main map fields
     static Landmass[][] treasureMap = new Landmass[4][4];
     int islandCount =0;
 
@@ -68,10 +69,10 @@ public class MainMap {
     }
 
 
-    //Method to find the "move" coordinates to move the player to a new location on the map.
-    public static Coordinates move(int x, int y, Direction direction){
+    //Method to find the "movePlayer" coordinates to movePlayer the player to a new location on the map.
+    public static Coordinates movePlayer(int x, int y, Direction direction){
 
-         Coordinates returnCoord = null;
+         Coordinates returnCoord = new Coordinates(x,y);
 
          switch (direction){
              case NORTH:
@@ -80,9 +81,18 @@ public class MainMap {
                  break;
          }
 
-
          return returnCoord;
+    }
 
+
+    public static Landmass mapCheck(Coordinates currentLocation, Landmass[][] map){
+         Landmass returnLandmass;
+
+         returnLandmass = map[currentLocation.row][currentLocation.column];
+
+         System.out.println(returnLandmass.toString());  //Used to debug
+
+        return returnLandmass;
     }
 
 
