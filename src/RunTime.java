@@ -9,8 +9,18 @@ import java.util.Arrays;
 
 public class RunTime {
 
+  //Basic code to read user input through InputStreamReader process
+  private static String userInput(String console) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    System.out.print(console);
+    System.out.flush();
+    return input.readLine();
+
+  }
+
   public static void main(String[] args) throws IOException {
 
+    //Create random map
     Landmass playMap[][] = MainMap.createMap();
 
 
@@ -51,15 +61,6 @@ public class RunTime {
     // Check the landmass location of the player after they moved North
     MainMap.mapCheck(currentLocation,playMap);
 
-
-  }
-
-  //Basic code to read user input through InputStreamReader process
-  private static String userInput(String console) throws IOException {
-    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    System.out.print(console);
-    System.out.flush();
-    return input.readLine();
 
   }
 
