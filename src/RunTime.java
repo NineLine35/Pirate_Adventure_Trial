@@ -37,7 +37,16 @@ public class RunTime {
 
     String userSelection = (userInput("Please enter a direction to travel:\n")).toUpperCase();
 
-    currentLocation = MainMap.movePlayer(currentLocation.getRow(), currentLocation.getColumn(), Direction.valueOf(userSelection));
+
+    // Moving the player based on "userSelection" direction.  Try/Catch just in-case the player enters a non-direction
+    try {
+      currentLocation = MainMap.movePlayer(currentLocation.getRow(), currentLocation.getColumn(), Direction.valueOf(userSelection));
+    }
+    catch (Exception e)
+    {
+      System.out.println("Not a valid direction sailor!");
+    }
+
 
     // Check the landmass location of the player after they moved North
     MainMap.mapCheck(currentLocation,playMap);

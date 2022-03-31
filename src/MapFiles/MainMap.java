@@ -86,52 +86,58 @@ public class MainMap {
 
 
     //Method to find the "movePlayer" coordinates to movePlayer the player to a new location on the map.
+    //TODO Add a check to ensure the player does not "fall off the map"
     public static Coordinates movePlayer(int x, int y, Direction direction){
 
          Coordinates returnCoord = new Coordinates(x,y);
 
-         switch (direction){
-             case NORTH:
-                 returnCoord.row = x-1;
-                 returnCoord.column = y;
-                 break;
+             switch (direction) {
+                 case NORTH:
+                     returnCoord.row = x - 1;
+                     returnCoord.column = y;
+                     break;
 
-             case  SOUTH:
-                 returnCoord.row = x+1;
-                 returnCoord.column =y;
-                 break;
+                 case SOUTH:
+                     returnCoord.row = x + 1;
+                     returnCoord.column = y;
+                     break;
 
-             case WEST:
-                 returnCoord.row = x;
-                 returnCoord.column =y-1;
-                 break;
+                 case WEST:
+                     returnCoord.row = x;
+                     returnCoord.column = y - 1;
+                     break;
 
-             case EAST:
-                 returnCoord.row = x;
-                 returnCoord.column =y+1;
-                 break;
+                 case EAST:
+                     returnCoord.row = x;
+                     returnCoord.column = y + 1;
+                     break;
 
-             case NORTHEAST:
-                 returnCoord.row = x-1;
-                 returnCoord.column =y+1;
-                 break;
+                 case NORTHEAST:
+                     returnCoord.row = x - 1;
+                     returnCoord.column = y + 1;
+                     break;
 
-             case NORTHWEST:
-                 returnCoord.row = x-1;
-                 returnCoord.column =y-1;
-                 break;
+                 case NORTHWEST:
+                     returnCoord.row = x - 1;
+                     returnCoord.column = y - 1;
+                     break;
 
-             case SOUTHEAST:EAST:
-                 returnCoord.row = x+1;
-                 returnCoord.column =y+1;
-                 break;
+                 case SOUTHEAST:
+                     EAST:
+                     returnCoord.row = x + 1;
+                     returnCoord.column = y + 1;
+                     break;
 
-             case SOUTHWEST:
-                 returnCoord.row = x+1;
-                 returnCoord.column =y-1;
-                 break;
+                 case SOUTHWEST:
+                     returnCoord.row = x + 1;
+                     returnCoord.column = y - 1;
+                     break;
 
-         }
+                 default:
+                     returnCoord.row = x;
+                     returnCoord.column = y;
+
+            }
 
          return returnCoord;
     }
