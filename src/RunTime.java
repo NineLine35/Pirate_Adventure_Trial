@@ -61,7 +61,6 @@ public class RunTime {
     // Check the landmass location of the player after they moved North
     MainMap.mapCheck(currentLocation,playMap);
 
-
   }
 
 }

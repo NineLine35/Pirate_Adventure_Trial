@@ -153,5 +153,61 @@ public class MainMap {
         return returnLandmass;
     }
 
+    // Method to allow the player to use a looking glass to view a direction
+    // TODO
+    public static void lgView(int x, int y, Direction direction) {
+
+         Coordinates viewDirection = new Coordinates(x,y);
+
+        switch (direction) {
+            case NORTH:
+                viewDirection.row = x - 1;
+                viewDirection.column = y;
+                break;
+
+            case SOUTH:
+                viewDirection.row = x + 1;
+                viewDirection.column = y;
+                break;
+
+            case WEST:
+                viewDirection.row = x;
+                viewDirection.column = y - 1;
+                break;
+
+            case EAST:
+                viewDirection.row = x;
+                viewDirection.column = y + 1;
+                break;
+
+            case NORTHEAST:
+                viewDirection.row = x - 1;
+                viewDirection.column = y + 1;
+                break;
+
+            case NORTHWEST:
+                viewDirection.row = x - 1;
+                viewDirection.column = y - 1;
+                break;
+
+            case SOUTHEAST:
+                EAST:
+                viewDirection.row = x + 1;
+                viewDirection.column = y + 1;
+                break;
+
+            case SOUTHWEST:
+                viewDirection.row = x + 1;
+                viewDirection.column = y - 1;
+                break;
+
+            default:
+                viewDirection.row = x;
+                viewDirection.column = y;
+
+
+        }
+    }
+
 
 }
