@@ -18,7 +18,7 @@ public class Inventory {
         }
 
         // Item is a duplicate
-        if (hasDupe == true){
+        if (hasDupe){
             // Updates the quantity of the item
             this.items.get(dupePos).setQuantity(quantity += this.items.get(dupePos).getQuantity());
         } else{
@@ -27,6 +27,7 @@ public class Inventory {
         }
     }
 
+    // Outputs all the items
     public void outputItems() {
         // Run through all items in inventory
         for (int i = 0; i < this.items.size(); i++){
