@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class RunTime {
+public class RunTime_MapCreationDemo {
 
   //Basic code to read user input through InputStreamReader process
   private static String userInput(String console) throws IOException {
@@ -24,7 +24,7 @@ public class RunTime {
     Landmass playMap[][] = MainMap.createMap();
 
 
-  /*  //Initiate start location
+    //Initiate start location
     MainMap.Coordinates startLocation = new MainMap.Coordinates(2,2);
     //Initiate current player location
     MainMap.Coordinates currentLocation = startLocation;
@@ -33,7 +33,7 @@ public class RunTime {
    //DEBUG print out map to console
     System.out.println("______MAP______");
     System.out.println(Arrays.deepToString(playMap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
-    System.out.println("_______________");*/
+    System.out.println("_______________");
 
 
 
@@ -45,24 +45,10 @@ public class RunTime {
     System.out.println("Welcome to the Pirate Game Trial!\n" +
             "*********************************\n");
 
-    System.out.println(
-            """
-                    You awaken to the sound of distant gulls and the creaking of the ship as it slowly sways in the rolling ocean.
-                    Your head throbs after a night of rum and celebration of a mutiny that was long overdue.  Oh well, 
-                    tis the life of a pirate.  But, now what to do?  You didn't think that far ahead, eyes always on the plunder
-                    not the planning.  But now as you walk up to the bridge, with the eyes of your crew bearing down on you
-                    you realize that it is time to take charge.
-                    
-                    This ship will fly under a new flag and a new name.  But what could that be?\n"""
-    );
-
-    String userSelection = (userInput("What to name the ship? :\n"));
+    String userSelection = (userInput("Please enter a direction to travel:\n")).toUpperCase();
 
 
-    //String userSelection = (userInput("Please enter a direction to travel:\n")).toUpperCase();
-
-
-   /* // Moving the player based on "userSelection" direction.  Try/Catch just in-case the player enters a non-direction
+    // Moving the player based on "userSelection" direction.  Try/Catch just in-case the player enters a non-direction
     try {
       currentLocation = MainMap.movePlayer(currentLocation.getRow(), currentLocation.getColumn(), Direction.valueOf(userSelection));
     }
@@ -73,7 +59,7 @@ public class RunTime {
 
 
     // Check the landmass location of the player after they moved North
-    MainMap.mapCheck(currentLocation,playMap);*/
+    MainMap.mapCheck(currentLocation,playMap);
 
   }
 

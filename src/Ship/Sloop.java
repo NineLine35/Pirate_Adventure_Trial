@@ -1,14 +1,14 @@
 package Ship;
 
-public class Galleon extends Ship {
+public class Sloop extends Ship {
 
-    private int numCannons = 4;
-    private int numSails = 4;
+    private int numCannons = 2;
+    private int numSails = 2;
 
 
     // Constructor that sets the hit points, cargo capacity and sail distance uniquely based on Galleon class ship
-    public Galleon() {
-        super(10,10,1);
+    public Sloop() {
+        super(5,4,1);
     }
 
     //Field Getters/Setters
