@@ -11,14 +11,6 @@ import java.util.Scanner;
 
 public class RunTime {
 
- /* //Basic code to read user input through InputStreamReader process
-  private static String userInput(String console) throws IOException {
-    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    System.out.print(console);
-    System.out.flush();
-    return input.readLine();
-  }*/
-
   public static void main(String[] args) throws IOException {
 
     //Create random map
@@ -58,10 +50,10 @@ public class RunTime {
           System.out.println("Good bye!");
           System.exit(0);
         }
-        if(enteredText.toLowerCase().contains("map")){
+        else if(enteredText.toLowerCase().contains("map")){
 
-          MainMap.Coordinates startLocation = new MainMap.Coordinates(2,2);
           //Initiate current player location
+          MainMap.Coordinates startLocation = new MainMap.Coordinates(2,2);
           MainMap.Coordinates currentLocation = startLocation;
 
 
