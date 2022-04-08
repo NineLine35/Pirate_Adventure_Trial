@@ -1,25 +1,28 @@
 package Ship;
 
-abstract class Ship {
+public abstract class Ship {
 
-    private int hitPoints;
+    private int hullHitPoints;
     private int cargoCapacity;
     private int sailDistance;
+    private int sailHealth = 100;  //Setting general health of sails as a percentage of full health
     private boolean isDestroyed = false;
+    private String shipName;
 
 
-    public Ship(int hitPoints, int cargoCapacity, int sailDistance) {
-        this.hitPoints = hitPoints;
+    public Ship(int hullHitPointshitPoints, int cargoCapacity, int sailDistance) {
+        this.hullHitPoints = hullHitPointshitPoints;
         this.cargoCapacity = cargoCapacity;
         this.sailDistance = sailDistance;
     }
 
-    public int getHitPoints() {
-        return hitPoints;
+    // Getters and Setters
+    public int getHullHitPoints() {
+        return hullHitPoints;
     }
 
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
+    public void setHullHitPoints(int hullHitPoints) {
+        this.hullHitPoints = hullHitPoints;
     }
 
     public int getCargoCapacity() {
@@ -44,5 +47,13 @@ abstract class Ship {
 
     public void setDestroyed(boolean destroyed) {
         isDestroyed = destroyed;
+    }
+
+    public String getShipName() {
+        return shipName;
+    }
+
+    public void setShipName(String shipName) {
+        this.shipName = shipName;
     }
 }

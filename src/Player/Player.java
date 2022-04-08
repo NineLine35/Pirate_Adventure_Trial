@@ -1,10 +1,17 @@
 package Player;
 
-import Ship.Galleon;
+import Ship.Ship;
+import Ship.ShipBuilder;
 
 public class Player {
-
-    private Galleon playerShip = new Galleon(4,6,1);    //Player ship TEST
     private int chest;      //Holds gold
-    private String name;
+    private String name;  // Player name
+    private Ship ship; // Ship class placeholder
+
+
+    //Method to set the player ship class and assign a name
+    public void assignShip(String type, String shipName){
+        ship = ShipBuilder.getShip(type);
+        ship.setShipName(shipName);
+    }
 }
