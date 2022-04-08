@@ -6,8 +6,13 @@ public class StartTest {
         // TODO Auto-generated method stub
         Thunder thunder = new Thunder();
 
+        //generate random number here to send if it is raining or not, if the random number is 0, then check hurricane
+        int amount = 3;
+        String message = thunder.raining(amount);
+        System.out.println(message);
         try {
-            thunder.getRainAmount();
+            int theAmount = thunder.getRainAmount();
+            System.out.println(theAmount);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -24,6 +29,6 @@ public class StartTest {
         sandStorm.SandBlowing(1);
 
         Damages damages = new Damages();
-        damages.stormDamage(1);
+        damages.stormDamage(2);
     }
 }

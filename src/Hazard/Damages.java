@@ -22,7 +22,7 @@ public class Damages {
 
                 //get the hits left
                 int hitsLeft = 4 - balance;
-                System.out.println("Your ship has been hit, you have " + hitsLeft + "left until being sunk.");
+                System.out.println("Your ship has been hit, you have " + hitsLeft + " left until being sunk.");
             }
         }
         //this section is for a 0 return, which will remove hits, meaning the ship has been repaired.  This does need
