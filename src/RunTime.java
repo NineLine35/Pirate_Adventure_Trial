@@ -24,18 +24,6 @@ public class RunTime {
     //Create random map
     Landmass playMap[][] = MainMap.createMap();
 
-  /*  //Initiate start location
-    MainMap.Coordinates startLocation = new MainMap.Coordinates(2,2);
-    //Initiate current player location
-    MainMap.Coordinates currentLocation = startLocation;
-
-
-   //DEBUG print out map to console
-    System.out.println("______MAP______");
-    System.out.println(Arrays.deepToString(playMap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
-    System.out.println("_______________");*/
-
-
 
     //********************************************************************************************************************
     //********************************************************************************************************************
@@ -70,11 +58,22 @@ public class RunTime {
           System.out.println("Good bye!");
           System.exit(0);
         }
+        if(enteredText.toLowerCase().contains("map")){
+
+          MainMap.Coordinates startLocation = new MainMap.Coordinates(2,2);
+          //Initiate current player location
+          MainMap.Coordinates currentLocation = startLocation;
+
+
+          //DEBUG print out map to console
+          System.out.println("______MAP______");
+          System.out.println(Arrays.deepToString(playMap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+          System.out.println("_______________");
+
+        }
         else {
           System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....");
         }
-
-
 
 
       }
