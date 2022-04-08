@@ -2,10 +2,20 @@ package Hazard;
 
 public class Thunder extends Storm implements Rain{
     private static final int MAX_RAIN = 2;
+    private String displayMessage;
 
     @Override
-    public void raining() {
-        System.out.println("It is not raining");
+    public String raining(int amount) {
+        if(amount > 0 ){
+            displayMessage = "It is raining";
+            /*System.out.println("It is raining");
+             */
+        }
+        else
+        {displayMessage = "It is not raining";
+            /*System.out.println("It is not raining");*/
+        }
+        return displayMessage;
     }
 
     @Override

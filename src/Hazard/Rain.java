@@ -7,5 +7,5 @@ public interface Rain {
     public static final int MAX_RAIN = 3;
 
     //max inches
-    void raining();
+    public String raining(int amount);
 }
