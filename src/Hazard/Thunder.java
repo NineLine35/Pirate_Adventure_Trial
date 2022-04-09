@@ -24,7 +24,7 @@ public class Thunder extends Storm implements Rain{
         return MAX_RAIN;
     }
 
-    @Override
+    //@Override
     public int calculateMoneyLost(int inches, int money) {
         // TODO Auto-generated method stub
         return money-inches;

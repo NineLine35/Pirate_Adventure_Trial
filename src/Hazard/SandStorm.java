@@ -13,7 +13,7 @@ public class SandStorm extends Storm implements Sand{
         }
     }
 
-    @Override
+    //@Override
     public int calculateMoneyLost(int sandAmount, int money) {
         // TODO Auto-generated method stub
         return money-sandAmount;
