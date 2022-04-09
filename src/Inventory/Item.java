@@ -1,18 +1,18 @@
 package Inventory;
 
-public class Item {
+public abstract class Item {
     private String name;
     private int quantity;
 
     // Constructor if quantity and name are given
-    public Item(String n, int q){
-        this.setName(n);
-        this.setQuantity(q);
+    public Item(String name, int quantity){
+        this.setName(name);
+        this.setQuantity(quantity);
     }
 
     // Constructor if only name is given, quantity is assumed as 1
-    public Item(String n){
-        this.setName(n);
+    public Item(String name){
+        this.setName(name);
         this.setQuantity(1);
     }
 
