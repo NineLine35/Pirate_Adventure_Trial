@@ -24,7 +24,15 @@ public class StartTest {
         environmental.addHazard("01", " Land Storm 2", "2", "1");
         environmental.addHazard("02", " Land Storm 3", "3", "3");
         human.addHazard("10", " Land Human 1", "10");
-        human.addHazard("11", " Land Human 2", "25");
+        human.addHazard("11", """
+                 It be a 'ot 'umid day as ye roll into port. The smells o' jasmine " +
+                "an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically. " +
+                "Could it be? a damsel in distress in need o' yer assistance?  upon approach, ye see the damsel. " +
+                "She 'as the longest dark locks ye 'ave e'er spied, the most beautiful brown doe eyes an' skin that " +
+                "there been kissed by the sun. She be 'angin' from a long sturdy vine, swayin' in the breeze, below 'er " +
+                "an alligator, waitin' fer 'is next meal. Ye scare the alligator off an' rescue the damsel. The next " +
+                "mornin' ye find the damsel stole twenty-five percent o' yer coin!  no jolly deed goes unpunished.\n"""
+                , "25");
         human.addHazard("12", " Land Human 3", "50");
         environmental.addHazard("20", " Sea Storm/Rock 1", "1", "0");
         environmental.addHazard("21", " Sea Storm/Rock 2", "0", "1");
@@ -54,6 +62,9 @@ public class StartTest {
         //make a full key to look up in the hazard list
         fullHazardKey = Integer.toString(hazardFirstKey) + Integer.toString(hazardSecondKey);
 
+        hazardFirstKey = 1;
+        hazardSecondKey = 1;
+        fullHazardKey = "11";
         //find the right key and its values
         //get the hazard list
         if (hazardFirstKey == 0 || hazardFirstKey == 2) {
