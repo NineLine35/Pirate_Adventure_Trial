@@ -2,25 +2,52 @@ package Hazard;
 
 import java.util.ArrayList;
 
-public class Human {
+public class Human extends Hazard{
+    private String lookUp;
     private String storyMessage;
-    private int percentToTake;
-    private ArrayList<Human> stormList;
+    private String percentToTake;
+    private ArrayList<Human> humanList;
 
     public Human(){}
 
+    public Human(String lookUp, String storyMessage,String percentToTake){
+        this.lookUp = lookUp;
+        this.storyMessage = storyMessage;
+        this.percentToTake = percentToTake;
+    }
+
+    {
+        this.humanList = new ArrayList<Human>();
+    }
+
     public String getStoryMessage(){return storyMessage;}
-    public void setStoryMessage(){this.storyMessage = storyMessage;}
 
-    public int getPercentToTake(){return percentToTake;}
-    public void setPercentToTake(){this.percentToTake = percentToTake;}
+    public String getPercentToTake(){return percentToTake;}
 
-    //int humanLevel = getRandom(0,4);
+    public String getLookUp(){return lookUp;}
 
-    public void humanLevel(int humanLevel) {
-        //add the enrollment
-        if (humanLevel == 0){
+    public ArrayList<Human> getHumanList(){
+        return humanList;
+    }
 
-        }
+    public void addHazard(String lookUp, String storyMessage, String percentToTake) {
+        //create and load clients list
+        Human human;
+
+        //create the client
+        human = new Human(lookUp, storyMessage, percentToTake);
+
+        //add the client to the list
+        addHumanList(human);
+    }
+
+    public void addHumanList(Human human) {
+        //add the client
+        this.humanList.add(human);
+    }
+
+    @Override
+    public int calculateLoss(int amountToLose, int takeFrom) {
+        return 0;
     }
 }

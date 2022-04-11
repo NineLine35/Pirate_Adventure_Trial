@@ -3,7 +3,10 @@ package Hazard;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hazard {
+public abstract class Hazard{
+    public abstract int calculateLoss(int amountToLose, int takeFrom);
+}
+/*public  class Hazard {
     private String lookUp;
     private String storyMessage;
     private String pointsToTake;
@@ -14,7 +17,7 @@ public class Hazard {
     /**
      * This is the constructor for hazard
      */
-    public Hazard(){
+    /*public Hazard(){
 
     }
 
@@ -25,6 +28,7 @@ public class Hazard {
      * @param pointsToTake
      * @param sailDamage
      */
+/*
     public Hazard(String lookUp, String storyMessage, String pointsToTake, String sailDamage, String percentageLoss){
         this.lookUp = lookUp;
         this.storyMessage = storyMessage;
@@ -51,7 +55,6 @@ public class Hazard {
         return hazardList;
     }
 
-
     public void addHazard(String lookUp, String storyMessage, String pointsToTake, String sailDamage, String percentageLoss) {
         //create and load clients list
         Hazard hazard;
@@ -67,12 +70,26 @@ public class Hazard {
      * add a hazard to the list
      * @param hazard
      */
-    public void addHazardList(Hazard hazard) {
+    /*public void addHazardList(Hazard hazard) {
         //add the client
         this.hazardList.add(hazard);
     }
 
+    //get the random number of 2 options to determine if we are doing storm or human
+    public void callForHazard(){
+        int hazardType = getRandom(0,1);
+    }
 
+    //need to generate a random number to know which type of hazard to go to and collect that hazards list
+    public int getRandom(int min, int max){
+        //System.out.println("Random value of type int between "+min+" to "+max+ ":");
+        int random = (int)(Math.random()*(max-min+1)+min);
+        //System.out.println(random);
+        return random;
+    };*/
+
+
+    //previously commented out, not part of the prior version
     /*public String getHazardInfo(int index){
         return hazardList.get();
     };*/
@@ -90,19 +107,6 @@ public class Hazard {
         this.stormList = new ArrayList<Storm>();
     }*/
 
-    //get the random number of 2 options to determine if we are doing storm or human
-    public void callForHazard(){
-       int hazardType = getRandom(0,1);
-    }
-
-    //need to generate a random number to know which type of hazard to go to and collect that hazards list
-    public int getRandom(int min, int max){
-        //System.out.println("Random value of type int between "+min+" to "+max+ ":");
-        int random = (int)(Math.random()*(max-min+1)+min);
-        //System.out.println(random);
-        return random;
-    };
-
     /*public void goToHazard(int hazardType){
         if (hazardType == 0){
             //if 0 then we will go to storm
@@ -115,6 +119,8 @@ public class Hazard {
             Human human = new Human();
             System.out.println("the human " +human.humanLevel);
         }
-    }*/
-}
+    }
+
+
+}*/
 
