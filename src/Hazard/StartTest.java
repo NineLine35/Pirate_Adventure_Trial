@@ -69,9 +69,11 @@ public class StartTest {
         //make a full key to look up in the hazard list
         fullHazardKey = Integer.toString(hazardFirstKey) + Integer.toString(hazardSecondKey);
 
+        //these 3 variabels are hard coded for testing
         hazardFirstKey = 1;
         hazardSecondKey = 1;
         fullHazardKey = "12";
+
         //find the right key and its values
         //get the hazard list
         if (hazardFirstKey == 0 || hazardFirstKey == 2) {
@@ -117,9 +119,8 @@ public class StartTest {
     }
 
     public static int getRandom(int min, int max) {
-        //System.out.println("Random value of type int between "+min+" to "+max+ ":");
+        //create a randome number with the range
         int random = (int) (Math.random() * (max - min + 1) + min);
-        //System.out.println(random);
         return random;
     }
 }
