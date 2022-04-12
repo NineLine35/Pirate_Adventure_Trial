@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public class SandStorm extends Storm implements Sand{
     private static final int MAX_SAND = 2;
@@ -13,7 +13,7 @@ public class SandStorm extends Storm implements Sand{
         }
     }
 
-    @Override
+    //@Override
     public int calculateMoneyLost(int sandAmount, int money) {
         // TODO Auto-generated method stub
         return money-sandAmount;

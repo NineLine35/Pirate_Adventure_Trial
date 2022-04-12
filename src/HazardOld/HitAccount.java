@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public class HitAccount {
     private int hitAmount = 0;

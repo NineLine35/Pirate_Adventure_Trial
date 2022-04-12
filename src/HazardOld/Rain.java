@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public interface Rain {
     public int getRainAmount() throws Exception;
