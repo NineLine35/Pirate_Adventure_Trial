@@ -25,15 +25,22 @@ public class StartTest {
         environmental.addHazard("02", " Land Storm 3", "3", "3");
         human.addHazard("10", " Land Human 1", "10");
         human.addHazard("11", """
-                 It be a 'ot 'umid day as ye roll into port. The smells o' jasmine " +
-                "an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically. " +
-                "Could it be? a damsel in distress in need o' yer assistance?  upon approach, ye see the damsel. " +
-                "She 'as the longest dark locks ye 'ave e'er spied, the most beautiful brown doe eyes an' skin that " +
-                "there been kissed by the sun. She be 'angin' from a long sturdy vine, swayin' in the breeze, below 'er " +
-                "an alligator, waitin' fer 'is next meal. Ye scare the alligator off an' rescue the damsel. The next " +
-                "mornin' ye find the damsel stole twenty-five percent o' yer coin!  no jolly deed goes unpunished.\n"""
+                It be a 'ot 'umid day as ye roll into port. The smells o' jasmine 
+                an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically.  
+                Could it be? A damsel in distress in need o' yer assistance?  Upon approach, ye see the damsel. 
+                She 'as the longest dark locks ye 'ave e'er spied, the most beautiful brown doe eyes an' skin that 
+                there been kissed by the sun. She be 'angin' from a long sturdy vine, swayin' in the breeze, below 'er 
+                an alligator, waitin' fer 'is next meal. Ye scare the alligator off an' rescue the damsel. The next 
+                mornin' ye find the damsel stole twenty-five percent o' yer coin!  no jolly deed goes unpunished.\n"""
                 , "25");
-        human.addHazard("12", " Land Human 3", "50");
+        human.addHazard("12", """
+                Shiver me timbers!  Just as ye enter in the bay to port, a gentleman
+                o' fortune ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin' 
+                like a they went on a rum bender an' lookin' like they 'ave not bathed in months, aboard yer ship an' 
+                the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose fifty 
+                percent o' yer treasures. Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a 
+                crew that there can't fight.\n"""
+                , "50");
         environmental.addHazard("20", " Sea Storm/Rock 1", "1", "0");
         environmental.addHazard("21", " Sea Storm/Rock 2", "0", "1");
         environmental.addHazard("22", " Sea Storm/Rock 3", "1", "0");
@@ -64,7 +71,7 @@ public class StartTest {
 
         hazardFirstKey = 1;
         hazardSecondKey = 1;
-        fullHazardKey = "11";
+        fullHazardKey = "12";
         //find the right key and its values
         //get the hazard list
         if (hazardFirstKey == 0 || hazardFirstKey == 2) {
