@@ -1,10 +1,12 @@
-/* Singleton class that will act as a "timer" and track game turns.  Using a singleton
+package GameLoop;/* Singleton class that will act as a "timer" and track game turns.  Using a singleton
    approach ensures that the game will only have a single "clock" object in memory during the duration of the
    game. And ensures that other programmers cannot accidentally add more timers to the game and mess with the game flow.
  */
 
 /***
  * Testing doc
+ *
+ * 2.3 - Example of Singleton pattern
  */
 
 public class TurnTracker {

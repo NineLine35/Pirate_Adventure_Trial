@@ -13,6 +13,8 @@ public class Landmass {
         System.out.println("Islands have been created");
     }
 
+
+    // 2.5 - Valid use of encapsulation
     public String getName() {
         return name;
     }

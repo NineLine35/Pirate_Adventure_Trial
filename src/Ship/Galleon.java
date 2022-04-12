@@ -12,6 +12,7 @@ public class Galleon extends Ship {
     }
 
     //Field Getters/Setters
+    // 2.5 - Valid use of encapsulation
     public int getNumCannons() {
         return numCannons;
     }
