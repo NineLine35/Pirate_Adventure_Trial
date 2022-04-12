@@ -1,21 +1,46 @@
 package Hazard;
 
+import java.awt.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import MapFiles.Landmass;
 import MapFiles.MainMap;
 
 public class StartTest {
-    public static <ListArray> void main(String[] args) {
+    //public static <ListArray> void main(String[] args)
+    public static void main(String[] args) {
         // TODO Auto-generated method stub
 
+        //PLAYING WITH ACTIONS
+        System.out.println("test action");
 
+        //set up scanner
+        Scanner userInput = new Scanner(System.in);
+        //userInput.useDelimiter(" ");
+        //while(userInput.hasNext()){
+        //    String token = userInput.next();
+        //    try{
+        //      FindAction actions = new FindAction(Actions.valueOf(tokens.toUpperCase()));
+        //       actions.actionIsLike();
+        //     }
+        //    catch(Exception e){
+        //        System.out.println("not found");
+        //    }
+        //}
+        //set up a token to read the different placement of words
+        String tokens = userInput.next();
 
+        //set up try catch to see if the word is in our list of actions
+        try{
+            FindAction actions = new FindAction(Actions.valueOf(tokens.toUpperCase()));
+            actions.actionIsLike();
+        }
+        catch(Exception e){
+            System.out.println("not found");
+        }
 
+        //this is the Hazard code
         boolean land = true;
         int hazardFirstKey;
         int hazardSecondKey;
