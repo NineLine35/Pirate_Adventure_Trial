@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public interface Sand {
     public int getSandAmount() throws Exception;

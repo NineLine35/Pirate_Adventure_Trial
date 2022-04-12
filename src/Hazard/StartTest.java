@@ -12,6 +12,10 @@ import MapFiles.MainMap;
 public class StartTest {
     public static <ListArray> void main(String[] args) {
         // TODO Auto-generated method stub
+
+
+
+
         boolean land = true;
         int hazardFirstKey;
         int hazardSecondKey;

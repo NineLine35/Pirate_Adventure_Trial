@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public class Damages {
     public boolean stormDamage(int costOfStorm) {

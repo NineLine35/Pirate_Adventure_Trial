@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public class SandStorm extends Storm implements Sand{
     private static final int MAX_SAND = 2;

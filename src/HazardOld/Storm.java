@@ -1,10 +1,9 @@
-package Hazard;
+package HazardOld;
 
 /*abstract public class Storm {
     public abstract int calculateMoneyLost(int inches, int money);
     }*/
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Storm {
