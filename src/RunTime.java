@@ -1,12 +1,10 @@
-import MapFiles.Direction;
+import GameLoop.Action;
+import GameLoop.OpeningLoop;
 import MapFiles.Landmass;
 import MapFiles.MainMap;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class RunTime {
@@ -16,25 +14,8 @@ public class RunTime {
     //Create random map
     Landmass playMap[][] = MainMap.createMap();
 
-
-    //********************************************************************************************************************
-    //********************************************************************************************************************
-
-    //Test of basic console interface
-    System.out.println();
-    System.out.println("Welcome to the Pirate Game Trial!\n" +
-            "*********************************\n");
-
-    System.out.println(
-            """
-                    You awaken to the sound of distant gulls and the creaking of worn planks as the ship slowly sways in the 
-                    rolling ocean. Your head throbs after a night of rum and celebration of a mutiny that was long overdue.  
-                    Oh well, tis the life of a pirate.  But, now what to do?  You didn't think that far ahead, eyes always on the plunder
-                    not the planning.  But now as you walk up to the bridge, with the eyes of your crew bearing down on you
-                    you realize that it is time to take charge.
-                    
-                    This ship will fly under a new flag and a new name.  But what could that be?\n"""
-    );
+    // Launch opening game play loop
+    Action.OPENING.run(new OpeningLoop(), playMap);
 
     // Receive user input and parse it
       Scanner userInput = new Scanner(System.in);
@@ -69,25 +50,6 @@ public class RunTime {
 
 
       }
-
-   /* String userSelection = (userInput("What to name the ship? :\n"));
-
-
-    //String userSelection = (userInput("Please enter a direction to travel:\n")).toUpperCase();
-
-
-    // Moving the player based on "userSelection" direction.  Try/Catch just in-case the player enters a non-direction
-    try {
-      currentLocation = MainMap.movePlayer(currentLocation.getRow(), currentLocation.getColumn(), Direction.valueOf(userSelection));
-    }
-    catch (Exception e)
-    {
-      System.out.println("Not a valid direction sailor!");
-    }
-
-
-    // Check the landmass location of the player after they moved North
-    MainMap.mapCheck(currentLocation,playMap);*/
 
   }
 

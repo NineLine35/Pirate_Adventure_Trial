@@ -140,6 +140,8 @@ public class MainMap {
             }
 
          return returnCoord;
+
+           //TODO - Add a hazard call after move.
     }
 
 
