@@ -25,7 +25,9 @@ public class MainMap {
                 }
                 else
                 {
-                    treasureMap[x][y] = new Island(4);
+                    //Create a new island landmass, and use the randomEnum method to randomly select an Island name
+                    treasureMap[x][y] = new Island(4,Island.randomEnum());
+
                 }
             }
         }

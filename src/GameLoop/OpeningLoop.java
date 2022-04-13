@@ -1,8 +1,10 @@
 package GameLoop;
 
 import MapFiles.Landmass;
+import MapFiles.MainMap;
 import Player.Player;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class OpeningLoop extends Loop {
@@ -44,6 +46,27 @@ public class OpeningLoop extends Loop {
             System.out.println("And where shall we go??");
 
             userInput.nextLine();
+
+            if(enteredText.toLowerCase().contains("exit")){
+                System.out.println("Good bye!");
+                System.exit(0);
+            }
+            else if(enteredText.toLowerCase().contains("map")){
+
+                //Initiate current player location
+                MainMap.Coordinates startLocation = new MainMap.Coordinates(2,2);
+                MainMap.Coordinates currentLocation = startLocation;
+
+
+                //DEBUG print out map to console
+                System.out.println("______MAP______");
+                System.out.println(Arrays.deepToString(x).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                System.out.println("_______________");
+
+            }
+            else {
+                System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....");
+            }
 
 
         }
