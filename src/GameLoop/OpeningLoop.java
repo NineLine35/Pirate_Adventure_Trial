@@ -44,8 +44,6 @@ public class OpeningLoop extends Loop {
             System.out.println("And where shall we go??");
 
             userInput.nextLine();
-
-
         }
     }
 }

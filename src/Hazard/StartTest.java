@@ -3,6 +3,7 @@ package Hazard;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Stream;
 
 import MapFiles.Landmass;
 import MapFiles.MainMap;
@@ -13,32 +14,134 @@ public class StartTest {
         // TODO Auto-generated method stub
 
         //PLAYING WITH ACTIONS
-        System.out.println("test action");
-
-        //set up scanner
+        //display a message to the user
+        System.out.println("What do you want to do?");
+        //set up scanner to read
         Scanner userInput = new Scanner(System.in);
-        //userInput.useDelimiter(" ");
-        //while(userInput.hasNext()){
-        //    String token = userInput.next();
-        //    try{
-        //      FindAction actions = new FindAction(Actions.valueOf(tokens.toUpperCase()));
-        //       actions.actionIsLike();
-        //     }
-        //    catch(Exception e){
-        //        System.out.println("not found");
-        //    }
-        //}
-        //set up a token to read the different placement of words
-        String tokens = userInput.next();
 
-        //set up try catch to see if the word is in our list of actions
-        try{
-            FindAction actions = new FindAction(Actions.valueOf(tokens.toUpperCase()));
-            actions.actionIsLike();
+        //default variables to track how many of ENUM entries there are
+        int countActions = 0;
+        int countDirections = 0;
+        int countItem = 0;
+
+        //default variables to get the values back from the ENUMs
+        String directionValue = "";
+        String actionValue = "";
+        String itemValue = "";
+
+        //default boolean to see if we have a match, valid option for entery to do something
+        boolean match = false;
+
+        //get the user input next line
+        String s=userInput.nextLine();
+
+        //tokenize the input using a space delimiter
+        StringTokenizer st=new StringTokenizer(s," ");//" " is the delimiter here.
+
+        //set up loop to cycle through each item in the entry string
+        while (st.hasMoreTokens() ) {
+            //grab next
+            String s1 = st.nextToken();
+            //try to see if there is a valid action
+            try{
+                //have a valid action
+                //FindAction actions = new FindAction(Actions.valueOf(s1.toUpperCase()));
+                //actionValue = actions.actionIsLike();
+                Actions getAction = Actions.valueOf(s1.toUpperCase());
+                actionValue = getAction.getSendAction();
+                //increase the action count by 1
+                countActions++;
+            }
+            //not a valid action, maybe it is a direction
+            catch(Exception e){
+                try{
+                    //have a valid direction
+                    //FindDirection direction = new FindDirection(Direction.valueOf(s1.toUpperCase()));
+                    //direction.directionIsLike();
+                    //directValue = direction.directionIsLike();
+                    Direction getDirection = Direction.valueOf(s1.toUpperCase());
+                    directionValue = getDirection.getSendDirection();
+
+                    //increase the direction count by 1
+                    countDirections++;
+                }
+                //we do not have an action or direction, maybe it is an item
+                catch(Exception d){
+                    try{
+                        //we have an item
+                        Item getItem = Item.valueOf(s1.toUpperCase());
+                        itemValue = getItem.getSendItem();
+
+                        //increase the item count by 1
+                        countItem++;
+                    }
+                    //we do not have anything here
+                    catch(Exception i){
+                        System.out.println("not found");
+                    }
+                    System.out.println("not found");
+                }
+                System.out.println("not found");
+            }
+            System.out.println(s1);
         }
-        catch(Exception e){
-            System.out.println("not found");
+
+        //System.out.println(countActions);
+        //iof the count of actions is greater than 1, tell the user that they have too many actions
+        if(countActions > 1){
+            System.out.println("you have too many actions");
         }
+        //if the actions is less than 1, there is no action, we need an action
+        else if (countActions < 1){
+            System.out.println("you do not have an action");
+        }
+        //if more than 1 direction, tell the user they have too many directions
+        else if(countDirections > 1){
+            System.out.println("you have too many directions");
+        }
+        //if there is more than 1 item, tell the user they have too many items
+        else if (countItem > 1){
+            System.out.println("you have too many items");
+        }
+        //otherwise we have valid entries
+        else{
+            System.out.println("VALID THINGS");
+            //string it together to see if we have a match in our options
+            //string all possible entries
+            String validString = actionValue + directionValue + itemValue;
+            //create a stream list so we can compare the user entry to valid options
+            Stream<String> checkIt = Stream.of("movenorth","movesouth","pickupcoin");
+            //try to match the user entry with our valid options
+            match = checkIt.anyMatch(c -> c.equals(validString));
+            System.out.println(validString);
+            System.out.println(match);
+        }
+
+        //if match is true, we can do something with their entries
+        if(match){
+            System.out.println("good value");
+        }
+        //not a good value, we have nothing for that entry
+        else{
+            System.out.println("bad value");
+        }
+        //counter
+      /*  int countActions = 0;
+        while(userInput.hasNext()){
+            //System.out.println(userInput.next());
+
+            //set up try catch to see if the word is in our list of actions
+            try{
+                FindAction actions = new FindAction(Actions.valueOf(userInput.next().toUpperCase()));
+                actions.actionIsLike();
+                countActions = countActions + 1;
+            }
+            catch(Exception e){
+                System.out.println("not found");
+            }
+        }
+        System.out.println(countActions);
+        userInput.close();*/
 
         //this is the Hazard code
         boolean land = true;
@@ -47,6 +150,8 @@ public class StartTest {
         String fullHazardKey;
         Environmental environmental = new Environmental();
         Human human = new Human();
+        double totalCoin = 100.00;
+        double takeCoin = 0.00;
 
         //make the list of hazards
         environmental.addHazard("00", " Land Storm 1", "1", "0");
