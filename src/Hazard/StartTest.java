@@ -3,6 +3,8 @@ package Hazard;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import MapFiles.Landmass;
@@ -154,10 +156,52 @@ public class StartTest {
         double takeCoin = 0.00;
 
         //make the list of hazards
-        environmental.addHazard("00", " Land Storm 1", "1", "0");
-        environmental.addHazard("01", " Land Storm 2", "2", "1");
-        environmental.addHazard("02", " Land Storm 3", "3", "3");
-        human.addHazard("10", " Land Human 1", "10");
+        //in port or near/environmental damage
+        environmental.addHazard("00", """
+                 Finally gettin' to port!  It been a long 'aul gettin' to this
+                 here destination, but it looks like a storm be brewin' off in the distance. The smell o' rain in the 
+                 air an' cracks o' lightnin' 'eard loud an' clear, it be gettin' closer. What's that there? Either ye 
+                 'ad one too many rums last night, or there be a twister 'eadin' right fer yer ship. Ye better take 
+                 cover, it looks like there flyin' cows!  Shiver me timbers! One just clipped yer sail an' damaged 
+                 it a bit. Now ye will need a sail repair kit if ye do not want yer  ship to sail any slower!\n"""
+                , "1", "0");
+        environmental.addHazard("01", """
+                 Such a 'ot day at port, sand burnin' yer feet as ye walk along the beach. A nice rain to cool it down 
+                 would be jolly, but that there be not goin' to 'appen. Ye even 'ope fer a slight breeze, to at least 
+                 'ave some air movement. Yer clothes be stickin' to ye an' yer beard be just too 'ot. Ye decide to get 
+                 yer toes wet in the sea an' it be so refreshin'. Ye see people runnin' about in the distance, almost 
+                 frantic lookin'. Ye remove yer toes from the water an' 'ead aft to the ship. People be closin' their 
+                 'uts an' establishments. There be no one left wanderin' the street but yerself. Ye 'earrr someone tell 
+                 ye to take cover. Ye do not know why, it be a beautify day!  No sooner do ye think this here, ye see a 
+                 cloud o' tan in the air, it looks like a sand storm be 'eadin' fer ye. Ye run to the ship an' manage to 
+                 get there just in time. The storm only lasts a short while, but the damage been done. Sand got all the 
+                 way to yer ship an' sadly, the cannon been not covered. Now ye need to find someone to clean the cannon 
+                 so it can be used. That there will cost ye at least 100 coin!\n
+                 """
+                , "2", "1");
+        environmental.addHazard("02", """
+                It be cool an' cloudy out, quite dark actually. There be rain in the air an' a little bit o' wind. As ye
+                move closer to port, the wind starts to pick to the sky. It gets a little chilly so ye grab some rum 
+                to warm yer insides. After a few swigs, ye take a few more, a little extra rum ne'er 'urt any gentleman 
+                o' fortune. The wind picks to the sky a bit more an' now ye get a little dizzy. Ye don't want the crew 
+                to think poorly on ye, so instead o' askin' fer 'elp, ye man the ship yerself, ye be determined to port 
+                the ship. Ye try with all yer might, to brin' in the ship straight, but the wind an' waves make it too 
+                'ard, not to mention, ye might be seein' 2 docks from ye buzz ye 'ave. Ye feel a jar an' then 'earrr a 
+                boom, oh lad, ye 'it the dock!  Now yer ship 'as a 'uge 'ole that there will need fixin' an' ye 'ave 
+                to pay 200 coins to repair the dock!  Not a jolly mornin' fer this here gentleman o' fortune.\n"""
+                , "3", "3");
+        //in port or near/human damage
+        human.addHazard("10", """
+                It be a nice sunny day, no breeze in the air. Ye decide to take a little trip into the island to find 
+                yerself yer own private area to cool down in the water an' take a bath. Ye see a beautiful oasis ahead 
+                o' ye an' just yer luck, no one be there!  'Ow be no one grabbin' advantage o' this here blue green water
+                surrounded by sand an' greenery?  As ye take a step closer to the water, yer foot sinks!  It be strange
+                feeling, a bit gooey an' cold. Ye try to pull yer foot up an' it be stuck. The worse part be, ye lost 
+                yer balance an' fell to the ground. Now ye be on all fours an' not able to move. Ye start to sink. Ye 
+                yell fer 'elp at the top o' yer lungs an' finally a small blond 'aired lad emerges from the greenery. 
+                Ye think ye be goin' to die, 'ow be this here little lad goin' to pull ye out?  Then ye spot the donkey 
+                off to the side, eat a little green snack. 'E offers to 'elp pull ye out, but it will cost ye 50 coins. 
+                It be do or die at this here point, so ye take the loss o' 50 coins an' get freed.\n""", "10");
         human.addHazard("11", """
                 It be a 'ot 'umid day as ye roll into port. The smells o' jasmine 
                 an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically.  
@@ -168,18 +212,58 @@ public class StartTest {
                 mornin' ye find the damsel stole twenty-five percent o' yer coin!  no jolly deed goes unpunished.\n"""
                 , "25");
         human.addHazard("12", """
-                Shiver me timbers!  Just as ye enter in the bay to port, a gentleman
-                o' fortune ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin' 
+                Ye wander around the port, lookin' fer somethin' to do. Ye an' yer crew be know to wreak 'avoc an'
+                'ave a jolly time!  Ye 'ead into the local establishement. It be dark, dingy an' smells o' musk from the
+                dampness in the air. Ye order to the sky some whiskeies an' rums, an' take a seat. Ye was so excited to 'ave
+                yer drink, ye failed to notice that there every man in the place been eyein' ye to the sky. Ye sit in a dark corner,
+                facin' the people, so ye can watch yer aft. One tall, built man stands up an' points at ye an' then points outside.
+                Ye sigh, looks such as yerself will 'ave to fight to 'old yer place in port. Ye walk out o' the barrr an' 'e
+                already be grabbin' a swin' at ye, but ye be much smaller an' much quicker. As soon as ye escape, ye
+                take a swin' an' get 'im right in the jaw. 'E falls o'er an' be knocked out. Everyone be cheerin' ye on,
+                even the men in the barrr. Ye now 'ave earned yer place to drink fer the night!  As ye an' yer crew stagger
+                aft to the ship, ye notice somethin' be wrong. Why be the sails open an' why do they look like a shredded
+                mess?  It looks like the tall built man been not 'appy about the fight an' while ye celebrated, 'e been busy
+                at work. Ye only 'ave one main sail that there be good, but all the others need to be replaced. Ye be
+                delayed to yer next port, now that there ye must sail very slow.\n"""
+                , "50");
+        environmental.addHazard("20", """
+                Just sailin' a way at sea, the waves calm fer this here time o' day.  Sunset o' orange, reds an' yellows
+                fill this here sky. As ye look off into the distance, admirin' the beauty o' sea, ye notice an odd 
+                lookin' movin' toward the boat. Well blow me o'er, where did that there whale come from? Ye almost 'it
+                it!  Jolly thin' ye 'ave cat like reflexes an' did a sharp turn to avoid it, but too bad ye ended to 
+                the sky 'ittin' a reef!  Looks like ye 'ave a 'ole in yer ship, ye be goin' to 'ave to patch that 
+                there 'ole before ye sink!\n""", "1", "0");
+        environmental.addHazard("21", """
+                Up an' down, the rollin' o' the waves, almost makes ye sea sick. There be somethin' brewin' off into 
+                the distance. This here ain't just an ordinary storm, but a storm o' the ages. Ye can see from below it,
+                it 'as a massive center, almost like an me good eye lookin' straight into yer soul. Around it, solid 
+                white walls an' beyond that there, darkness. The seven seas must be comin' to an end! ye continue on, 
+                like a true gentleman o' fortune, nothin' be goin' to avast ye. As the storm gets closer an' closer, 
+                the waves become almost unmanageable, pullin' ye wherever they want to take ye. Ye 'ead to the lower 
+                level with the crew an' pray ye survive what be next. Ye sit fer what seems like eternity an' soon 
+                calmness comes. As ye emerge to the deck, ye can see all the damage 'ad been done. Ye lost at least 
+                'alf o' yer sails, an' what be left o' them, flappin' in the wind. it will take ye days, maybe weeks, 
+                to get to a port.\n""", "0", "1");
+        environmental.addHazard("22", " Sea Storm/Rock 3", "1", "0");
+        human.addHazard("30", """
+                Ye get up on deck to the sound o' voices, manly voices. Their voices be a bit muffled, an' it be 'ard 
+                fer ye to understand, but ye think ye 'eard them say gold. Ye quickly rush to the sky to the deck above,
+                leavin' yer crew asleep, an' look o'er the side o' yer boat to find an empty dingy boat floatin' right 
+                next to the ship. There be a rope attached to a grapplin' 'ook, which 'as down to Davy Jones' Locker 
+                its sharp points into yer boat. There be No men attached to the rope, so where be the men?  As ye turn 
+                around ye find a tall, gladiator o' a man standin' before ye. 'E punches ye in the me jolly me good 
+                eye an' knocks ye off yer feet. Ye know ye ain't a good fighter, so ye stay down. 'E an' 'is men take 
+                off with a quarter o' yer gold. As the crew awake an' come up on deck, they notice yer black me good 
+                eye. Ye explain what 'as 'appened, an' the look o' disappointment across their faces. Ye fearrr fer the 
+                day they take o'er the ship, such as yerself did. What good be a ship with a Cap'n that there can't fight?\n"""
+                , "10");
+        human.addHazard("31", """
+                Shiver me timbers!  Just as you are looking into the birght blue sky, adminring the beauty of the sea,
+                a pirate ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin' 
                 like a they went on a rum bender an' lookin' like they 'ave not bathed in months, aboard yer ship an' 
                 the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose fifty 
-                percent o' yer treasures. Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a 
-                crew that there can't fight.\n"""
-                , "50");
-        environmental.addHazard("20", " Sea Storm/Rock 1", "1", "0");
-        environmental.addHazard("21", " Sea Storm/Rock 2", "0", "1");
-        environmental.addHazard("22", " Sea Storm/Rock 3", "1", "0");
-        human.addHazard("30", " Sea Human 1", "10");
-        human.addHazard("31", " Sea Human 2", "25");
+                percent o' yer treasures. Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a
+                crew that there can't fight.""", "25");
         human.addHazard("32", " Sea Human 3", "50");
 
         //generate a random number to start the hazards
@@ -204,9 +288,9 @@ public class StartTest {
         fullHazardKey = Integer.toString(hazardFirstKey) + Integer.toString(hazardSecondKey);
 
         //these 3 variabels are hard coded for testing
-        hazardFirstKey = 1;
-        hazardSecondKey = 1;
-        fullHazardKey = "12";
+        //hazardFirstKey = 0;
+        //hazardSecondKey = 2;
+        //fullHazardKey = "02";
 
         //find the right key and its values
         //get the hazard list
@@ -253,7 +337,7 @@ public class StartTest {
     }
 
     public static int getRandom(int min, int max) {
-        //create a randome number with the range
+        //create a random number with the range
         int random = (int) (Math.random() * (max - min + 1) + min);
         return random;
     }
