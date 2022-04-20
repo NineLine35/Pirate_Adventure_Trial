@@ -42,6 +42,7 @@ public class OpeningLoop {
         System.out.println("And where shall we go??");
 
 
+
         // Game loop open while input stream is active
         while (userInput.hasNext()) {
 
@@ -91,6 +92,7 @@ public class OpeningLoop {
                 System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
             }
 
+           
 
         }
     }
