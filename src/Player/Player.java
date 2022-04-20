@@ -1,5 +1,6 @@
 package Player;
 
+import MapFiles.MainMap;
 import Ship.Ship;
 import Ship.ShipBuilder;
 
@@ -11,6 +12,7 @@ public class Player {
     private int chest;      //Holds gold
     private String name;  // Player name
     private Ship ship; // Ship class placeholder
+    private MainMap.Coordinates location = new MainMap.Coordinates(2,2);
 
     private Player(){};
 
@@ -32,6 +34,14 @@ public class Player {
 
     public void setChest(int chest) {
         this.chest = chest;
+    }
+
+    public MainMap.Coordinates getLocation() {
+        return location;
+    }
+
+    public void setLocation(MainMap.Coordinates location) {
+        this.location = location;
     }
 
     //Method to set the player ship class and assign a name

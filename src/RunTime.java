@@ -1,4 +1,3 @@
-import GameLoop.Action;
 import GameLoop.OpeningLoop;
 import MapFiles.Landmass;
 import MapFiles.MainMap;
@@ -15,7 +14,7 @@ public class RunTime {
     Landmass playMap[][] = MainMap.createMap();
 
     // Launch opening game play loop
-    Action.OPENING.run(new OpeningLoop(), playMap);
+    OpeningLoop.launch(playMap);
 
     // Receive user input and parse it
       Scanner userInput = new Scanner(System.in);

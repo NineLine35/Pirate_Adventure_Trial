@@ -1,8 +1,6 @@
 package GameLoop;
 
-import MapFiles.Landmass;
-
-public class AtSeaLoop {
+public class IslandLoop {
 
 
     public static void launch(){
@@ -11,7 +9,7 @@ public class AtSeaLoop {
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
 
         System.out.println();
-        System.out.println("Placeholder for At Sea gameplay loop\n");
+        System.out.println("Placeholder for At Island gameplay loop\n");
 
     }
 }
