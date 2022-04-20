@@ -11,6 +11,15 @@ public class Island extends Landmass {
         super(size); this.setName(name);
     }
 
+    /**
+     * Overriding toString to return a specific "Island" string.  This helps clean up the treasure map generation
+     * @return "{Island}"
+     */
+    @Override
+    public String toString(){
+        return "{Island}";
+    }
+
 
     protected void refreshBooty(){
         System.out.println("Booty has been refreshed!");
