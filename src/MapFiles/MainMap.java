@@ -1,5 +1,8 @@
 package MapFiles;
 
+import GameLoop.AtSeaLoop;
+import GameLoop.IslandLoop;
+
 import java.util.Random;
 
 public class MainMap {
@@ -25,7 +28,9 @@ public class MainMap {
                 }
                 else
                 {
-                    treasureMap[x][y] = new Island(4);
+                    //Create a new island landmass, and use the randomEnum method to randomly select an Island name
+                    treasureMap[x][y] = new Island(4,Island.randomEnum());
+
                 }
             }
         }
@@ -85,9 +90,23 @@ public class MainMap {
     }
 
 
+
+    public static void instanceCheck(Landmass tile){
+
+         if(tile instanceof OpenWater){
+             AtSeaLoop.launch();
+
+         }
+         else if(tile instanceof Island){
+             IslandLoop.launch();
+         }
+
+    }
+
+
     //Method to find the "movePlayer" coordinates to movePlayer the player to a new location on the map.
     //TODO Add a check to ensure the player does not "fall off the map"
-    public static Coordinates movePlayer(int x, int y, Direction direction){
+    public static Coordinates movePlayer(int x, int y, Direction direction, Landmass[][] playMap){
 
          Coordinates returnCoord = new Coordinates(x,y);
 
@@ -95,42 +114,50 @@ public class MainMap {
                  case NORTH:
                      returnCoord.row = x - 1;
                      returnCoord.column = y;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case SOUTH:
                      returnCoord.row = x + 1;
                      returnCoord.column = y;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case WEST:
                      returnCoord.row = x;
                      returnCoord.column = y - 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case EAST:
                      returnCoord.row = x;
                      returnCoord.column = y + 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case NORTHEAST:
                      returnCoord.row = x - 1;
                      returnCoord.column = y + 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case NORTHWEST:
                      returnCoord.row = x - 1;
                      returnCoord.column = y - 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case SOUTHEAST:
                      EAST:
                      returnCoord.row = x + 1;
                      returnCoord.column = y + 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case SOUTHWEST:
                      returnCoord.row = x + 1;
                      returnCoord.column = y - 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  default:

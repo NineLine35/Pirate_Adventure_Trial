@@ -1,14 +1,15 @@
 package GameLoop;
 
-import MapFiles.Landmass;
+import MapFiles.*;
 import Player.Player;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class OpeningLoop extends Loop {
+public class OpeningLoop {
 
-    @Override
-    public void launch(Landmass[][] x) {
+
+    public static void launch(Landmass[][] playmap) {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -32,18 +33,67 @@ public class OpeningLoop extends Loop {
         // Receive user input and parse it
         Scanner userInput = new Scanner(System.in);
 
+        // Store user input in variable
+        String enteredText = userInput.nextLine();
+
+        Player.getInstance().setName(enteredText);
+
+        System.out.println("\nNice to meet ya, " + Player.getInstance().getName());
+        System.out.println("And where shall we go??");
+
+
+
         // Game loop open while input stream is active
         while (userInput.hasNext()) {
 
-            // Store user input in variable
-            String enteredText = userInput.nextLine();
+            enteredText = userInput.nextLine();
 
-            Player.getInstance().setName(enteredText);
+            if(enteredText.toLowerCase().contains("exit")){
+                System.out.println("Good bye!");
+                System.exit(0);
+            }
+            else if(enteredText.toLowerCase().contains("map")){
 
-            System.out.println("\nNice to meet ya, " + Player.getInstance().getName());
-            System.out.println("And where shall we go??");
+                //DEBUG print out map to console
+                System.out.println("______MAP______");
+                System.out.println(Arrays.deepToString(playmap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                System.out.println("_______________");
 
-            userInput.nextLine();
+            }
+            else if(enteredText.toLowerCase().contains("where am i")){
+                int x = Player.getInstance().getLocation().getRow();
+                int y = Player.getInstance().getLocation().getColumn();
+
+                if (playmap[x][y] instanceof OpenWater){
+                    System.out.println("Ye in the open water captain!!");
+                }
+                else if(playmap[x][y] instanceof Island){
+                    System.out.println("Seems we be on land....yuck");
+                }
+
+            }
+            else if(enteredText.toLowerCase().contains("sail")){
+
+                System.out.println("Which direction shall we sail captain??");
+
+                String userSelection = userInput.nextLine().toUpperCase();
+
+                try {
+                    Player.getInstance().setLocation(MainMap.movePlayer(Player.getInstance().getLocation().getRow(),
+                            Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection),playmap));
+                }
+                catch (Exception e)
+                {
+                    System.out.println("Not a valid direction sailor!");
+                }
+
+            }
+            else {
+                System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
+            }
+
+           
+
         }
     }
 }
