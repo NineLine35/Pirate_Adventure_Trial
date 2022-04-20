@@ -3,6 +3,7 @@ package Hazard;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -33,6 +34,8 @@ public class StartTest {
 
         //default boolean to see if we have a match, valid option for entery to do something
         boolean match = false;
+        //note if you sent the user a message to fix their input
+        boolean messageSent = false;
 
         //get the user input next line
         String s=userInput.nextLine();
@@ -91,22 +94,81 @@ public class StartTest {
         //System.out.println(countActions);
         //iof the count of actions is greater than 1, tell the user that they have too many actions
         if(countActions > 1){
+            //The magic eightball says try again.
+            //You do not speak pirate, so I do not understand, please try again
             System.out.println("you have too many actions");
+            messageSent = true;
         }
         //if the actions is less than 1, there is no action, we need an action
         else if (countActions < 1){
             System.out.println("you do not have an action");
+            messageSent = true;
         }
+        else if (actionValue == "move"){
+            if(countDirections > 1){
+                //Are you trying to naviage the Bermuda Triangle?
+                //Whoa there sailor, one direction at a time
+                //Where do you think you are going, spinning in circles?  Pick one direction.
+                System.out.println("you have too many directions");
+                messageSent = true;
+            }
+            else if (countDirections < 1) {
+                //Are you lost? You need to pick a direction to move
+                System.out.println("you have to pick a directions");
+                messageSent = true;
+            }
+            else{
+                //this just means you have a valid entry
+            }
+        }
+        else if (actionValue == "pickup") {
+            if(countItem > 1) {
+                //Only a land-lubber would pick that
+                //Greedy pirate, you can only use an item at a time.
+                System.out.println("you have too many items");
+                messageSent = true;
+            }
+            else if(countItem < 1) {
+                //What is it you want to pick up?
+                System.out.println("you have to pick an item");
+                messageSent = true;
+            }
+            else{
+                //this just means you have a valid entry
+            }
+        }
+        else if (actionValue == "look") {
+            //place holder as an example for what is next
+        }
+
+        if(!messageSent) {
+            System.out.println("VALIDATE THINGS");
+            //string it together to see if we have a match in our options
+            //string all possible entries
+            String validString = actionValue + directionValue + itemValue;
+            //create a stream list so we can compare the user entry to valid options
+            Stream<String> checkIt = Stream.of("movenorth", "movesouth", "pickupcoin");
+            //try to match the user entry with our valid options
+            match = checkIt.anyMatch(c -> c.equals(validString));
+            System.out.println(validString);
+            System.out.println(match);
+        }
+
+
+
         //if more than 1 direction, tell the user they have too many directions
-        else if(countDirections > 1){
+  /*      else if(countDirections > 1){
+            //Are you trying to naviage the Bermuda Triangle?
+            //Whoa there sailor, one direction at a time
+            //Where do you think you are going, spinning in circles?  Pick one direction.
             System.out.println("you have too many directions");
         }
         //if there is more than 1 item, tell the user they have too many items
         else if (countItem > 1){
             System.out.println("you have too many items");
-        }
+        }*/
         //otherwise we have valid entries
-        else{
+/*        else{
             System.out.println("VALID THINGS");
             //string it together to see if we have a match in our options
             //string all possible entries
@@ -117,7 +179,7 @@ public class StartTest {
             match = checkIt.anyMatch(c -> c.equals(validString));
             System.out.println(validString);
             System.out.println(match);
-        }
+        }*/
 
         //if match is true, we can do something with their entries
         if(match){
@@ -244,7 +306,19 @@ public class StartTest {
                 calmness comes. As ye emerge to the deck, ye can see all the damage 'ad been done. Ye lost at least 
                 'alf o' yer sails, an' what be left o' them, flappin' in the wind. it will take ye days, maybe weeks, 
                 to get to a port.\n""", "0", "1");
-        environmental.addHazard("22", " Sea Storm/Rock 3", "1", "0");
+        environmental.addHazard("22", """
+                Fer days ye 'ave been sailing, gettin' closer an' closer to yer destination. The waters be deep blue an' 
+                cold. Ye ain't sure 'ow ye got so farrr off course, but these waters be unfamiliarrr an' give ye a 
+                feelin' o' uneasiness. One o' the crew starts to yell an' point to the fore o' the ship. Ye climb the 
+                tower to get a better look from above. What be that there?  ye see somethin' with a ridged aft, like 
+                spikes, an' it 'as scales. It be a green color, shimmery an' bright. Like a snake, it moves about the 
+                water, divin' in an' out an' then slitherin' left an' right. It be 'uge, somethin' prehistoric. Ne'er 
+                spied anythin' like it, so ye try to steer clearrr. Ye climb aft down to the deck an' try to navigate 
+                away from it, but it keeps followin' ye. Ye fire a cannon at it, an' ye immediately realize ye made a 
+                terrible mistake. It be light purple eyes turn a bright red, like fire. Ye made it angry. Before ye 'ave 
+                time to react, it be massive tail swings an' makes a direct 'it to the side o' the ship. That there be a 
+                big 'ole an' ye need to find a port fast, but ye be in unfamiliarrr waters, will ye be able to find a 
+                port?\n""", "1", "0");
         human.addHazard("30", """
                 Ye get up on deck to the sound o' voices, manly voices. Their voices be a bit muffled, an' it be 'ard 
                 fer ye to understand, but ye think ye 'eard them say gold. Ye quickly rush to the sky to the deck above,
@@ -264,7 +338,22 @@ public class StartTest {
                 the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose fifty 
                 percent o' yer treasures. Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a
                 crew that there can't fight.""", "25");
-        human.addHazard("32", " Sea Human 3", "50");
+        human.addHazard("32", """
+                It been a jolly day at sea. Clearrr blue skies, calm waters, catchin' some fish fer dinner, rum in yer 
+                belly, just an amazin' day. Ye an' yer crew be relaxin' on deck, gettin' some sun, enjoyin' the mild, 
+                but warm, temperature. Off in the distance ye 'earrr a thar she blows, blast away!  been that there 
+                thunder?  no, it can't be, it be too nice out an' not a cloud in sight. Thar she blows, blast away!  
+                thar she blows, blast away!  what be 'appening?  then another thar she blows, blast away! followed by 
+                a "splash". Ye look o'er to where the splash occurred an' realize what be 'appening, ye be under attack!  
+                cannons be bein' launched directly at yer ship. Ye an' the crew get yer cannons ready an' start to fire 
+                aft. Some o' the cannons be gettin' awfully close to yer ship. Ye now see the ship, it be close enough 
+                to make out. They now 'ave archers pointin' arrows with flame. Ye tell the crew to take cover an' 
+                shortly after, arrows flyin' through the air. They set yer sails on fire, ye need to get these fires 
+                under control before yer 'ole ship sets fire. Yer crew sets off two cannons an' one be a direct it to 
+                the other boat. The direct 'it been a moment too late, as ye also received a direct 'it. The other ship 
+                starts to 'ead in the other direction, probably to 'ead into a port fer repairs before they sink. Ye 
+                assess yer damage an' 'ave one sail left an' a big 'ole in the ship. Ye need to get to a port before ye 
+                sink, but with one sail, it be slow movin'.\n""", "50");
 
         //generate a random number to start the hazards
         if (land) {
@@ -296,7 +385,18 @@ public class StartTest {
         //get the hazard list
         if (hazardFirstKey == 0 || hazardFirstKey == 2) {
             ArrayList<Environmental> environmentalList = environmental.getEnvironmentalList();
-            for (int x = 0; x < environmentalList.size(); x++) {
+            //loop through to find your lookup value
+            for(Environmental environmentItems : environmentalList){
+                //get the lookup
+                Supplier<String> onLine = () -> environmentItems.getLookUp();
+                //check if it is our look up
+                if(onLine.get().equals(fullHazardKey)){
+                    //it is our lookup, so get the message to display to the user
+                    Supplier<String> description = () -> environmentItems.getStoryMessage();
+                    System.out.println(description.get());
+                }
+            }
+/*            for (int x = 0; x < environmentalList.size(); x++) {
                 //get the hazard information
                 Environmental a = environmentalList.get(x);
 
@@ -314,7 +414,7 @@ public class StartTest {
 
                     System.out.println("Look up value: " + fullHazardKey + " The message " + theMessage + " The hit " + theHit + " The sail " + theSail);
                 }
-            }
+            }*/
         } else {
             ArrayList<Human> humanList = human.getHumanList();
             for (int x = 0; x < humanList.size(); x++) {
