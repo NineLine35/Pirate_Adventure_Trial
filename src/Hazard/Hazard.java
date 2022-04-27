@@ -5,7 +5,15 @@ import java.util.List;
 
 public abstract class Hazard{
     public abstract int calculateLoss(int amountToLose, int takeFrom);
+
+    public static int getRandom(int min, int max) {
+        //create a random number with the range
+        int random = (int) (Math.random() * (max - min + 1) + min);
+        return random;
+    }
 }
+
+
 /*public  class Hazard {
     private String lookUp;
     private String storyMessage;

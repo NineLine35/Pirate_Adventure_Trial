@@ -1,10 +1,15 @@
 package GameLoop;
 
+import Hazard.Actions;
+import Hazard.Item;
+import Hazard.StartTest;
 import MapFiles.*;
 import Player.Player;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.stream.Stream;
 
 public class OpeningLoop {
 
@@ -40,60 +45,127 @@ public class OpeningLoop {
 
         System.out.println("\nNice to meet ya, " + Player.getInstance().getName());
         System.out.println("And where shall we go??");
+        boolean goodValue = false;
+        while (!goodValue) {
+            //my adds
+            //set up scanner to read
+            Scanner userInput2 = new Scanner(System.in);
 
+            //go to method to tokenize
+            StringTokenizer st = getToken(userInput2);
 
+            //default variables to track how many of ENUM entries there are
+            int countEntries = 0;
 
-        // Game loop open while input stream is active
-        while (userInput.hasNext()) {
+            //default variables to get the values back from the ENUMs
+            String entryValue = "";
 
-            enteredText = userInput.nextLine();
-
-            if(enteredText.toLowerCase().contains("exit")){
-                System.out.println("Good bye!");
-                System.exit(0);
-            }
-            else if(enteredText.toLowerCase().contains("map")){
-
-                //DEBUG print out map to console
-                System.out.println("______MAP______");
-                System.out.println(Arrays.deepToString(playmap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
-                System.out.println("_______________");
-
-            }
-            else if(enteredText.toLowerCase().contains("where am i")){
-                int x = Player.getInstance().getLocation().getRow();
-                int y = Player.getInstance().getLocation().getColumn();
-
-                if (playmap[x][y] instanceof OpenWater){
-                    System.out.println("Ye be in the open water captain!!");
-                }
-                else if(playmap[x][y] instanceof Island){
-                    System.out.println("Seems we be on land....yuck");
-                }
-
-            }
-            else if(enteredText.toLowerCase().contains("sail")){
-
-                System.out.println("Which direction shall we sail captain??");
-
-                String userSelection = userInput.nextLine().toUpperCase();
-
+            //set up loop to cycle through each item in the entry string
+            while (st.hasMoreTokens()) {
+                //grab next
+                String s1 = st.nextToken();
+                //try to see if there is a valid action
                 try {
-                    Player.getInstance().setLocation(MainMap.movePlayer(Player.getInstance().getLocation().getRow(),
-                            Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection),playmap));
+                    //have a valid action
+                    //FindAction actions = new FindAction(Actions.valueOf(s1.toUpperCase()));
+                    //actionValue = actions.actionIsLike();
+                    OpenLoopOptions getEntry = OpenLoopOptions.valueOf(s1.toUpperCase());
+                    if(entryValue != ""){
+                        entryValue = entryValue + " " + getEntry.getSendEntry();
+                    }
+                    else
+                    {
+                        entryValue = getEntry.getSendEntry();
+                    }
+                    //increase the action count by 1
+                    countEntries++;
                 }
-                catch (Exception e)
-                {
-                    System.out.println("Not a valid direction sailor!");
+                //not a valid action, maybe it is a direction
+                catch (Exception e) {
                 }
+            }
 
+            //System.out.println(countActions);
+            //iof the count of actions is greater than 1, tell the user that they have too many actions
+            if (countEntries > 1 && !entryValue.equals("where am i")) {
+                System.out.println("you have too many entries");
+                goodValue = false;
             }
             else {
-                System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
+
+
+                // Game loop open while input stream is active
+                //while (userInput.hasNext()) {
+                //while (!goodValue) {
+                //enteredText = userInput.nextLine();
+                System.out.println(entryValue);
+                //if (enteredText.toLowerCase().contains("exit")) {
+                if (entryValue.equals("exit")) {
+                    System.out.println("Good bye!");
+                    System.exit(0);
+                } //else if (enteredText.toLowerCase().contains("map")) {
+                else if (entryValue.equals("map")) {
+                    goodValue = true;
+                    //DEBUG print out map to console
+                    System.out.println("______MAP______");
+                    System.out.println(Arrays.deepToString(playmap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                    System.out.println("_______________");
+                }// else if (enteredText.toLowerCase().contains("where am i")) {
+                else if (entryValue.equals("where am i")) {
+                    goodValue = true;
+                    int x = Player.getInstance().getLocation().getRow();
+                    int y = Player.getInstance().getLocation().getColumn();
+
+                    if (playmap[x][y] instanceof OpenWater) {
+                        System.out.println("Ye in the open water captain!!");
+                    } else if (playmap[x][y] instanceof Island) {
+                        System.out.println("Seems we be on land....yuck");
+                    }
+                } //else if (enteredText.toLowerCase().contains("sail")) {
+                else if (entryValue.equals("sail")) {
+                    goodValue = true;
+                    System.out.println("Which direction shall we sail captain??");
+
+                    String userSelection = userInput.nextLine().toUpperCase();
+
+                    try {
+                        Player.getInstance().setLocation(MainMap.movePlayer(Player.getInstance().getLocation().getRow(),
+                                Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection), playmap));
+                    } catch (Exception e) {
+                        System.out.println("Not a valid direction sailor!");
+                    }
+
+                } else {
+                    goodValue = false;
+                    System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
+
+                }
+
             }
-
-           
-
         }
+
+        //}
+    }
+
+    //method for randoms with a min and max
+    public static int getRandom(int min, int max) {
+        //create a random number with the range
+        int random = (int) (Math.random() * (max - min + 1) + min);
+        return random;
+    }
+
+    //method to tokenize
+    public static StringTokenizer getToken(Scanner userInput2)
+    {
+        //get the user input next line
+        String s = userInput2.nextLine();
+
+        //s = s.replaceAll("s/[^a-zA-Z0-9]","");
+        s = s.replaceAll("[^\\w\\s\\d]","");
+
+
+        //tokenize the input using a space delimiter
+        StringTokenizer st = new StringTokenizer(s, " ");//" " is the delimiter here.
+        return st;
     }
 }
