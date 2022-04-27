@@ -30,7 +30,17 @@ public enum IslandNames {
         public String toString() {
             return "Isle of Storms";
         }
+    },
+    SKULL_ISLAND{
+        @Override
+        public String toString() { return "Skull Island";}
+
+    },
+    PORT_ROYAL{
+        @Override
+        public String toString() { return "Port Royal"; }
     }
+
 
 
 }
