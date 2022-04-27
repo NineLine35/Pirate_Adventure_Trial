@@ -65,7 +65,7 @@ public class OpeningLoop {
                 int y = Player.getInstance().getLocation().getColumn();
 
                 if (playmap[x][y] instanceof OpenWater){
-                    System.out.println("Ye in the open water captain!!");
+                    System.out.println("Ye be in the open water captain!!");
                 }
                 else if(playmap[x][y] instanceof Island){
                     System.out.println("Seems we be on land....yuck");
