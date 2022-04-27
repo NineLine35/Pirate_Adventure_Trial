@@ -93,6 +93,7 @@ public class OpeningLoop {
             }
             else {
 
+
                 // Game loop open while input stream is active
                 //while (userInput.hasNext()) {
                 //while (!goodValue) {
@@ -137,6 +138,7 @@ public class OpeningLoop {
                 } else {
                     goodValue = false;
                     System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
+
                 }
 
             }
