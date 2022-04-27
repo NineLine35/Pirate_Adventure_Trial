@@ -3,7 +3,9 @@ package GameLoop;
 public enum OpenLoopOptions {
     EXIT("exit"),
     MAP("map"),
-    WHERE("where am i"),
+    WHERE("where"),
+    AM("am"),
+    I("i"),
     SAIL("sail");
 
     //instantiate sendAction

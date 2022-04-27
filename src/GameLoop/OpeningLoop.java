@@ -70,7 +70,13 @@ public class OpeningLoop {
                     //FindAction actions = new FindAction(Actions.valueOf(s1.toUpperCase()));
                     //actionValue = actions.actionIsLike();
                     OpenLoopOptions getEntry = OpenLoopOptions.valueOf(s1.toUpperCase());
-                    entryValue = getEntry.getSendEntry();
+                    if(entryValue != ""){
+                        entryValue = entryValue + " " + getEntry.getSendEntry();
+                    }
+                    else
+                    {
+                        entryValue = getEntry.getSendEntry();
+                    }
                     //increase the action count by 1
                     countEntries++;
                 }
@@ -81,10 +87,11 @@ public class OpeningLoop {
 
             //System.out.println(countActions);
             //iof the count of actions is greater than 1, tell the user that they have too many actions
-            if (countEntries > 1) {
+            if (countEntries > 1 && !entryValue.equals("where am i")) {
                 System.out.println("you have too many entries");
                 goodValue = false;
-            } else {
+            }
+            else {
 
                 // Game loop open while input stream is active
                 //while (userInput.hasNext()) {
@@ -150,6 +157,10 @@ public class OpeningLoop {
     {
         //get the user input next line
         String s = userInput2.nextLine();
+
+        //s = s.replaceAll("s/[^a-zA-Z0-9]","");
+        s = s.replaceAll("[^\\w\\s\\d]","");
+
 
         //tokenize the input using a space delimiter
         StringTokenizer st = new StringTokenizer(s, " ");//" " is the delimiter here.
