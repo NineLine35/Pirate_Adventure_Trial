@@ -104,14 +104,14 @@ public class OpeningLoop {
                     System.exit(0);
                 } //else if (enteredText.toLowerCase().contains("map")) {
                 else if (entryValue.equals("map")) {
-                    goodValue = true;
+                    //goodValue = true;
                     //DEBUG print out map to console
                     System.out.println("______MAP______");
                     System.out.println(Arrays.deepToString(playmap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
                     System.out.println("_______________");
                 }// else if (enteredText.toLowerCase().contains("where am i")) {
                 else if (entryValue.equals("where am i")) {
-                    goodValue = true;
+                    //goodValue = true;
                     int x = Player.getInstance().getLocation().getRow();
                     int y = Player.getInstance().getLocation().getColumn();
 
@@ -122,7 +122,7 @@ public class OpeningLoop {
                     }
                 } //else if (enteredText.toLowerCase().contains("sail")) {
                 else if (entryValue.equals("sail")) {
-                    goodValue = true;
+                    //goodValue = true;
                     System.out.println("Which direction shall we sail captain??");
 
                     String userSelection = userInput.nextLine().toUpperCase();
