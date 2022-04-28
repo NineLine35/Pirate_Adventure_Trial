@@ -1,9 +1,20 @@
 package Inventory;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PlayerInventory implements Inventory{
     public void PlayerInventory (){}
+
+    public RepairItem findRepairItem(String itemName){
+        RepairItem foundItem = null;
+        for (int i = 0; i < repairItems.size(); i++){
+            if (repairItems.get(i).getName() == itemName.toUpperCase(Locale.ROOT).replace(" ","_")){
+                foundItem = repairItems.get(i);
+            }
+        }
+        return foundItem;
+    }
 
     public void addRepairItem(RepairItem item, int quantity) {
         boolean hasDupe = false;

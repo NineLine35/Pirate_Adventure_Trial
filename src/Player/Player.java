@@ -1,5 +1,8 @@
 package Player;
 
+import Inventory.Item;
+import Inventory.PlayerInventory;
+import Inventory.RepairItem;
 import Ship.Ship;
 import Ship.ShipBuilder;
 
@@ -11,6 +14,7 @@ public class Player {
     private int chest;      //Holds gold
     private String name;  // Player name
     private Ship ship; // Ship class placeholder
+    private PlayerInventory inventory;
 
     private Player(){};
 
@@ -38,5 +42,17 @@ public class Player {
     public void assignShip(String type, String shipName){
         ship = ShipBuilder.getShip(type);
         ship.setShipName(shipName);
+    }
+
+    public void useRepairItem(String itemName){
+        RepairItem repairItem;
+        repairItem = inventory.findRepairItem(itemName);
+        if (repairItem == null){
+            System.out.println("You Do Not Have That Item To Use Sailor");
+        } else {
+            ship.repairShip(repairItem);
+            inventory.useRepairItem(repairItem);
+            System.out.println("You Have Repaired Your " + repairItem.getRepairType() + " To Full Health");
+        }
     }
 }
