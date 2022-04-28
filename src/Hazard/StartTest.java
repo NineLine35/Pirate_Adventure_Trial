@@ -2,6 +2,7 @@ package Hazard;
 
 import java.awt.*;
 import java.lang.reflect.Array;
+import java.sql.*;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -10,12 +11,59 @@ import java.util.stream.Stream;
 
 import MapFiles.Landmass;
 import MapFiles.MainMap;
+import org.apache.derby.jdbc.EmbeddedDataSource;
 
 public class StartTest {
     //public static <ListArray> void main(String[] args)
     public static void main(String[] args) {
         // TODO Auto-generated method stub
+        String url = "jdbc:derby:gameResponses;create=true";
+        //Connection conn = DriverManager.getConnection(url);
+        try {
 
+            EmbeddedDataSource ds = new EmbeddedDataSource();
+            ds.setDatabaseName("gameResponses");
+
+            Connection conn = DriverManager.getConnection(url);
+
+            Statement stmt = conn.createStatement();
+
+            System.out.println(conn);
+
+            //stmt.executeUpdate("DROP TABLE gameResponses");
+
+            stmt.executeUpdate("CREATE TABLE gameResponses ("
+                    + "id INTEGER PRIMARY KEY, "
+                    + "name VARCHAR(255))");
+            stmt.executeUpdate("INSERT INTO gameResponses VALUES (1, 'my response 1')");
+            stmt.executeUpdate("INSERT INTO gameResponses VALUES (2, 'my response 2')");
+            stmt.executeUpdate("INSERT INTO gameResponses VALUES (3, 'my response 3')");
+            stmt.executeUpdate("INSERT INTO gameResponses VALUES (4, 'my response 4')");
+            stmt.executeUpdate("INSERT INTO gameResponses VALUES (5, 'my response 5')");
+
+            int responseRandom = getRandom(1,5);
+
+            ResultSet rs = stmt.executeQuery("select id, "
+                    + "						  name "
+                    + "						  from gameResponses "
+            + "                       where id =  "+ responseRandom +" ");
+
+
+            while(rs.next()) {
+                System.out.println("The Response: " + rs.getString("name"));
+            }
+
+        }catch(SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getSQLState());
+            System.out.println(e.getErrorCode());
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }finally {
+
+        }
+
+        System.exit(0);
         //PLAYING WITH ACTIONS
         //display a message to the user
         System.out.println("What do you want to do?");
