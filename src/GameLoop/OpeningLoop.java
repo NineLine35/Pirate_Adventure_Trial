@@ -6,9 +6,7 @@ import Hazard.StartTest;
 import MapFiles.*;
 import Player.Player;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class OpeningLoop {
@@ -88,7 +86,8 @@ public class OpeningLoop {
             //System.out.println(countActions);
             //iof the count of actions is greater than 1, tell the user that they have too many actions
             if (countEntries > 1 && !entryValue.equals("where am i")) {
-                System.out.println("you have too many entries");
+                //System.out.println("you have too many entries");
+                responses();
                 goodValue = false;
             }
             else {
@@ -97,7 +96,7 @@ public class OpeningLoop {
                 //while (userInput.hasNext()) {
                 //while (!goodValue) {
                 //enteredText = userInput.nextLine();
-                System.out.println(entryValue);
+                //System.out.println(entryValue);
                 //if (enteredText.toLowerCase().contains("exit")) {
                 if (entryValue.equals("exit")) {
                     System.out.println("Good bye!");
@@ -146,9 +145,13 @@ public class OpeningLoop {
                         System.out.println("Not a valid direction sailor!");
                     }
                 }
+                else if (entryValue.equals("help")){
+                    help();
+                }
                 else {
                     goodValue = false;
-                    System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
+                    responses();
+                    //System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
                 }
 
             }
@@ -177,5 +180,55 @@ public class OpeningLoop {
         //tokenize the input using a space delimiter
         StringTokenizer st = new StringTokenizer(s, " ");//" " is the delimiter here.
         return st;
+    }
+
+    public static void responses(){
+        int getResponse = getRandom(0,5);
+        String convertRandom = Integer.toString(getResponse);
+        Locale en = new Locale("en");
+        ResourceBundle rb = ResourceBundle.getBundle("ResponsesTry",en);
+        System.out.println(rb.getString(convertRandom));
+    }
+
+    public static void help(){
+        List<String> directions = new ArrayList<String>();
+        directions.add("NORTH");
+        directions.add("SOUTH");
+        directions.add("EAST");
+        directions.add("WEST");
+
+        System.out.println('\n' + "--------------------" + '\n' + "Directions" + '\n' + "--------------------");
+
+        for(String listDirections : directions){
+            System.out.println(listDirections);
+        }
+
+        //System.out.println('\n' + "********************");
+
+        System.out.println('\n' + "--------------------" + '\n' + "Actions" + '\n' + "--------------------");
+
+        List<String> actions = new ArrayList<String>();
+        actions.add("exit");
+        actions.add("sail");
+        actions.add("look");
+        actions.add("use");
+
+        for(String listActions : actions){
+            System.out.println(listActions);
+        }
+
+        //System.out.println('\n' + "********************");
+        System.out.println('\n' + "--------------------" + '\n' + "Statements" + '\n' + "--------------------");
+
+        List<String> statements = new ArrayList<String>();
+        statements.add("where am i");
+        statements.add("show inventory");
+        statements.add("ship health");
+
+        for(String listStatements : statements){
+            System.out.println(listStatements);
+        }
+
+        System.out.println('\n' + "--------------------" + '\n' + "What would you like to do?");
     }
 }
