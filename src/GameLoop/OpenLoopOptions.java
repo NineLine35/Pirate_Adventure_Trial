@@ -7,6 +7,7 @@ public enum OpenLoopOptions {
     AM("am"),
     I("i"),
     SAIL("sail"),
+    HELP("help"),
     LOOK("look");
 
     //instantiate sendAction

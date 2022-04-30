@@ -10,21 +10,21 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import MapFiles.Landmass;
+/*import MapFiles.Landmass;
 import MapFiles.MainMap;
-import org.apache.derby.jdbc.EmbeddedDataSource;
+import org.apache.derby.jdbc.EmbeddedDataSource;*/
 
 public class StartTest {
     //public static <ListArray> void main(String[] args)
     public static void main(String[] args) {
 
-        responses();
+        //responses();
 
-        help();
+        //help();
         // TODO Auto-generated method stub
         String url = "jdbc:derby:gameResponses;create=true";
         //Connection conn = DriverManager.getConnection(url);
-        try {
+  /*      try {
 
             EmbeddedDataSource ds = new EmbeddedDataSource();
             ds.setDatabaseName("gameResponses");
@@ -68,7 +68,7 @@ public class StartTest {
 
         }
 
-        System.exit(0);
+        System.exit(0);*/
         //PLAYING WITH ACTIONS
         //display a message to the user
         System.out.println("What do you want to do?");
@@ -495,7 +495,7 @@ public class StartTest {
         return random;
     }
 
-    public static void responses(){
+ /*   public static void responses(){
         int getResponse = getRandom(0,5);
         String convertRandom = Integer.toString(getResponse);
         Locale en = new Locale("en");
@@ -543,6 +543,6 @@ public class StartTest {
         }
 
         System.out.println('\n' + "--------------------" + '\n' + "What would you like to do?");
-    }
+    }*/
 }
 
