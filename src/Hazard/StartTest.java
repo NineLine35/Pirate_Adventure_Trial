@@ -256,7 +256,7 @@ public class StartTest {
         userInput.close();*/
 
         //this is the Hazard code
-        boolean land = false;
+        boolean land = true;
         int hazardFirstKey;
         int hazardSecondKey;
         String fullHazardKey;

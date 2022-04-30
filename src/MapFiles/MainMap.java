@@ -8,7 +8,7 @@ import java.util.Random;
 public class MainMap {
 
     //Main map fields
-    static Landmass[][] treasureMap = new Landmass[4][4];
+    static Landmass[][] treasureMap = new Landmass[6][6];
     int islandCount =0;
 
 
@@ -17,9 +17,9 @@ public class MainMap {
          Random rand = new Random();
 
         //Create the random map
-         for(int x =0; x<4;x++)
+         for(int x =0; x<6;x++)
         {
-            for(int y =0; y<4;y++)
+            for(int y =0; y<6;y++)
             {
                 int seed = rand.nextInt(100);
 
@@ -56,7 +56,7 @@ public class MainMap {
             }
         }
 
-        if(islandCount < 4 || islandCount >5){
+        if(islandCount < 6 || islandCount >8){
             createMap();
         }
     }
