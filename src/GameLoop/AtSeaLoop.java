@@ -2,10 +2,10 @@ package GameLoop;
 
 import MapFiles.Landmass;
 
-public class AtSeaLoop extends Loop {
+public class AtSeaLoop {
 
-    @Override
-    public void launch(Landmass[][] x){
+
+    public static void launch(){
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();

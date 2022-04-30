@@ -1,11 +1,14 @@
 package MapFiles;
 
+import GameLoop.AtSeaLoop;
+import GameLoop.IslandLoop;
+
 import java.util.Random;
 
 public class MainMap {
 
     //Main map fields
-    static Landmass[][] treasureMap = new Landmass[4][4];
+    static Landmass[][] treasureMap = new Landmass[6][6];
     int islandCount =0;
 
 
@@ -14,9 +17,9 @@ public class MainMap {
          Random rand = new Random();
 
         //Create the random map
-         for(int x =0; x<4;x++)
+         for(int x =0; x<6;x++)
         {
-            for(int y =0; y<4;y++)
+            for(int y =0; y<6;y++)
             {
                 int seed = rand.nextInt(100);
 
@@ -25,7 +28,9 @@ public class MainMap {
                 }
                 else
                 {
-                    treasureMap[x][y] = new Island(4);
+                    //Create a new island landmass, and use the randomEnum method to randomly select an Island name
+                    treasureMap[x][y] = new Island(4,Island.randomEnum());
+
                 }
             }
         }
@@ -51,7 +56,7 @@ public class MainMap {
             }
         }
 
-        if(islandCount < 4 || islandCount >5){
+        if(islandCount < 6 || islandCount >8){
             createMap();
         }
     }
@@ -85,9 +90,23 @@ public class MainMap {
     }
 
 
+
+    public static void instanceCheck(Landmass tile){
+
+         if(tile instanceof OpenWater){
+             AtSeaLoop.launch();
+
+         }
+         else if(tile instanceof Island){
+             IslandLoop.launch();
+         }
+
+    }
+
+
     //Method to find the "movePlayer" coordinates to movePlayer the player to a new location on the map.
     //TODO Add a check to ensure the player does not "fall off the map"
-    public static Coordinates movePlayer(int x, int y, Direction direction){
+    public static Coordinates movePlayer(int x, int y, Direction direction, Landmass[][] playMap){
 
          Coordinates returnCoord = new Coordinates(x,y);
 
@@ -95,42 +114,50 @@ public class MainMap {
                  case NORTH:
                      returnCoord.row = x - 1;
                      returnCoord.column = y;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case SOUTH:
                      returnCoord.row = x + 1;
                      returnCoord.column = y;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case WEST:
                      returnCoord.row = x;
                      returnCoord.column = y - 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case EAST:
                      returnCoord.row = x;
                      returnCoord.column = y + 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case NORTHEAST:
                      returnCoord.row = x - 1;
                      returnCoord.column = y + 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case NORTHWEST:
                      returnCoord.row = x - 1;
                      returnCoord.column = y - 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case SOUTHEAST:
                      EAST:
                      returnCoord.row = x + 1;
                      returnCoord.column = y + 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  case SOUTHWEST:
                      returnCoord.row = x + 1;
                      returnCoord.column = y - 1;
+                     instanceCheck(playMap[returnCoord.getRow()][returnCoord.getColumn()]);
                      break;
 
                  default:
@@ -141,7 +168,6 @@ public class MainMap {
 
          return returnCoord;
 
-           //TODO - Add a hazard call after move.
     }
 
 
@@ -157,7 +183,7 @@ public class MainMap {
 
     // Method to allow the player to use a looking glass to view a direction
     // TODO
-    public static void lgView(int x, int y, Direction direction) {
+    public static void lgView(int x, int y, Direction direction, Landmass[][] playMap) {
 
          Coordinates viewDirection = new Coordinates(x,y);
 
@@ -209,6 +235,14 @@ public class MainMap {
 
 
         }
+
+        if(playMap[viewDirection.getRow()][viewDirection.getColumn()]instanceof Island){
+            System.out.println("Off in the distance you can see a small speck of land.  An island!");
+        }
+        if(playMap[viewDirection.getRow()][viewDirection.getColumn()]instanceof OpenWater){
+            System.out.println("Nothing but water, as far as the eye can see.");
+        }
+
     }
 
 
