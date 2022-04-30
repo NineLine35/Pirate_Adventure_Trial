@@ -1,6 +1,8 @@
 package Inventory;
 
-public enum TreasureItemTypes {
+public enum ItemTypes {
+    PLANK_NAILS,
+    PATCHING_KIT,
     RUBY,
     SAPPHIRE,
     DIAMONDS,

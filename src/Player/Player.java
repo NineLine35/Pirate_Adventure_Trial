@@ -2,7 +2,6 @@ package Player;
 
 import Inventory.Item;
 import Inventory.PlayerInventory;
-import Inventory.RepairItem;
 import Ship.Ship;
 import Ship.ShipBuilder;
 
@@ -45,14 +44,13 @@ public class Player {
     }
 
     public void useRepairItem(String itemName){
-        RepairItem repairItem;
-        repairItem = inventory.findRepairItem(itemName);
-        if (repairItem == null){
+        Item item;
+        item = inventory.findItem(itemName);
+        if (item == null){
             System.out.println("You Do Not Have That Item To Use Sailor");
         } else {
-            ship.repairShip(repairItem);
-            inventory.useRepairItem(repairItem);
-            System.out.println("You Have Repaired Your " + repairItem.getRepairType() + " To Full Health");
+            ship.repairShip(item);
+            inventory.useRepairItem(item);
         }
     }
 }

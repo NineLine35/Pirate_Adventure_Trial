@@ -3,11 +3,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public interface Inventory {
-    ArrayList<RepairItem> repairItems = new ArrayList<RepairItem>();
-    ArrayList<TreasureItem> treasureItems = new ArrayList<TreasureItem>();
+    ArrayList<Item> items = new ArrayList<>();
 
-    public void addRepairItem(RepairItem repairItem, int quantity);
-    public void addTreasureItem(TreasureItem treasureItem, int quantity);
+    public void addItem(Item item, int quantity);
     public void outputInventory();
+    public void sellItem(Item item);
 
 }

@@ -1,18 +1,15 @@
-import Inventory.RepairItem;
-import Inventory.RepairItemTypes;
-import Inventory.TreasureItem;
-import Inventory.TreasureItemTypes;
-import Inventory.PlayerInventory;
+import Inventory.*;
 
 public class Item_Testing {
     public static void main(String[] args){
         PlayerInventory playerInv = new PlayerInventory();
 
-        RepairItem plank = new RepairItem(RepairItemTypes.PLANK_NAILS.toString(),"Wooden Plank", "Hull",5);
-        TreasureItem ruby = new TreasureItem(TreasureItemTypes.RUBY.toString(),  "Shinny Red Gem");
+        Item plank = new Item(ItemTypes.PLANK_NAILS.toString(), "Planks With Nails", "repair", 10);
+        Item ruby = new Item(ItemTypes.RUBY.toString(),  "Shinny Red Gem", "treasure", 15);
 
-        playerInv.addRepairItem(plank, 5);
-        playerInv.addTreasureItem(ruby, 5);
+        playerInv.addItem(plank,5);
+        playerInv.addItem(ruby, 10);
+        playerInv.addItem(plank, 5);
 
         playerInv.outputInventory();
     }

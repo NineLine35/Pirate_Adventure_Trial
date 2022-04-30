@@ -1,6 +1,7 @@
 package Ship;
 
-import Inventory.RepairItem;
+import Inventory.Item;
+import Inventory.ItemTypes;
 
 public abstract class Ship {
 
@@ -66,12 +67,14 @@ public abstract class Ship {
 
     public void setSailHealth(int sailHealth){ this.sailHealth = sailHealth; }
 
-    public void repairShip(RepairItem repairItem){
-        if (repairItem.getRepairType() == "hull"){
+    public void repairShip(Item item){
+        if (item.getName() == ItemTypes.PLANK_NAILS.toString()){
             setHullHitPoints(maxHullHitPoints);
+            System.out.println("You Have Repaired Your Hull To Full Health");
         }
-        if (repairItem.getRepairType() == "sail"){
+        else if (item.getName() == ItemTypes.PATCHING_KIT.toString()){
             setSailHealth(maxSailHealth);
+            System.out.println("You Have Repaired Your Sail To Full Health");
         }
     }
 }

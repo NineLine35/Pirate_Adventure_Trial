@@ -1,14 +1,18 @@
 package Inventory;
 
-public abstract class Item {
+public class Item {
     private String name;
     private int quantity;
-    public String description;
+    private String description;
+    private String itemType;
+    private int itemPrice;
 
     // Constructor if quantity and name are given
-    public Item(String name, String description){
+    public Item(String name, String description, String itemType, int itemPrice){
         this.setName(name);
         this.setDescription(description);
+        this.setItemType(itemType);
+        this.setItemPrice(itemPrice);
     }
 
     // Getters and setters
@@ -18,9 +22,13 @@ public abstract class Item {
     public void setName(String name) { this.name = name; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+    public String getItemType() { return this.itemType; }
+    public void setItemType(String itemType) { this.itemType = itemType; }
+    public int getItemPrice() { return this.itemPrice; }
+    public void setItemPrice(int itemPrice) { this.itemPrice = itemPrice; }
 
     @Override
     public String toString() {
-        return this.getQuantity() + " " + this.getName();
+        return this.getQuantity() + " - " + this.getName() + " : " + this.getDescription() + " - " + this.getItemPrice() + " Coins Per Item";
     }
 }
