@@ -1,5 +1,8 @@
 package Player;
 
+
+import Inventory.Item;
+import Inventory.PlayerInventory;
 import MapFiles.MainMap;
 import Ship.Ship;
 import Ship.ShipBuilder;
@@ -12,7 +15,9 @@ public class Player {
     private int chest;      //Holds gold
     private String name;  // Player name
     private Ship ship; // Ship class placeholder
+    private PlayerInventory inventory;
     private MainMap.Coordinates location = new MainMap.Coordinates(2,2);
+
 
     private Player(){};
 
@@ -48,5 +53,16 @@ public class Player {
     public void assignShip(String type, String shipName){
         ship = ShipBuilder.getShip(type);
         ship.setShipName(shipName);
+    }
+
+    public void useRepairItem(String itemName){
+        Item item;
+        item = inventory.findItem(itemName);
+        if (item == null){
+            System.out.println("You Do Not Have That Item To Use Sailor");
+        } else {
+            ship.repairShip(item);
+            inventory.useRepairItem(item);
+        }
     }
 }

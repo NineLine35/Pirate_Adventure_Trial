@@ -1,24 +1,34 @@
 package Inventory;
 
-public abstract class Item {
+public class Item {
     private String name;
     private int quantity;
+    private String description;
+    private String itemType;
+    private int itemPrice;
 
     // Constructor if quantity and name are given
-    public Item(String name, int quantity){
+    public Item(String name, String description, String itemType, int itemPrice){
         this.setName(name);
-        this.setQuantity(quantity);
+        this.setDescription(description);
+        this.setItemType(itemType);
+        this.setItemPrice(itemPrice);
     }
 
-    // Constructor if only name is given, quantity is assumed as 1
-    public Item(String name){
-        this.setName(name);
-        this.setQuantity(1);
-    }
-
+    // Getters and setters
     public int getQuantity() { return this.quantity; }
-    public void setQuantity(int q) { this.quantity = q; }
-
+    public void setQuantity(int quantity) { this.quantity = quantity; }
     public String getName(){ return this.name; }
-    public void setName(String n) { this.name = n; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public String getItemType() { return this.itemType; }
+    public void setItemType(String itemType) { this.itemType = itemType; }
+    public int getItemPrice() { return this.itemPrice; }
+    public void setItemPrice(int itemPrice) { this.itemPrice = itemPrice; }
+
+    @Override
+    public String toString() {
+        return this.getQuantity() + " - " + this.getName() + " : " + this.getDescription() + " - " + this.getItemPrice() + " Coins Per Item";
+    }
 }
