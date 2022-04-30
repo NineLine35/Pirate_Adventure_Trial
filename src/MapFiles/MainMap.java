@@ -168,7 +168,6 @@ public class MainMap {
 
          return returnCoord;
 
-           //TODO - Add a hazard call after move.
     }
 
 
@@ -184,7 +183,7 @@ public class MainMap {
 
     // Method to allow the player to use a looking glass to view a direction
     // TODO
-    public static void lgView(int x, int y, Direction direction) {
+    public static void lgView(int x, int y, Direction direction, Landmass[][] playMap) {
 
          Coordinates viewDirection = new Coordinates(x,y);
 
@@ -236,6 +235,14 @@ public class MainMap {
 
 
         }
+
+        if(playMap[viewDirection.getRow()][viewDirection.getColumn()]instanceof Island){
+            System.out.println("Off in the distance you can see a small speck of land.  An island!");
+        }
+        if(playMap[viewDirection.getRow()][viewDirection.getColumn()]instanceof OpenWater){
+            System.out.println("Nothing but water, as far as the eye can see.");
+        }
+
     }
 
 
