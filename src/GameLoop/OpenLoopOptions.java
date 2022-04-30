@@ -6,7 +6,8 @@ public enum OpenLoopOptions {
     WHERE("where"),
     AM("am"),
     I("i"),
-    SAIL("sail");
+    SAIL("sail"),
+    LOOK("look");
 
     //instantiate sendAction
     private String sendEntry;

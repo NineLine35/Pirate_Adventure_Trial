@@ -133,8 +133,20 @@ public class OpeningLoop {
                     } catch (Exception e) {
                         System.out.println("Not a valid direction sailor!");
                     }
+                }
+                else if (entryValue.equals("look")){
 
-                } else {
+                    System.out.println("Which direction are ye lookin??");
+
+                    String userSelection = userInput.nextLine().toUpperCase();
+
+                    try{
+                    MainMap.lgView(Player.getInstance().getLocation().getRow(),Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection),playmap);
+                    } catch (Exception e){
+                        System.out.println("Not a valid direction sailor!");
+                    }
+                }
+                else {
                     goodValue = false;
                     System.out.println("Not recognized!  We have not implemented commands.  Try 'EXIT'....\n");
                 }

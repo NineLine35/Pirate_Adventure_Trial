@@ -30,7 +30,7 @@ public class StartTest {
 
             System.out.println(conn);
 
-            //stmt.executeUpdate("DROP TABLE gameResponses");
+            stmt.executeUpdate("DROP TABLE gameResponses");
 
             stmt.executeUpdate("CREATE TABLE gameResponses ("
                     + "id INTEGER PRIMARY KEY, "

@@ -152,8 +152,6 @@ public class IslandLoop extends OpeningLoop{
         {
             System.out.println("no hazard");
         }
-        System.out.println();
-        System.out.println("Placeholder for At Sea gameplay loop\n");
 
         System.out.println();
         System.out.println("Placeholder for At Island gameplay loop\n");
