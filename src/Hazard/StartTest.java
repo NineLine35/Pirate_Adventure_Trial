@@ -4,6 +4,7 @@ import java.awt.*;
 import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.*;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -16,6 +17,10 @@ import org.apache.derby.jdbc.EmbeddedDataSource;
 public class StartTest {
     //public static <ListArray> void main(String[] args)
     public static void main(String[] args) {
+
+        responses();
+
+        help();
         // TODO Auto-generated method stub
         String url = "jdbc:derby:gameResponses;create=true";
         //Connection conn = DriverManager.getConnection(url);
@@ -488,6 +493,56 @@ public class StartTest {
         //create a random number with the range
         int random = (int) (Math.random() * (max - min + 1) + min);
         return random;
+    }
+
+    public static void responses(){
+        int getResponse = getRandom(0,5);
+        String convertRandom = Integer.toString(getResponse);
+        Locale en = new Locale("en");
+        ResourceBundle rb = ResourceBundle.getBundle("ResponsesTry",en);
+        System.out.println(rb.getString(convertRandom));
+    }
+
+    public static void help(){
+        List<String> directions = new ArrayList<String>();
+        directions.add("NORTH");
+        directions.add("SOUTH");
+        directions.add("EAST");
+        directions.add("WEST");
+
+        System.out.println("Directions" + '\n' + "--------------------");
+
+        for(String listDirections : directions){
+            System.out.println(listDirections);
+        }
+
+        //System.out.println('\n' + "********************");
+
+        System.out.println('\n' + "Actions" + '\n' + "--------------------");
+
+        List<String> actions = new ArrayList<String>();
+        actions.add("exit");
+        actions.add("sail");
+        actions.add("look");
+        actions.add("use");
+
+        for(String listActions : actions){
+            System.out.println(listActions);
+        }
+
+        //System.out.println('\n' + "********************");
+        System.out.println('\n' + "Statements" + '\n' + "--------------------");
+
+        List<String> statements = new ArrayList<String>();
+        statements.add("where am i");
+        statements.add("show inventory");
+        statements.add("ship health");
+
+        for(String listStatements : statements){
+            System.out.println(listStatements);
+        }
+
+        System.out.println('\n' + "--------------------" + '\n' + "What would you like to do?");
     }
 }
 
