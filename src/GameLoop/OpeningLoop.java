@@ -229,27 +229,6 @@ public class OpeningLoop {
                 System.out.println(s);
             }
         }
-//        List<String> actions = new ArrayList<String>();
-//        actions.add("exit");
-//        actions.add("sail");
-//        actions.add("look");
-//        actions.add("use");
-//
-//        for(String listActions : actions){
-//            System.out.println(listActions);
-//        }
-
-        //System.out.println('\n' + "********************");
-//        System.out.println('\n' + "--------------------" + '\n' + "Statements" + '\n' + "--------------------");
-//
-//        List<String> statements = new ArrayList<String>();
-//        statements.add("where am i");
-//        statements.add("show inventory");
-//        statements.add("ship health");
-//
-//        for(String listStatements : statements){
-//            System.out.println(listStatements);
-//        }
 
         System.out.println('\n' + "--------------------" + '\n' + "Items" + '\n' + "--------------------");
 
