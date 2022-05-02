@@ -1,6 +1,6 @@
-package HazardOld;
-
-import Hazard.Human;
-
-public class Damsel extends Human {
-}
+//package HazardOld;
+//
+//import Hazard.Human;
+//
+//public class Damsel extends Human {
+//}

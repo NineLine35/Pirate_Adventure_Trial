@@ -1,31 +1,33 @@
-package Hazard;
+/*package Hazard;
 
 import java.util.ArrayList;
 
-public class Environmental extends Hazard{
+public class Environmental {
     private String lookUp;
     private String storyMessage;
-    private String pointsToTake;
+    private String hullPoints;
     private String sailDamage;
+    private String coinToTake;
     private ArrayList<Environmental> environmentalList;
 
-    /**
+    *//**
      * This is the constructor for hazard
-     */
+     *//*
     public Environmental(){}
 
-    /**
+    *//**
      * This is a constructor to pass values
      * @param lookUp
      * @param storyMessage
-     * @param pointsToTake
+     * @param hullPoints
      * @param sailDamage
-     */
-    public Environmental(String lookUp, String storyMessage, String pointsToTake, String sailDamage){
+     *//*
+    public Environmental(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake){
         this.lookUp = lookUp;
         this.storyMessage = storyMessage;
-        this.pointsToTake = pointsToTake;
+        this.hullPoints = hullPoints;
         this.sailDamage = sailDamage;
+        this.coinToTake = coinToTake;
     }
 
     {
@@ -34,9 +36,11 @@ public class Environmental extends Hazard{
 
     public String getStoryMessage(){return storyMessage;}
 
-    public String getPointsToTake(){return pointsToTake;}
+    public String getHullPoints(){return hullPoints;}
 
     public String getSailDamage(){return sailDamage;}
+
+    public String getCoinToTake(){return coinToTake;}
 
     public String getLookUp(){return lookUp;}
 
@@ -44,28 +48,23 @@ public class Environmental extends Hazard{
         return environmentalList;
     }
 
-    public void addHazard(String lookUp, String storyMessage, String pointsToTake, String sailDamage) {
+    public void addHazard(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake) {
         //create and load clients list
         Environmental environmental;
 
         //create the client
-        environmental = new Environmental(lookUp, storyMessage, pointsToTake, sailDamage);
+        environmental = new Environmental(lookUp, storyMessage, hullPoints, sailDamage, coinToTake);
 
         //add the client to the list
         addHazardList(environmental);
     }
 
-    /**
+    *//**
      * add a hazard to the list
      * @param environmental
-     */
+     *//*
     public void addHazardList(Environmental environmental) {
         //add the client
         this.environmentalList.add(environmental);
     }
-
-    @Override
-    public int calculateLoss(int amountToLose, int takeFrom) {
-        return 0;
-    }
-}
+}*/
