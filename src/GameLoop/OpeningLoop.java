@@ -3,6 +3,7 @@ package GameLoop;
 import Hazard.Actions;
 import Hazard.Item;
 import Hazard.StartTest;
+import Inventory.ItemTypes;
 import MapFiles.*;
 import Player.Player;
 
@@ -191,43 +192,59 @@ public class OpeningLoop {
     }
 
     public static void help(){
-        List<String> directions = new ArrayList<String>();
-        directions.add("NORTH");
-        directions.add("SOUTH");
-        directions.add("EAST");
-        directions.add("WEST");
 
         System.out.println('\n' + "--------------------" + '\n' + "Directions" + '\n' + "--------------------");
 
-        for(String listDirections : directions){
-            System.out.println(listDirections);
+        EnumSet.allOf(Direction.class)
+                .forEach(direction->System.out.println(direction));
+
+
+        System.out.println('\n' + "--------------------" + '\n' + "Actions/Statements" + '\n' + "--------------------");
+        EnumSet<OpenLoopOptions> enumSet = EnumSet.allOf(OpenLoopOptions.class);
+        String makeString = "";
+        for (OpenLoopOptions s : enumSet) {
+            if (s.toString() == "WHERE" || s.toString() == "AM" || s.toString() == "I"){
+                if(makeString == ""){
+                    makeString = makeString + s;
+                }
+                else{
+                    makeString = makeString + " " + s;
+                }
+                if (makeString.equals("WHERE AM I")){
+                    System.out.println(makeString);
+                }
+            }
+            else
+            {
+                System.out.println(s);
+            }
         }
+//        List<String> actions = new ArrayList<String>();
+//        actions.add("exit");
+//        actions.add("sail");
+//        actions.add("look");
+//        actions.add("use");
+//
+//        for(String listActions : actions){
+//            System.out.println(listActions);
+//        }
 
         //System.out.println('\n' + "********************");
+//        System.out.println('\n' + "--------------------" + '\n' + "Statements" + '\n' + "--------------------");
+//
+//        List<String> statements = new ArrayList<String>();
+//        statements.add("where am i");
+//        statements.add("show inventory");
+//        statements.add("ship health");
+//
+//        for(String listStatements : statements){
+//            System.out.println(listStatements);
+//        }
 
-        System.out.println('\n' + "--------------------" + '\n' + "Actions" + '\n' + "--------------------");
+        System.out.println('\n' + "--------------------" + '\n' + "Items" + '\n' + "--------------------");
 
-        List<String> actions = new ArrayList<String>();
-        actions.add("exit");
-        actions.add("sail");
-        actions.add("look");
-        actions.add("use");
-
-        for(String listActions : actions){
-            System.out.println(listActions);
-        }
-
-        //System.out.println('\n' + "********************");
-        System.out.println('\n' + "--------------------" + '\n' + "Statements" + '\n' + "--------------------");
-
-        List<String> statements = new ArrayList<String>();
-        statements.add("where am i");
-        statements.add("show inventory");
-        statements.add("ship health");
-
-        for(String listStatements : statements){
-            System.out.println(listStatements);
-        }
+        EnumSet.allOf(ItemTypes.class)
+                .forEach(item->System.out.println(item));
 
         System.out.println('\n' + "--------------------" + '\n' + "What would you like to do?");
     }
