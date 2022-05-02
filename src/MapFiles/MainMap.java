@@ -90,7 +90,11 @@ public class MainMap {
     }
 
 
-
+    /**
+     * Used after a sail and direction commmand to launch gameplay loop associated with the correct
+     * tile landmass
+     * @param tile - Pass in the correct landmass tile type
+     */
     public static void instanceCheck(Landmass tile){
 
          if(tile instanceof OpenWater){
@@ -182,7 +186,6 @@ public class MainMap {
     }
 
     // Method to allow the player to use a looking glass to view a direction
-    // TODO
     public static void lgView(int x, int y, Direction direction, Landmass[][] playMap) {
 
          Coordinates viewDirection = new Coordinates(x,y);
@@ -240,7 +243,14 @@ public class MainMap {
             System.out.println("Off in the distance you can see a small speck of land.  An island!");
         }
         if(playMap[viewDirection.getRow()][viewDirection.getColumn()]instanceof OpenWater){
-            System.out.println("Nothing but water, as far as the eye can see.");
+            Random rand = new Random();
+            if(rand.nextInt(100) < 70) {
+                System.out.println("Nothing but water, as far as the eye can see.");
+            }
+            else{
+                System.out.println("Nothing but water, as far as the eye can see.");
+                //TODO Combat - Treasure Ship
+            }
         }
 
     }
