@@ -15,9 +15,9 @@ public abstract class Ship {
     private String shipName;
 
 
-    public Ship(int hullHitPointshitPoints, int cargoCapacity, int sailDistance) {
-        this.hullHitPoints = hullHitPointshitPoints;
-        this.maxHullHitPoints = hullHitPointshitPoints;
+    public Ship(int hullHitPoints, int cargoCapacity, int sailDistance) {
+        this.hullHitPoints = hullHitPoints;
+        this.maxHullHitPoints = hullHitPoints;
         this.cargoCapacity = cargoCapacity;
         this.sailDistance = sailDistance;
     }

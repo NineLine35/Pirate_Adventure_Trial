@@ -1,19 +1,24 @@
+/*
 package Hazard;
 
 import java.util.ArrayList;
 
-public class Human extends Hazard{
+public class Human{
     private String lookUp;
     private String storyMessage;
-    private String percentToTake;
+    private String hullPoints;
+    private String sailDamage;
+    private String coinToTake;
     private ArrayList<Human> humanList;
 
     public Human(){}
 
-    public Human(String lookUp, String storyMessage,String percentToTake){
+    public Human(String lookUp, String storyMessage,String hullPoints, String sailDamage, String coinToTake){
         this.lookUp = lookUp;
         this.storyMessage = storyMessage;
-        this.percentToTake = percentToTake;
+        this.hullPoints = hullPoints;
+        this.sailDamage = sailDamage;
+        this.coinToTake = coinToTake;
     }
 
     {
@@ -22,7 +27,11 @@ public class Human extends Hazard{
 
     public String getStoryMessage(){return storyMessage;}
 
-    public String getPercentToTake(){return percentToTake;}
+    public String getHullPoints(){return hullPoints;}
+
+    public String getSailDamage(){return sailDamage;}
+
+    public String getCoinToTake(){return coinToTake;}
 
     public String getLookUp(){return lookUp;}
 
@@ -30,12 +39,12 @@ public class Human extends Hazard{
         return humanList;
     }
 
-    public void addHazard(String lookUp, String storyMessage, String percentToTake) {
+    public void addHazard(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake) {
         //create and load clients list
         Human human;
 
         //create the client
-        human = new Human(lookUp, storyMessage, percentToTake);
+        human = new Human(lookUp, storyMessage, hullPoints, sailDamage, coinToTake);
 
         //add the client to the list
         addHumanList(human);
@@ -45,9 +54,5 @@ public class Human extends Hazard{
         //add the client
         this.humanList.add(human);
     }
-
-    @Override
-    public int calculateLoss(int amountToLose, int takeFrom) {
-        return 0;
-    }
 }
+*/

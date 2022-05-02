@@ -1,126 +1,89 @@
 package Hazard;
 
+import Player.Player;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
-public abstract class Hazard{
-    public abstract int calculateLoss(int amountToLose, int takeFrom);
-}
-/*public  class Hazard {
+public class Hazard {
     private String lookUp;
     private String storyMessage;
-    private String pointsToTake;
-    private String percentageLoss;
-    private String sailDamage;  //Setting general health of sails as a percentage of full health
+    private String hullPoints;
+    private String sailDamage;
+    private String coinToTake;
     private ArrayList<Hazard> hazardList;
 
-    /**
-     * This is the constructor for hazard
-     */
-    /*public Hazard(){
-
+    public Hazard() {
     }
 
-    /**
-     * This is a constructor to pass values
-     * @param lookUp
-     * @param storyMessage
-     * @param pointsToTake
-     * @param sailDamage
-     */
-/*
-    public Hazard(String lookUp, String storyMessage, String pointsToTake, String sailDamage, String percentageLoss){
+    public Hazard(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake) {
         this.lookUp = lookUp;
         this.storyMessage = storyMessage;
-        this.pointsToTake = pointsToTake;
+        this.hullPoints = hullPoints;
         this.sailDamage = sailDamage;
-        this.percentageLoss = percentageLoss;
+        this.coinToTake = coinToTake;
     }
 
     {
         this.hazardList = new ArrayList<Hazard>();
     }
 
-    public String getStoryMessage(){return storyMessage;}
+    public String getStoryMessage() {
+        return storyMessage;
+    }
 
-    public String getPointsToTake(){return pointsToTake;}
+    public String getHullPoints() {
+        return hullPoints;
+    }
 
-    public String getSailDamage(){return sailDamage;}
+    public String getSailDamage() {
+        return sailDamage;
+    }
 
-    public String getLookUp(){return lookUp;}
+    public String getCoinToTake() {
+        return coinToTake;
+    }
 
-    public String getPercentageLoss(){return percentageLoss;}
+    public String getLookUp() {
+        return lookUp;
+    }
 
     public ArrayList<Hazard> getHazardList() {
         return hazardList;
     }
 
-    public void addHazard(String lookUp, String storyMessage, String pointsToTake, String sailDamage, String percentageLoss) {
+    public void addHazard(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake) {
         //create and load clients list
         Hazard hazard;
 
         //create the client
-        hazard = new Hazard(lookUp, storyMessage, pointsToTake, sailDamage, percentageLoss);
+        hazard = new Hazard(lookUp, storyMessage, hullPoints, sailDamage, coinToTake);
 
         //add the client to the list
         addHazardList(hazard);
     }
 
-    /**
-     * add a hazard to the list
-     * @param hazard
-     */
-    /*public void addHazardList(Hazard hazard) {
+    public void addHazardList(Hazard hazard) {
         //add the client
         this.hazardList.add(hazard);
     }
 
-    //get the random number of 2 options to determine if we are doing storm or human
-    public void callForHazard(){
-        int hazardType = getRandom(0,1);
+    public void hazardCalc(Supplier<String> hitPoints, Supplier<String> coinLoss, Supplier<String> sailDamage){
+        System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
+
+        Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - Integer.parseInt(hitPoints.get()));
+        System.out.println("after hull points " + + Player.getInstance().getShip().getHullHitPoints());
+
+        System.out.println("current sail points " + Player.getInstance().getShip().getSailHealth());
+
+        Player.getInstance().getShip().setSailHealth(Player.getInstance().getShip().getSailHealth() - Integer.parseInt(sailDamage.get()));
+        System.out.println("after sail points " + + Player.getInstance().getShip().getSailHealth());
+
+        System.out.println("current coin " + Player.getInstance().getChest());
+
+        Player.getInstance().setChest(Player.getInstance().getChest() - Integer.parseInt(coinLoss.get()));
+        System.out.println("after coin " + + Player.getInstance().getChest());
     }
-
-    //need to generate a random number to know which type of hazard to go to and collect that hazards list
-    public int getRandom(int min, int max){
-        //System.out.println("Random value of type int between "+min+" to "+max+ ":");
-        int random = (int)(Math.random()*(max-min+1)+min);
-        //System.out.println(random);
-        return random;
-    };*/
-
-
-    //previously commented out, not part of the prior version
-    /*public String getHazardInfo(int index){
-        return hazardList.get();
-    };*/
-
-    /*public int findIndex(int lookUp){
-        int x;
-        for(x =0; x<hazardList.size(); x++){
-            String a = hazardList.get(x);
-            int findLookup = hazardList(x);        }
-        return 0;
-    };*/
-
-    //not sure if I need this part yet
-    /*{
-        this.stormList = new ArrayList<Storm>();
-    }*/
-
-    /*public void goToHazard(int hazardType){
-        if (hazardType == 0){
-            //if 0 then we will go to storm
-            Storm storm = new Storm();
-            //hazardIndex = storm.stormLevel;
-            System.out.println("the storm " + storm.stormLevel);
-        }
-        else{
-            //if 1 then we will go to human
-            Human human = new Human();
-            System.out.println("the human " +human.humanLevel);
-        }
-    }
-
-
-}*/
+}
 

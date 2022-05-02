@@ -22,7 +22,7 @@ public class StartTest {
 
         //help();
         // TODO Auto-generated method stub
-        String url = "jdbc:derby:gameResponses;create=true";
+        //String url = "jdbc:derby:gameResponses;create=true";
         //Connection conn = DriverManager.getConnection(url);
   /*      try {
 
@@ -71,7 +71,7 @@ public class StartTest {
         System.exit(0);*/
         //PLAYING WITH ACTIONS
         //display a message to the user
-        System.out.println("What do you want to do?");
+    /*    System.out.println("What do you want to do?");
         //set up scanner to read
         Scanner userInput = new Scanner(System.in);
 
@@ -210,7 +210,7 @@ public class StartTest {
 
 
         //if more than 1 direction, tell the user they have too many directions
-  /*      else if(countDirections > 1){
+  *//*      else if(countDirections > 1){
             //Are you trying to naviage the Bermuda Triangle?
             //Whoa there sailor, one direction at a time
             //Where do you think you are going, spinning in circles?  Pick one direction.
@@ -219,9 +219,9 @@ public class StartTest {
         //if there is more than 1 item, tell the user they have too many items
         else if (countItem > 1){
             System.out.println("you have too many items");
-        }*/
+        }*//*
         //otherwise we have valid entries
-/*        else{
+*//*        else{
             System.out.println("VALID THINGS");
             //string it together to see if we have a match in our options
             //string all possible entries
@@ -232,7 +232,7 @@ public class StartTest {
             match = checkIt.anyMatch(c -> c.equals(validString));
             System.out.println(validString);
             System.out.println(match);
-        }*/
+        }*//*
 
         //if match is true, we can do something with their entries
         if(match){
@@ -243,7 +243,7 @@ public class StartTest {
             System.out.println("bad value");
         }
         //counter
-      /*  int countActions = 0;
+      *//*  int countActions = 0;
         while(userInput.hasNext()){
             //System.out.println(userInput.next());
 
@@ -258,7 +258,7 @@ public class StartTest {
             }
         }
         System.out.println(countActions);
-        userInput.close();*/
+        userInput.close();*//*
 
         //this is the Hazard code
         boolean land = true;
@@ -274,56 +274,56 @@ public class StartTest {
         //in port or near/environmental damage
         environmental.addHazard("00", """
                  Finally gettin' to port!  It been a long 'aul gettin' to this
-                 here destination, but it looks like a storm be brewin' off in the distance. The smell o' rain in the 
-                 air an' cracks o' lightnin' 'eard loud an' clear, it be gettin' closer. What's that there? Either ye 
-                 'ad one too many rums last night, or there be a twister 'eadin' right fer yer ship. Ye better take 
-                 cover, it looks like there flyin' cows!  Shiver me timbers! One just clipped yer sail an' damaged 
+                 here destination, but it looks like a storm be brewin' off in the distance. The smell o' rain in the
+                 air an' cracks o' lightnin' 'eard loud an' clear, it be gettin' closer. What's that there? Either ye
+                 'ad one too many rums last night, or there be a twister 'eadin' right fer yer ship. Ye better take
+                 cover, it looks like there flyin' cows!  Shiver me timbers! One just clipped yer sail an' damaged
                  it a bit. Now ye will need a sail repair kit if ye do not want yer  ship to sail any slower!\n"""
                 , "1", "0");
         environmental.addHazard("01", """
-                 Such a 'ot day at port, sand burnin' yer feet as ye walk along the beach. A nice rain to cool it down 
-                 would be jolly, but that there be not goin' to 'appen. Ye even 'ope fer a slight breeze, to at least 
-                 'ave some air movement. Yer clothes be stickin' to ye an' yer beard be just too 'ot. Ye decide to get 
-                 yer toes wet in the sea an' it be so refreshin'. Ye see people runnin' about in the distance, almost 
-                 frantic lookin'. Ye remove yer toes from the water an' 'ead aft to the ship. People be closin' their 
-                 'uts an' establishments. There be no one left wanderin' the street but yerself. Ye 'earrr someone tell 
-                 ye to take cover. Ye do not know why, it be a beautify day!  No sooner do ye think this here, ye see a 
-                 cloud o' tan in the air, it looks like a sand storm be 'eadin' fer ye. Ye run to the ship an' manage to 
-                 get there just in time. The storm only lasts a short while, but the damage been done. Sand got all the 
-                 way to yer ship an' sadly, the cannon been not covered. Now ye need to find someone to clean the cannon 
+                 Such a 'ot day at port, sand burnin' yer feet as ye walk along the beach. A nice rain to cool it down
+                 would be jolly, but that there be not goin' to 'appen. Ye even 'ope fer a slight breeze, to at least
+                 'ave some air movement. Yer clothes be stickin' to ye an' yer beard be just too 'ot. Ye decide to get
+                 yer toes wet in the sea an' it be so refreshin'. Ye see people runnin' about in the distance, almost
+                 frantic lookin'. Ye remove yer toes from the water an' 'ead aft to the ship. People be closin' their
+                 'uts an' establishments. There be no one left wanderin' the street but yerself. Ye 'earrr someone tell
+                 ye to take cover. Ye do not know why, it be a beautify day!  No sooner do ye think this here, ye see a
+                 cloud o' tan in the air, it looks like a sand storm be 'eadin' fer ye. Ye run to the ship an' manage to
+                 get there just in time. The storm only lasts a short while, but the damage been done. Sand got all the
+                 way to yer ship an' sadly, the cannon been not covered. Now ye need to find someone to clean the cannon
                  so it can be used. That there will cost ye at least 100 coin!\n
                  """
                 , "2", "1");
         environmental.addHazard("02", """
                 It be cool an' cloudy out, quite dark actually. There be rain in the air an' a little bit o' wind. As ye
-                move closer to port, the wind starts to pick to the sky. It gets a little chilly so ye grab some rum 
-                to warm yer insides. After a few swigs, ye take a few more, a little extra rum ne'er 'urt any gentleman 
-                o' fortune. The wind picks to the sky a bit more an' now ye get a little dizzy. Ye don't want the crew 
-                to think poorly on ye, so instead o' askin' fer 'elp, ye man the ship yerself, ye be determined to port 
-                the ship. Ye try with all yer might, to brin' in the ship straight, but the wind an' waves make it too 
-                'ard, not to mention, ye might be seein' 2 docks from ye buzz ye 'ave. Ye feel a jar an' then 'earrr a 
-                boom, oh lad, ye 'it the dock!  Now yer ship 'as a 'uge 'ole that there will need fixin' an' ye 'ave 
+                move closer to port, the wind starts to pick to the sky. It gets a little chilly so ye grab some rum
+                to warm yer insides. After a few swigs, ye take a few more, a little extra rum ne'er 'urt any gentleman
+                o' fortune. The wind picks to the sky a bit more an' now ye get a little dizzy. Ye don't want the crew
+                to think poorly on ye, so instead o' askin' fer 'elp, ye man the ship yerself, ye be determined to port
+                the ship. Ye try with all yer might, to brin' in the ship straight, but the wind an' waves make it too
+                'ard, not to mention, ye might be seein' 2 docks from ye buzz ye 'ave. Ye feel a jar an' then 'earrr a
+                boom, oh lad, ye 'it the dock!  Now yer ship 'as a 'uge 'ole that there will need fixin' an' ye 'ave
                 to pay 200 coins to repair the dock!  Not a jolly mornin' fer this here gentleman o' fortune.\n"""
                 , "3", "3");
         //in port or near/human damage
         human.addHazard("10", """
-                It be a nice sunny day, no breeze in the air. Ye decide to take a little trip into the island to find 
-                yerself yer own private area to cool down in the water an' take a bath. Ye see a beautiful oasis ahead 
+                It be a nice sunny day, no breeze in the air. Ye decide to take a little trip into the island to find
+                yerself yer own private area to cool down in the water an' take a bath. Ye see a beautiful oasis ahead
                 o' ye an' just yer luck, no one be there!  'Ow be no one grabbin' advantage o' this here blue green water
                 surrounded by sand an' greenery?  As ye take a step closer to the water, yer foot sinks!  It be strange
-                feeling, a bit gooey an' cold. Ye try to pull yer foot up an' it be stuck. The worse part be, ye lost 
-                yer balance an' fell to the ground. Now ye be on all fours an' not able to move. Ye start to sink. Ye 
-                yell fer 'elp at the top o' yer lungs an' finally a small blond 'aired lad emerges from the greenery. 
-                Ye think ye be goin' to die, 'ow be this here little lad goin' to pull ye out?  Then ye spot the donkey 
-                off to the side, eat a little green snack. 'E offers to 'elp pull ye out, but it will cost ye 50 coins. 
+                feeling, a bit gooey an' cold. Ye try to pull yer foot up an' it be stuck. The worse part be, ye lost
+                yer balance an' fell to the ground. Now ye be on all fours an' not able to move. Ye start to sink. Ye
+                yell fer 'elp at the top o' yer lungs an' finally a small blond 'aired lad emerges from the greenery.
+                Ye think ye be goin' to die, 'ow be this here little lad goin' to pull ye out?  Then ye spot the donkey
+                off to the side, eat a little green snack. 'E offers to 'elp pull ye out, but it will cost ye 50 coins.
                 It be do or die at this here point, so ye take the loss o' 50 coins an' get freed.\n""", "10");
         human.addHazard("11", """
-                It be a 'ot 'umid day as ye roll into port. The smells o' jasmine 
-                an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically.  
-                Could it be? A damsel in distress in need o' yer assistance?  Upon approach, ye see the damsel. 
-                She 'as the longest dark locks ye 'ave e'er spied, the most beautiful brown doe eyes an' skin that 
-                there been kissed by the sun. She be 'angin' from a long sturdy vine, swayin' in the breeze, below 'er 
-                an alligator, waitin' fer 'is next meal. Ye scare the alligator off an' rescue the damsel. The next 
+                It be a 'ot 'umid day as ye roll into port. The smells o' jasmine
+                an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically.
+                Could it be? A damsel in distress in need o' yer assistance?  Upon approach, ye see the damsel.
+                She 'as the longest dark locks ye 'ave e'er spied, the most beautiful brown doe eyes an' skin that
+                there been kissed by the sun. She be 'angin' from a long sturdy vine, swayin' in the breeze, below 'er
+                an alligator, waitin' fer 'is next meal. Ye scare the alligator off an' rescue the damsel. The next
                 mornin' ye find the damsel stole twenty-five percent o' yer coin!  no jolly deed goes unpunished.\n"""
                 , "25");
         human.addHazard("12", """
@@ -343,69 +343,69 @@ public class StartTest {
                 , "50");
         environmental.addHazard("20", """
                 Just sailin' a way at sea, the waves calm fer this here time o' day.  Sunset o' orange, reds an' yellows
-                fill this here sky. As ye look off into the distance, admirin' the beauty o' sea, ye notice an odd 
+                fill this here sky. As ye look off into the distance, admirin' the beauty o' sea, ye notice an odd
                 lookin' movin' toward the boat. Well blow me o'er, where did that there whale come from? Ye almost 'it
-                it!  Jolly thin' ye 'ave cat like reflexes an' did a sharp turn to avoid it, but too bad ye ended to 
-                the sky 'ittin' a reef!  Looks like ye 'ave a 'ole in yer ship, ye be goin' to 'ave to patch that 
+                it!  Jolly thin' ye 'ave cat like reflexes an' did a sharp turn to avoid it, but too bad ye ended to
+                the sky 'ittin' a reef!  Looks like ye 'ave a 'ole in yer ship, ye be goin' to 'ave to patch that
                 there 'ole before ye sink!\n""", "1", "0");
         environmental.addHazard("21", """
-                Up an' down, the rollin' o' the waves, almost makes ye sea sick. There be somethin' brewin' off into 
+                Up an' down, the rollin' o' the waves, almost makes ye sea sick. There be somethin' brewin' off into
                 the distance. This here ain't just an ordinary storm, but a storm o' the ages. Ye can see from below it,
-                it 'as a massive center, almost like an me good eye lookin' straight into yer soul. Around it, solid 
-                white walls an' beyond that there, darkness. The seven seas must be comin' to an end! ye continue on, 
-                like a true gentleman o' fortune, nothin' be goin' to avast ye. As the storm gets closer an' closer, 
-                the waves become almost unmanageable, pullin' ye wherever they want to take ye. Ye 'ead to the lower 
-                level with the crew an' pray ye survive what be next. Ye sit fer what seems like eternity an' soon 
-                calmness comes. As ye emerge to the deck, ye can see all the damage 'ad been done. Ye lost at least 
-                'alf o' yer sails, an' what be left o' them, flappin' in the wind. it will take ye days, maybe weeks, 
+                it 'as a massive center, almost like an me good eye lookin' straight into yer soul. Around it, solid
+                white walls an' beyond that there, darkness. The seven seas must be comin' to an end! ye continue on,
+                like a true gentleman o' fortune, nothin' be goin' to avast ye. As the storm gets closer an' closer,
+                the waves become almost unmanageable, pullin' ye wherever they want to take ye. Ye 'ead to the lower
+                level with the crew an' pray ye survive what be next. Ye sit fer what seems like eternity an' soon
+                calmness comes. As ye emerge to the deck, ye can see all the damage 'ad been done. Ye lost at least
+                'alf o' yer sails, an' what be left o' them, flappin' in the wind. it will take ye days, maybe weeks,
                 to get to a port.\n""", "0", "1");
         environmental.addHazard("22", """
-                Fer days ye 'ave been sailing, gettin' closer an' closer to yer destination. The waters be deep blue an' 
-                cold. Ye ain't sure 'ow ye got so farrr off course, but these waters be unfamiliarrr an' give ye a 
-                feelin' o' uneasiness. One o' the crew starts to yell an' point to the fore o' the ship. Ye climb the 
-                tower to get a better look from above. What be that there?  ye see somethin' with a ridged aft, like 
-                spikes, an' it 'as scales. It be a green color, shimmery an' bright. Like a snake, it moves about the 
-                water, divin' in an' out an' then slitherin' left an' right. It be 'uge, somethin' prehistoric. Ne'er 
-                spied anythin' like it, so ye try to steer clearrr. Ye climb aft down to the deck an' try to navigate 
-                away from it, but it keeps followin' ye. Ye fire a cannon at it, an' ye immediately realize ye made a 
-                terrible mistake. It be light purple eyes turn a bright red, like fire. Ye made it angry. Before ye 'ave 
-                time to react, it be massive tail swings an' makes a direct 'it to the side o' the ship. That there be a 
-                big 'ole an' ye need to find a port fast, but ye be in unfamiliarrr waters, will ye be able to find a 
+                Fer days ye 'ave been sailing, gettin' closer an' closer to yer destination. The waters be deep blue an'
+                cold. Ye ain't sure 'ow ye got so farrr off course, but these waters be unfamiliarrr an' give ye a
+                feelin' o' uneasiness. One o' the crew starts to yell an' point to the fore o' the ship. Ye climb the
+                tower to get a better look from above. What be that there?  ye see somethin' with a ridged aft, like
+                spikes, an' it 'as scales. It be a green color, shimmery an' bright. Like a snake, it moves about the
+                water, divin' in an' out an' then slitherin' left an' right. It be 'uge, somethin' prehistoric. Ne'er
+                spied anythin' like it, so ye try to steer clearrr. Ye climb aft down to the deck an' try to navigate
+                away from it, but it keeps followin' ye. Ye fire a cannon at it, an' ye immediately realize ye made a
+                terrible mistake. It be light purple eyes turn a bright red, like fire. Ye made it angry. Before ye 'ave
+                time to react, it be massive tail swings an' makes a direct 'it to the side o' the ship. That there be a
+                big 'ole an' ye need to find a port fast, but ye be in unfamiliarrr waters, will ye be able to find a
                 port?\n""", "1", "0");
         human.addHazard("30", """
-                Ye get up on deck to the sound o' voices, manly voices. Their voices be a bit muffled, an' it be 'ard 
+                Ye get up on deck to the sound o' voices, manly voices. Their voices be a bit muffled, an' it be 'ard
                 fer ye to understand, but ye think ye 'eard them say gold. Ye quickly rush to the sky to the deck above,
-                leavin' yer crew asleep, an' look o'er the side o' yer boat to find an empty dingy boat floatin' right 
-                next to the ship. There be a rope attached to a grapplin' 'ook, which 'as down to Davy Jones' Locker 
-                its sharp points into yer boat. There be No men attached to the rope, so where be the men?  As ye turn 
-                around ye find a tall, gladiator o' a man standin' before ye. 'E punches ye in the me jolly me good 
-                eye an' knocks ye off yer feet. Ye know ye ain't a good fighter, so ye stay down. 'E an' 'is men take 
-                off with a quarter o' yer gold. As the crew awake an' come up on deck, they notice yer black me good 
-                eye. Ye explain what 'as 'appened, an' the look o' disappointment across their faces. Ye fearrr fer the 
+                leavin' yer crew asleep, an' look o'er the side o' yer boat to find an empty dingy boat floatin' right
+                next to the ship. There be a rope attached to a grapplin' 'ook, which 'as down to Davy Jones' Locker
+                its sharp points into yer boat. There be No men attached to the rope, so where be the men?  As ye turn
+                around ye find a tall, gladiator o' a man standin' before ye. 'E punches ye in the me jolly me good
+                eye an' knocks ye off yer feet. Ye know ye ain't a good fighter, so ye stay down. 'E an' 'is men take
+                off with a quarter o' yer gold. As the crew awake an' come up on deck, they notice yer black me good
+                eye. Ye explain what 'as 'appened, an' the look o' disappointment across their faces. Ye fearrr fer the
                 day they take o'er the ship, such as yerself did. What good be a ship with a Cap'n that there can't fight?\n"""
                 , "10");
         human.addHazard("31", """
                 Shiver me timbers!  Just as you are looking into the birght blue sky, adminring the beauty of the sea,
-                a pirate ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin' 
-                like a they went on a rum bender an' lookin' like they 'ave not bathed in months, aboard yer ship an' 
-                the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose fifty 
+                a pirate ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin'
+                like a they went on a rum bender an' lookin' like they 'ave not bathed in months, aboard yer ship an'
+                the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose fifty
                 percent o' yer treasures. Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a
                 crew that there can't fight.""", "25");
         human.addHazard("32", """
-                It been a jolly day at sea. Clearrr blue skies, calm waters, catchin' some fish fer dinner, rum in yer 
-                belly, just an amazin' day. Ye an' yer crew be relaxin' on deck, gettin' some sun, enjoyin' the mild, 
-                but warm, temperature. Off in the distance ye 'earrr a thar she blows, blast away!  been that there 
-                thunder?  no, it can't be, it be too nice out an' not a cloud in sight. Thar she blows, blast away!  
-                thar she blows, blast away!  what be 'appening?  then another thar she blows, blast away! followed by 
-                a "splash". Ye look o'er to where the splash occurred an' realize what be 'appening, ye be under attack!  
-                cannons be bein' launched directly at yer ship. Ye an' the crew get yer cannons ready an' start to fire 
-                aft. Some o' the cannons be gettin' awfully close to yer ship. Ye now see the ship, it be close enough 
-                to make out. They now 'ave archers pointin' arrows with flame. Ye tell the crew to take cover an' 
-                shortly after, arrows flyin' through the air. They set yer sails on fire, ye need to get these fires 
-                under control before yer 'ole ship sets fire. Yer crew sets off two cannons an' one be a direct it to 
-                the other boat. The direct 'it been a moment too late, as ye also received a direct 'it. The other ship 
-                starts to 'ead in the other direction, probably to 'ead into a port fer repairs before they sink. Ye 
-                assess yer damage an' 'ave one sail left an' a big 'ole in the ship. Ye need to get to a port before ye 
+                It been a jolly day at sea. Clearrr blue skies, calm waters, catchin' some fish fer dinner, rum in yer
+                belly, just an amazin' day. Ye an' yer crew be relaxin' on deck, gettin' some sun, enjoyin' the mild,
+                but warm, temperature. Off in the distance ye 'earrr a thar she blows, blast away!  been that there
+                thunder?  no, it can't be, it be too nice out an' not a cloud in sight. Thar she blows, blast away!
+                thar she blows, blast away!  what be 'appening?  then another thar she blows, blast away! followed by
+                a "splash". Ye look o'er to where the splash occurred an' realize what be 'appening, ye be under attack!
+                cannons be bein' launched directly at yer ship. Ye an' the crew get yer cannons ready an' start to fire
+                aft. Some o' the cannons be gettin' awfully close to yer ship. Ye now see the ship, it be close enough
+                to make out. They now 'ave archers pointin' arrows with flame. Ye tell the crew to take cover an'
+                shortly after, arrows flyin' through the air. They set yer sails on fire, ye need to get these fires
+                under control before yer 'ole ship sets fire. Yer crew sets off two cannons an' one be a direct it to
+                the other boat. The direct 'it been a moment too late, as ye also received a direct 'it. The other ship
+                starts to 'ead in the other direction, probably to 'ead into a port fer repairs before they sink. Ye
+                assess yer damage an' 'ave one sail left an' a big 'ole in the ship. Ye need to get to a port before ye
                 sink, but with one sail, it be slow movin'.\n""", "50");
 
         //generate a random number to start the hazards
@@ -449,7 +449,7 @@ public class StartTest {
                     System.out.println(description.get());
                 }
             }
-/*            for (int x = 0; x < environmentalList.size(); x++) {
+*//*            for (int x = 0; x < environmentalList.size(); x++) {
                 //get the hazard information
                 Environmental a = environmentalList.get(x);
 
@@ -467,7 +467,7 @@ public class StartTest {
 
                     System.out.println("Look up value: " + fullHazardKey + " The message " + theMessage + " The hit " + theHit + " The sail " + theSail);
                 }
-            }*/
+            }*//*
         } else {
             ArrayList<Human> humanList = human.getHumanList();
             for (int x = 0; x < humanList.size(); x++) {
@@ -495,7 +495,7 @@ public class StartTest {
         return random;
     }
 
- /*   public static void responses(){
+ *//*   public static void responses(){
         int getResponse = getRandom(0,5);
         String convertRandom = Integer.toString(getResponse);
         Locale en = new Locale("en");
@@ -544,5 +544,6 @@ public class StartTest {
 
         System.out.println('\n' + "--------------------" + '\n' + "What would you like to do?");
     }*/
+    }
 }
 
