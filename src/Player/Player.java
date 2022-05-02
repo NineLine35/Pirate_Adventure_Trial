@@ -41,6 +41,8 @@ public class Player {
         this.chest = chest;
     }
 
+    public Ship getShip(){return ship;};
+
     public MainMap.Coordinates getLocation() {
         return location;
     }
@@ -48,6 +50,7 @@ public class Player {
     public void setLocation(MainMap.Coordinates location) {
         this.location = location;
     }
+
 
     //Method to set the player ship class and assign a name
     public void assignShip(String type, String shipName){
@@ -65,4 +68,11 @@ public class Player {
             inventory.useRepairItem(item);
         }
     }
+
+    public void displayLocation(){
+        int x = getLocation().getRow();
+        int y = getLocation().getColumn();
+        System.out.println("Ye be located at coordinate " + x + "," + y);
+    }
+
 }

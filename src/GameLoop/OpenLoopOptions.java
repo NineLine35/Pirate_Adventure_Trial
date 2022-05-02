@@ -8,7 +8,8 @@ public enum OpenLoopOptions {
     I("i"),
     SAIL("sail"),
     HELP("help"),
-    LOOK("look");
+    LOOK("look"),
+    STATUS("status");
 
     //instantiate sendAction
     private String sendEntry;

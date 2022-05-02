@@ -43,7 +43,10 @@ public class OpeningLoop {
         Player.getInstance().setName(enteredText);
 
         System.out.println("\nNice to meet ya, " + Player.getInstance().getName());
-        System.out.println("And where shall we go??");
+        System.out.println("This rickety ship isn't much, in fact it is just a basic Sloop.  But we trust you know" +
+                " how to make us rich.  Or if not......maybe you end up like the last captain.  In fact!  We will" +
+                "give you 10 days, argh, 10 to make us some coin captain.\n");
+        System.out.println("So Captain " + Player.getInstance().getName() + " what now?");
         boolean goodValue = false;
         while (!goodValue) {
             //my adds
@@ -109,6 +112,7 @@ public class OpeningLoop {
                     System.out.println("______MAP______");
                     System.out.println(Arrays.deepToString(playmap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
                     System.out.println("_______________");
+                    Player.getInstance().displayLocation();
                 }// else if (enteredText.toLowerCase().contains("where am i")) {
                 else if (entryValue.equals("where am i")) {
                     //goodValue = true;
@@ -148,6 +152,12 @@ public class OpeningLoop {
                 }
                 else if (entryValue.equals("help")){
                     help();
+                }
+                else if (entryValue.equals("status")){
+                    System.out.println("Our ship floats, don't it! If ye need more info, fine here you go");
+                    System.out.println("The hull has " + Player.getInstance().getShip().getHullHitPoints() + " remaining");
+                    System.out.println("And the sails....take a look.  They are at " + Player.getInstance().getShip().getSailHealth() + "%\n");
+
                 }
                 else {
                     goodValue = false;
