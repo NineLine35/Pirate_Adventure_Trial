@@ -121,6 +121,11 @@ public class Hazard {
 
         Player.getInstance().setChest(Player.getInstance().getChest() - coinLoss.get());
         System.out.println("after coin " + + Player.getInstance().getChest());
+
+        if(Player.getInstance().getShip().getHullHitPoints() <= 0){
+            System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
+            System.exit(0);
+        }
     }
 }
 

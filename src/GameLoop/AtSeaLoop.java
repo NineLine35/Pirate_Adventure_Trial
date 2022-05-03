@@ -44,7 +44,7 @@ public class AtSeaLoop extends OpeningLoop{
                     level with the crew an' pray ye survive what be next. Ye sit fer what seems like eternity an' soon 
                     calmness comes. As ye emerge to the deck, ye can see all the damage 'ad been done. Ye lost at least 
                     'alf o' yer sails, an' what be left o' them, flappin' in the wind. it will take ye days, maybe weeks, 
-                    to get to a port.\n""", 5, 50,0);
+                    to get to a port.\n""", 0, 50,0);
             hazard.addHazard(2, """
                     Fer days ye 'ave been sailing, gettin' closer an' closer to yer destination. The waters be deep blue an' 
                     cold. Ye ain't sure 'ow ye got so farrr off course, but these waters be unfamiliarrr an' give ye a 
@@ -69,14 +69,14 @@ public class AtSeaLoop extends OpeningLoop{
                     off with 200 o' yer gold. As the crew awake an' come up on deck, they notice yer black me good 
                     eye. Ye explain what 'as 'appened, an' the look o' disappointment across their faces. Ye fearrr fer the 
                     day they take o'er the ship, such as yerself did. What good be a ship with a Cap'n that there can't fight?\n"""
-                    , 5,0,200);
+                    , 0,0,200);
             hazard.addHazard(4, """
                     Shiver me timbers!  Just as you are looking into the birght blue sky, adminring the beauty of the sea,
                     a pirate ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin' 
                     like a they went on a rum bender an' lookin' like they 'ave not bathed in months, aboard yer ship an' 
                     the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose 150 o' yer treasures. 
                     Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a crew that there can't fight.""",
-                    5,0,150);
+                    0,0,150);
             hazard.addHazard(5, """
                     It been a jolly day at sea. Clearrr blue skies, calm waters, catchin' some fish fer dinner, rum in yer 
                     belly, just an amazin' day. Ye an' yer crew be relaxin' on deck, gettin' some sun, enjoyin' the mild, 
@@ -123,10 +123,10 @@ public class AtSeaLoop extends OpeningLoop{
                     //go to the calculation to do the losses
                     hazard.hazardCalc(hitPoints, coinLoss,sailDamage);
 
-                    if(Player.getInstance().getShip().getHullHitPoints() <= 0){
+/*                    if(Player.getInstance().getShip().getHullHitPoints() <= 0){
                         System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
                         System.exit(0);
-                    }
+                    }*/
                 }
             }
         }
