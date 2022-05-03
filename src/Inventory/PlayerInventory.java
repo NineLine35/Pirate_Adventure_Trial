@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class PlayerInventory implements Inventory{
-    public void PlayerInventory (){}
 
     public Item findItem(String itemName){
         Item foundItem = null;
         for (int i = 0; i < items.size(); i++){
-            if (items.get(i).getName() == itemName.toUpperCase(Locale.ROOT).replace(" ","_")){
+            if (items.get(i).getName() == itemName.toUpperCase().replace(" ","_")){
                 foundItem = items.get(i);
             }
         }
@@ -58,14 +57,18 @@ public class PlayerInventory implements Inventory{
         for(int i = 0; i < this.items.size(); i++){
             // Item is found
             if (this.items.get(i) == item){
-                // Item is used
-                this.items.remove(i);
+                if (this.items.get(i).getQuantity() > 1) {
+                    this.items.get(i).setQuantity(this.items.get(i).getQuantity() - 1);
+                } else {
+                    // Item is used
+                    this.items.remove(i);
+                }
                 // Boolean is changed to output to user
                 exists = true;
             }
         }
 
-        if (exists == false){
+        if (!exists){
             System.out.println("You Do Not Have That Item To Use Sailor");
         }
     }
