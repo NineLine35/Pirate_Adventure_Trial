@@ -20,24 +20,21 @@ public class AtSeaLoop extends OpeningLoop{
         int randomHazard = getRandom(0, 1);
         System.out.println("Hazard or no? " + randomHazard);
         if (randomHazard == 1) {
-            int hazardFirstKey;
-            int hazardSecondKey;
-            String fullHazardKey;
-            //Environmental environmental = new Environmental();
-            //Human human = new Human();
+            //create the hazard object
             Hazard hazard = new Hazard();
-            //double totalCoin = 100.00;
-            //double takeCoin = 0.00;
+
+            //get a random hazard
+            randomHazard = getRandom(0, 5);
 
             //make the list of hazards
-            hazard.addHazard("20", """
+            hazard.addHazard(0, """
                     Just sailin' a way at sea, the waves calm fer this here time o' day.  Sunset o' orange, reds an' yellows
                     fill this here sky. As ye look off into the distance, admirin' the beauty o' sea, ye notice an odd 
                     lookin' movin' toward the boat. Well blow me o'er, where did that there whale come from? Ye almost 'it
                     it!  Jolly thin' ye 'ave cat like reflexes an' did a sharp turn to avoid it, but too bad ye ended to 
                     the sky 'ittin' a reef!  Looks like ye 'ave a 'ole in yer ship, ye be goin' to 'ave to patch that 
-                    there 'ole before ye sink!\n""", "1", "0","0");
-            hazard.addHazard("21", """
+                    there 'ole before ye sink!\n""", 1, 0,0);
+            hazard.addHazard(1, """
                     Up an' down, the rollin' o' the waves, almost makes ye sea sick. There be somethin' brewin' off into 
                     the distance. This here ain't just an ordinary storm, but a storm o' the ages. Ye can see from below it,
                     it 'as a massive center, almost like an me good eye lookin' straight into yer soul. Around it, solid 
@@ -47,8 +44,8 @@ public class AtSeaLoop extends OpeningLoop{
                     level with the crew an' pray ye survive what be next. Ye sit fer what seems like eternity an' soon 
                     calmness comes. As ye emerge to the deck, ye can see all the damage 'ad been done. Ye lost at least 
                     'alf o' yer sails, an' what be left o' them, flappin' in the wind. it will take ye days, maybe weeks, 
-                    to get to a port.\n""", "0", "50","0");
-            hazard.addHazard("22", """
+                    to get to a port.\n""", 0, 50,0);
+            hazard.addHazard(2, """
                     Fer days ye 'ave been sailing, gettin' closer an' closer to yer destination. The waters be deep blue an' 
                     cold. Ye ain't sure 'ow ye got so farrr off course, but these waters be unfamiliarrr an' give ye a 
                     feelin' o' uneasiness. One o' the crew starts to yell an' point to the fore o' the ship. Ye climb the 
@@ -60,8 +57,8 @@ public class AtSeaLoop extends OpeningLoop{
                     terrible mistake. It be light purple eyes turn a bright red, like fire. Ye made it angry. Before ye 'ave 
                     time to react, it be massive tail swings an' makes a direct 'it to the side o' the ship. That there be a 
                     big 'ole an' ye need to find a port fast, but ye be in unfamiliarrr waters, will ye be able to find a 
-                    port?\n""", "1", "0","0");
-            hazard.addHazard("30", """
+                    port?\n""", 1, 0,0);
+            hazard.addHazard(3, """
                     Ye get up on deck to the sound o' voices, manly voices. Their voices be a bit muffled, an' it be 'ard 
                     fer ye to understand, but ye think ye 'eard them say gold. Ye quickly rush to the sky to the deck above,
                     leavin' yer crew asleep, an' look o'er the side o' yer boat to find an empty dingy boat floatin' right 
@@ -72,15 +69,15 @@ public class AtSeaLoop extends OpeningLoop{
                     off with 200 o' yer gold. As the crew awake an' come up on deck, they notice yer black me good 
                     eye. Ye explain what 'as 'appened, an' the look o' disappointment across their faces. Ye fearrr fer the 
                     day they take o'er the ship, such as yerself did. What good be a ship with a Cap'n that there can't fight?\n"""
-                    , "0","0","200");
-            hazard.addHazard("31", """
+                    , 0,0,200);
+            hazard.addHazard(4, """
                     Shiver me timbers!  Just as you are looking into the birght blue sky, adminring the beauty of the sea,
                     a pirate ship, lookin' like it been through one to many cannon wars, runs ye down. Fifty men, smellin' 
                     like a they went on a rum bender an' lookin' like they 'ave not bathed in months, aboard yer ship an' 
                     the stench o' sweat fills the air. They each demand ye 'and o'er one item, forcin' ye to lose 150 o' yer treasures. 
                     Ye feel poorer an' poorer by the day, it be rough bein' the new leader o' a crew that there can't fight.""",
-                    "0","0","150");
-            hazard.addHazard("32", """
+                    0,0,150);
+            hazard.addHazard(5, """
                     It been a jolly day at sea. Clearrr blue skies, calm waters, catchin' some fish fer dinner, rum in yer 
                     belly, just an amazin' day. Ye an' yer crew be relaxin' on deck, gettin' some sun, enjoyin' the mild, 
                     but warm, temperature. Off in the distance ye 'earrr a thar she blows, blast away!  been that there 
@@ -95,58 +92,43 @@ public class AtSeaLoop extends OpeningLoop{
                     the other boat. The direct 'it been a moment too late, as ye also received a direct 'it. The other ship 
                     starts to 'ead in the other direction, probably to 'ead into a port fer repairs before they sink. Ye 
                     assess yer damage an' 'ave one sail left an' a big 'ole in the ship. Ye need to get to a port before ye 
-                    sink, but with one sail, it be slow movin'.\n""", "2","1","0");
+                    sink, but with one sail, it be slow movin'.\n""", 2,1,0);
 
-            //we are in water, the random number should be 0 or 1.  0 = environment hazard , 1 = human hazard
-            hazardFirstKey = getRandom(2, 3);
+            //place holder to display the random hazard number
+            System.out.println("the second hazard key" + randomHazard);
 
-            System.out.println("the first hazard key: " + hazardFirstKey);
-
-            //get the second key, there will be 3 options for each first random (0,1,2)
-            hazardSecondKey = getRandom(0, 2);
-
-            System.out.println("the second hazard key" + hazardSecondKey);
-
-            //make a full key to look up in the hazard list
-            fullHazardKey = Integer.toString(hazardFirstKey) + Integer.toString(hazardSecondKey);
-
-            //find the right key and its values
             //get the hazard list
-            //if (hazardFirstKey == 0) {
-                ArrayList<Hazard> hazardList = hazard.getHazardList();
-                //loop through to find your lookup value
-                for (Hazard hazardItems : hazardList) {
-                    //get the lookup
-                    Supplier<String> onLine = () -> hazardItems.getLookUp();
-                    //check if it is our look up
-                    if (onLine.get().equals(fullHazardKey)) {
-                        //it is our lookup, so get the message to display to the user
-                        Supplier<String> description = () -> hazardItems.getStoryMessage();
-                        System.out.println(description.get());
-                        Supplier<String> hitPoints = () -> hazardItems.getHullPoints();
-                        Supplier<String> coinLoss = () -> hazardItems.getCoinToTake();
-                        Supplier<String> sailDamage = () -> hazardItems.getSailDamage();
+            ArrayList<Hazard> hazardList = hazard.getHazardList();
+            //loop through to find your lookup value
+            for (Hazard hazardItems : hazardList) {
+                //get the lookup
+                Supplier<Integer> onLine = () -> hazardItems.getLookUp();
+                //check if it is our look up
+                if (onLine.get() == randomHazard) {
+                    //get the message
+                    Supplier<String> description = () -> hazardItems.getStoryMessage();
 
-                        hazard.hazardCalc(hitPoints, coinLoss,sailDamage);
-/*                        System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
+                    //display the message to the player
+                    System.out.println(description.get());
 
-                        Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - Integer.parseInt(hitPoints.get()));
-                        System.out.println("after hull points " + + Player.getInstance().getShip().getHullHitPoints());
+                    //get the hull points
+                    Supplier<Integer> hitPoints = () -> hazardItems.getHullPoints();
 
-                        System.out.println("current sail points " + Player.getInstance().getShip().getSailHealth());
+                    //get the coin
+                    Supplier<Integer> coinLoss = () -> hazardItems.getCoinToTake();
 
-                        Player.getInstance().getShip().setSailHealth(Player.getInstance().getShip().getSailHealth() - Integer.parseInt(sailDamage.get()));
-                        System.out.println("after sail points " + + Player.getInstance().getShip().getSailHealth());
+                    //get the sail damage
+                    Supplier<Integer> sailDamage = () -> hazardItems.getSailDamage();
 
-                        System.out.println("current coin " + Player.getInstance().getChest());
+                    //go to the calculation to do the losses
+                    hazard.hazardCalc(hitPoints, coinLoss,sailDamage);
 
-                        Player.getInstance().setChest(Player.getInstance().getChest() - Integer.parseInt(coinLoss.get()));
-                        System.out.println("after coin " + + Player.getInstance().getChest());*/
-                        //chest = coin
-                        //sail health
-                    }
+/*                    if(Player.getInstance().getShip().getHullHitPoints() <= 0){
+                        System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
+                        System.exit(0);
+                    }*/
                 }
-            //}
+            }
         }
         else
         {
