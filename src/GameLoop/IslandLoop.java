@@ -1,6 +1,8 @@
 package GameLoop;
 
 import Hazard.Hazard;
+import Player.Player;
+
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
@@ -30,7 +32,7 @@ public class IslandLoop extends OpeningLoop{
                  'ad one too many rums last night, or there be a twister 'eadin' right fer yer ship. Ye better take 
                  cover, it looks like there flyin' cows!  Shiver me timbers! One just clipped yer sail an' damaged 
                  it a bit. Now ye will need a sail repair kit if ye do not want yer  ship to sail any slower!\n"""
-                    , 0, 25,0);
+                    , 5, 25,0);
             hazard.addHazard(7, """
                  Such a 'ot day at port, sand burnin' yer feet as ye walk along the beach. A nice rain to cool it down 
                  would be jolly, but that there be not goin' to 'appen. Ye even 'ope fer a slight breeze, to at least 
@@ -44,7 +46,7 @@ public class IslandLoop extends OpeningLoop{
                  way to yer ship an' sadly, the cannon been not covered. Now ye need to find someone to clean the cannon 
                  so it can be used. That there will cost ye at least 100 coin!\n
                  """
-                    , 0, 0,100);
+                    , 5, 0,100);
             hazard.addHazard(8, """
                 It be cool an' cloudy out, quite dark actually. There be rain in the air an' a little bit o' wind. As ye
                 move closer to port, the wind starts to pick to the sky. It gets a little chilly so ye grab some rum 
@@ -68,7 +70,7 @@ public class IslandLoop extends OpeningLoop{
                 Ye think ye be goin' to die, 'ow be this here little lad goin' to pull ye out?  Then ye spot the donkey 
                 off to the side, eat a little green snack. 'E offers to 'elp pull ye out, but it will cost ye 50 coins. 
                 It be do or die at this here point, so ye take the loss o' 50 coins an' get freed.\n""",
-                    0, 0,50);
+                    5, 0,50);
             hazard.addHazard(10, """
                 It be a 'ot 'umid day as ye roll into port. The smells o' jasmine 
                 an' salt in the air. Off in the distance ye 'earrr a woman's voice screamin' 'ysterically.  
@@ -77,7 +79,7 @@ public class IslandLoop extends OpeningLoop{
                 there been kissed by the sun. She be 'angin' from a long sturdy vine, swayin' in the breeze, below 'er 
                 an alligator, waitin' fer 'is next meal. Ye scare the alligator off an' rescue the damsel. The next 
                 mornin' ye find the damsel stole 75 o' yer coin!  no jolly deed goes unpunished.\n"""
-                    , 0,0,75);
+                    , 5,0,75);
             hazard.addHazard(11, """
                 Ye wander around the port, lookin' fer somethin' to do. Ye an' yer crew be know to wreak 'avoc an'
                 'ave a jolly time!  Ye 'ead into the local establishement. It be dark, dingy an' smells o' musk from the
@@ -92,7 +94,7 @@ public class IslandLoop extends OpeningLoop{
                 mess?  It looks like the tall built man been not 'appy about the fight an' while ye celebrated, 'e been busy
                 at work. Ye only 'ave one main sail that there be good, but all the others need to be replaced. Ye be
                 delayed to yer next port, now that there ye must sail very slow.\n"""
-                    , 0,50,0);
+                    , 5,50,0);
 
             //this is just to display the hazard picked
             System.out.println("the second hazard key" + randomHazard);
@@ -122,6 +124,11 @@ public class IslandLoop extends OpeningLoop{
 
                     //go to the calculation to do the losses
                     hazard.hazardCalc(hitPoints, coinLoss,sailDamage);
+
+                    if(Player.getInstance().getShip().getHullHitPoints() <= 0){
+                        System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
+                        System.exit(0);
+                    }
                 }
             }
         }
