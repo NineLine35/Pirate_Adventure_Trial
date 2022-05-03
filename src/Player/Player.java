@@ -64,8 +64,12 @@ public class Player {
         if (item == null){
             System.out.println("You Do Not Have That Item To Use Sailor");
         } else {
-            ship.repairShip(item);
-            inventory.useRepairItem(item);
+            if (item.getItemType().toLowerCase().equals("repair")){
+                ship.repairShip(item);
+                inventory.useRepairItem(item);
+            } else {
+                System.out.println("This item cannot repair a ship");
+            }
         }
     }
 

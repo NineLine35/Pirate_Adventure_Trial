@@ -5,7 +5,6 @@ public enum ItemTypes {
     PATCHING_KIT,
     RUBY,
     SAPPHIRE,
-    DIAMONDS,
-    GOLD_PIECE,
+    DIAMOND,
     RUM
 }

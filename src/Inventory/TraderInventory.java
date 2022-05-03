@@ -3,7 +3,6 @@ package Inventory;
 import java.util.ArrayList;
 
 public class TraderInventory implements Inventory {
-    public TraderInventory(){ }
 
     public void addItem(Item item, int quantity){
         boolean hasDupe = false;
@@ -29,7 +28,7 @@ public class TraderInventory implements Inventory {
         }
     }
 
-    //
+    // Used when selling items
     public void sellItem(Item item){
         // Runs through all repair items
         for(int i = 0; i < this.items.size(); i++){
