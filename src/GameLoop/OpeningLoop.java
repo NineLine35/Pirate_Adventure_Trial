@@ -159,6 +159,12 @@ public class OpeningLoop {
                     System.out.println("And the sails....take a look.  They are at " + Player.getInstance().getShip().getSailHealth() + "%\n");
 
                 }
+                //TODO REMOVE DEBUG BATTLE ENTRY
+                else if (entryValue.equals("debugBattle")){
+
+                    Combat.ShipBattle.incomingFire();
+
+                }
                 else {
                     goodValue = false;
                     responses();
