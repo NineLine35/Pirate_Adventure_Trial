@@ -73,6 +73,10 @@ public class Player {
         }
     }
 
+    public void voidAddItem(Item item, int quantity){
+        inventory.addItem(item, quantity);
+    }
+
     public void sellItem(String itemName) {
         Item item;
         item = inventory.findItem(itemName);
