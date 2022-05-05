@@ -25,13 +25,14 @@ public class Hazard {
     }
 
     /**
-     * Constructor for hazard with overloads 1.3
+     * Constructor for hazard
      * @param lookUp
      * @param storyMessage
      * @param hullPoints
      * @param sailDamage
      * @param coinToTake
      */
+    //1.3 overloaded constructor
     public Hazard(int lookUp, String storyMessage, int hullPoints, int sailDamage, int coinToTake) {
         this.lookUp = lookUp;
         this.storyMessage = storyMessage;

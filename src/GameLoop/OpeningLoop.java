@@ -46,7 +46,7 @@ public class OpeningLoop {
                 "give you 10 days, argh, 10 to make us some coin captain.\n");
 
         Inventory.ItemDatabase.retrieveIslandItemData(2,2);
-        System.out.println("So Captain " + Player.getInstance().getName() + " what now?  If you are unsure, type help and you can see your options.");
+        System.out.println("\nSo Captain " + Player.getInstance().getName() + " what now?  If you are unsure, type help and you can see your options.");
         boolean goodValue = false;
         while (!goodValue) {
             //my adds
