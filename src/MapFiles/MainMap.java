@@ -3,6 +3,7 @@ package MapFiles;
 import GameLoop.AtSeaLoop;
 import GameLoop.IslandLoop;
 
+import java.sql.SQLException;
 import java.util.Random;
 
 public class MainMap {
@@ -95,7 +96,7 @@ public class MainMap {
      * tile landmass
      * @param tile - Pass in the correct landmass tile type
      */
-    public static void instanceCheck(Landmass tile){
+    public static void instanceCheck(Landmass tile) throws SQLException {
 
          if(tile instanceof OpenWater){
              AtSeaLoop.launch();
@@ -110,7 +111,7 @@ public class MainMap {
 
     //Method to find the "movePlayer" coordinates to movePlayer the player to a new location on the map.
     //TODO Add a check to ensure the player does not "fall off the map"
-    public static Coordinates movePlayer(int x, int y, Direction direction, Landmass[][] playMap){
+    public static Coordinates movePlayer(int x, int y, Direction direction, Landmass[][] playMap) throws SQLException {
 
          Coordinates returnCoord = new Coordinates(x,y);
 

@@ -10,11 +10,9 @@ public class ShipBattle {
         //Simple turn counter to be used in the runtime
         public static int turnCounter = 1;
 
-        public static void incomingFire() {
+        public static void main(String[] args) {
 
             Ship playerShip = Player.getInstance().getShip();
-
-
 
             // Receive user input and parse it
             Scanner userInput = new Scanner(System.in);
@@ -35,8 +33,8 @@ public class ShipBattle {
                     String enteredText = userInput.nextLine();
 
                     if (enteredText.toLowerCase().contains("exit")) {
-                       returnText.accept("Back to the normal loop\n");
-                        return;
+                        returnText.accept("Good bye!");
+                        System.exit(0);
                     } else if (enteredText.toLowerCase().contains("damage report")) {
 
                         int damageCalc = cannonDamage();
