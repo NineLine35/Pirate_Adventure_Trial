@@ -19,8 +19,6 @@ public class OpeningLoop {
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
 
         System.out.println();
-        System.out.println("Welcome to the Pirate Game Trial!\n" +
-                "*********************************\n");
 
         System.out.println(
                 """
