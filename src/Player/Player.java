@@ -73,6 +73,25 @@ public class Player {
         }
     }
 
+    public void sellItem(String itemName) {
+        Item item;
+        item = inventory.findItem(itemName);
+        if (item == null){
+            System.out.println("You do not have that item to sell");
+        } else {
+            inventory.sellItem(item);
+            setChest(getChest() + item.getItemPrice());
+        }
+    }
+
+    public void buyItem(Item item){
+        if (getChest() >= item.getItemPrice()){
+            this.inventory.addItem(item, 1);
+        } else {
+            System.out.println("You cannot buy an item if you don't have enough coins");
+        }
+    }
+
     public void displayLocation(){
         int x = getLocation().getRow();
         int y = getLocation().getColumn();

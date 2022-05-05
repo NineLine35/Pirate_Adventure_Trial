@@ -68,13 +68,34 @@ public abstract class Ship {
     public void setSailHealth(int sailHealth){ this.sailHealth = sailHealth; }
 
     public void repairShip(Item item){
+        // Hull Repair Was Used
         if (item.getName() == ItemTypes.PLANK_NAILS.toString()){
-            setHullHitPoints(maxHullHitPoints);
-            System.out.println("You Have Repaired Your Hull To Full Health");
-        }
-        else if (item.getName() == ItemTypes.PATCHING_KIT.toString()){
-            setSailHealth(maxSailHealth);
-            System.out.println("You Have Repaired Your Sail To Full Health");
+            // Checks if hull has taken damage
+            if (this.getHullHitPoints() < maxHullHitPoints){
+                // Hull is repaired by one hitpoint
+                this.setHullHitPoints(this.getHullHitPoints() + 1);
+                System.out.println("Your hull has been repaired to " + this.getHullHitPoints() + " hitpoints");
+            }
+            else {
+                // User is told hull is alright
+                System.out.println("Your hull does not need to be repaired");
+            }
+        } else if (item.getName() == ItemTypes.PATCHING_KIT.toString()){
+            // Checks if sail is max health
+            if (this.getSailHealth() == this.maxSailHealth){
+                // User is told sail is full health
+                System.out.println("Your sail does not need to be repaired");
+            } else {
+                // Makes sure sail is greater than 10% less in order to not over repair ship
+                if (this.getSailHealth() <= (this.maxSailHealth + 10)) {
+                    // Repairs ship by 10
+                    this.setSailHealth(this.getSailHealth() + 10);
+                } else {
+                    // Repairs ship to max as 10% would over repair ship
+                    this.setSailHealth(this.maxSailHealth);
+                }
+                System.out.println("Your sail has been repaired to " + this.getSailHealth() + "%");
+            }
         }
     }
 }
