@@ -1,8 +1,5 @@
 package GameLoop;
 
-import Hazard.Actions;
-import Hazard.Item;
-import Hazard.StartTest;
 import Inventory.ItemDatabase;
 import Inventory.ItemTypes;
 import MapFiles.*;
@@ -10,7 +7,7 @@ import Player.Player;
 
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Stream;
+import java.util.function.BiFunction;
 
 public class OpeningLoop {
 
@@ -19,7 +16,6 @@ public class OpeningLoop {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
-
         System.out.println();
         System.out.println("Welcome to the Pirate Game Trial!\n" +
                 "*********************************\n");
@@ -50,7 +46,7 @@ public class OpeningLoop {
                 "give you 10 days, argh, 10 to make us some coin captain.\n");
 
         Inventory.ItemDatabase.retrieveIslandItemData(2,2);
-        System.out.println("So Captain " + Player.getInstance().getName() + " what now?");
+        System.out.println("So Captain " + Player.getInstance().getName() + " what now?  If you are unsure, type help and you can see your options.");
         boolean goodValue = false;
         while (!goodValue) {
             //my adds
@@ -73,17 +69,12 @@ public class OpeningLoop {
                 //try to see if there is a valid action
                 try {
                     //have a valid action
-                    //FindAction actions = new FindAction(Actions.valueOf(s1.toUpperCase()));
-                    //actionValue = actions.actionIsLike();
                     OpenLoopOptions getEntry = OpenLoopOptions.valueOf(s1.toUpperCase());
-                    if(entryValue != ""){
-                        entryValue = entryValue + " " + getEntry.getSendEntry();
-                    }
-                    else
-                    {
-                        entryValue = getEntry.getSendEntry();
-                    }
-                    //increase the action count by 1
+
+                    //string together the entry values, this will find an order of statements that are allowable
+                    entryValue = Concatenate(entryValue,s1.toString(),true);
+
+                    //increase the counter
                     countEntries++;
                 }
                 //not a valid action, maybe it is a direction
@@ -99,28 +90,22 @@ public class OpeningLoop {
                 goodValue = false;
             }
             else {
-
-                // Game loop open while input stream is active
-                //while (userInput.hasNext()) {
-                //while (!goodValue) {
-                //enteredText = userInput.nextLine();
-                //System.out.println(entryValue);
-                //if (enteredText.toLowerCase().contains("exit")) {
+                //if exit, exit the came
                 if (entryValue.equals("exit")) {
                     System.out.println("Good bye!");
                     ItemDatabase.closeDatabaseConnection();
                     System.exit(0);
-                } //else if (enteredText.toLowerCase().contains("map")) {
+                }
+                //if entered map
                 else if (entryValue.equals("map")) {
-                    //goodValue = true;
                     //DEBUG print out map to console
                     System.out.println("______MAP______");
                     System.out.println(Arrays.deepToString(playmap).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
                     System.out.println("_______________");
                     Player.getInstance().displayLocation();
-                }// else if (enteredText.toLowerCase().contains("where am i")) {
+                }
+                //if entered where am i
                 else if (entryValue.equals("where am i")) {
-                    //goodValue = true;
                     int x = Player.getInstance().getLocation().getRow();
                     int y = Player.getInstance().getLocation().getColumn();
 
@@ -129,7 +114,8 @@ public class OpeningLoop {
                     } else if (playmap[x][y] instanceof Island) {
                         System.out.println("Seems we be on land....yuck");
                     }
-                } //else if (enteredText.toLowerCase().contains("sail")) {
+                }
+                //if entered sail
                 else if (entryValue.equals("sail")) {
                     //goodValue = true;
                     System.out.println("Which direction shall we sail captain??");
@@ -143,6 +129,7 @@ public class OpeningLoop {
                         System.out.println("Not a valid direction sailor!");
                     }
                 }
+                //if entered look
                 else if (entryValue.equals("look")){
 
                     System.out.println("Which direction are ye lookin??");
@@ -155,9 +142,11 @@ public class OpeningLoop {
                         System.out.println("Not a valid direction sailor!");
                     }
                 }
+                //if entered help
                 else if (entryValue.equals("help")){
                     help();
                 }
+                //if entered status
                 else if (entryValue.equals("status")){
                     System.out.println("Our ship floats, don't it! If ye need more info, fine here you go");
                     System.out.println("The hull has " + Player.getInstance().getShip().getHullHitPoints() + " remaining");
@@ -184,14 +173,23 @@ public class OpeningLoop {
         //}
     }
 
-    //method for randoms with a min and max
+    /**
+     * method for randoms with a min and max
+     * @param min
+     * @param max
+     * @return
+     */
     public static int getRandom(int min, int max) {
         //create a random number with the range
         int random = (int) (Math.random() * (max - min + 1) + min);
         return random;
     }
 
-    //method to tokenize
+    /**
+     * method for cleaning up the string to tokenize
+     * @param userInput2
+     * @return
+     */
     public static StringTokenizer getToken(Scanner userInput2)
     {
         //get the user input next line
@@ -206,48 +204,94 @@ public class OpeningLoop {
         return st;
     }
 
+    /**
+     * random responses when player enters invalid comments
+     */
     public static void responses(){
+        //int for a random response
         int getResponse = getRandom(0,5);
+
+        //convert the int to a string
         String convertRandom = Integer.toString(getResponse);
+
+        //go to the resource file and pull a random response
         Locale en = new Locale("en");
         ResourceBundle rb = ResourceBundle.getBundle("ResponsesTry",en);
+
+        //print the response
         System.out.println(rb.getString(convertRandom));
     }
 
+    /**
+     * help menu, accessible with the word help
+     */
     public static void help(){
-
+        //set up the directions
         System.out.println('\n' + "--------------------" + '\n' + "Directions" + '\n' + "--------------------");
 
+        //print a list of directions from the enum
         EnumSet.allOf(Direction.class)
                 .forEach(direction->System.out.println(direction));
 
-
+        //set up print for actions and statements
         System.out.println('\n' + "--------------------" + '\n' + "Actions/Statements" + '\n' + "--------------------");
+
+        //get the enum for open loop options
         EnumSet<OpenLoopOptions> enumSet = EnumSet.allOf(OpenLoopOptions.class);
         String makeString = "";
+
+        //loop through and print, but need to concatenate where am i
         for (OpenLoopOptions s : enumSet) {
+            //if words where or am or i, send to concatenate
             if (s.toString() == "WHERE" || s.toString() == "AM" || s.toString() == "I"){
-                if(makeString == ""){
-                    makeString = makeString + s;
-                }
-                else{
-                    makeString = makeString + " " + s;
-                }
+                //string together to make where am I
+                makeString = Concatenate(makeString,s.toString(), true);
+
+                //when it says where am i, print it
                 if (makeString.equals("WHERE AM I")){
                     System.out.println(makeString);
                 }
             }
             else
             {
+                //print the enum action
                 System.out.println(s);
             }
         }
 
+        //set up items
         System.out.println('\n' + "--------------------" + '\n' + "Items" + '\n' + "--------------------");
 
+        //loop and print the items in the enum
         EnumSet.allOf(ItemTypes.class)
                 .forEach(item->System.out.println(item));
 
+        //ask the player what they wan tto do next
         System.out.println('\n' + "--------------------" + '\n' + "What would you like to do?");
+    }
+
+    /**
+     * Method to concatenate strings
+     * @param current = the current string you have
+     * @param add = what you want to add
+     * @param spaceBetween = do you want space between the words
+     * @return
+     */
+    //4.1 lamda
+    //4.2 BiFunction
+    public static String Concatenate (String current, String add, boolean spaceBetween){
+        //create a binary function for concatenating
+        BiFunction<String, String, String> s1 = (string,toAdd) ->string.concat(toAdd);
+
+        //if the current remark is not empty and you choose to do a space or no space
+        if(current != "" && spaceBetween){
+            current = s1.apply(current + " ",add.toString());
+        }
+        else{
+            current = s1.apply(current,add.toString());
+        }
+
+        //return the new current string
+        return current;
     }
 }

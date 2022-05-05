@@ -4,30 +4,42 @@ import java.sql.*;
 
 import org.apache.derby.jdbc.EmbeddedDataSource;
 
+/**
+ * class for the database
+ */
 public class ItemDatabase {
+    //database name
     private static String databaseName = "island_items";
+
+    //the url for the database
     private static String databaseUrl = "jdbc:derby:" + databaseName + ";create=true";
 
+    //connect
     private static Connection connection;
+
+    //boolean for if the database populated
     private static boolean databasePopulated;
 
+    //getter for the database url
     public static String getDatabaseUrl() {
         return databaseUrl;
     }
 
+    //getter for the databasePopulated
     public static boolean databasePopulated() { return databasePopulated; }
 
+    /**
+     * constructor for the database
+     */
     public ItemDatabase() {
-
-        //System.out.println("Initializing Database...");
-
         InitializeDatabase();
-
-        //System.out.println("Database Initialized.");
     }
 
+    /**
+     * initialize the database
+     */
     private static void InitializeDatabase() {
-
+        //try for the database connection and initialization
         try {
 
             // Initialize Connection
@@ -41,6 +53,7 @@ public class ItemDatabase {
             // Create Statement Object on Connection
             Statement stmt = connection.createStatement();
 
+            //try to drop bridge tables
             try {
                 stmt.executeUpdate("DROP TABLE island_items");
             } catch (Exception ex) {
@@ -48,6 +61,7 @@ public class ItemDatabase {
                 // for logging logger.info
             }
 
+            //try to drop items tables
             try {
                 stmt.executeUpdate("DROP TABLE items");
             } catch (Exception ex) {
@@ -55,22 +69,16 @@ public class ItemDatabase {
                 // for logging logger.info
             }
 
+            //try to drop island tables
             try {
                 stmt.executeUpdate("DROP TABLE islands");
             } catch (Exception ex) {
                 System.out.println("cannot drop islands table");
                 // for logging logger.info
             }
-/*            while(tablesFound.next()) {
-                //  If the table exists, drop it
-                if(tablesFound.getString("TABLE_NAME").equals("island_items")){
-                    stmt.executeUpdate("DROP TABLE " + tablesFound.getString("TABLE_NAME"));
-                    // Commit (save) changes
-                    connection.commit();
-                }
-            }
 
-            tablesFound = databaseMeta.getTables(null, null, "%", new String[] {"TABLE"});
+
+            /*tablesFound = databaseMeta.getTables(null, null, "%", new String[] {"TABLE"});
             // Iterate through tables, dropping them if they exist
             while(tablesFound.next()) {
                 //  If the table exists, drop it
@@ -96,10 +104,18 @@ public class ItemDatabase {
 
     }
 
+    /**
+     * close the connection to the database
+     * @throws SQLException
+     */
     public static void closeDatabaseConnection() throws SQLException {
         connection.close();
     }
 
+    /**
+     * create the tables
+     * @param conn
+     */
     private static void createInitialTables(Connection conn) {
 
         try(Statement stmt = conn.createStatement()) {
@@ -129,9 +145,12 @@ public class ItemDatabase {
         }
     }
 
+    /**
+     * Add values to the tables
+     */
     public void populateNewItemIslandData() {
         try(Statement stmt = connection.createStatement()) {
-
+            //add to items
             stmt.executeUpdate("INSERT INTO items VALUES (1, 'Plank And Nails', 'could Be Used To Repair Your Ships Hull', 'repair', 100)");
             stmt.executeUpdate("INSERT INTO items VALUES (2, 'Patching Kit', 'could Be Used To Repair Your Ships Sail', 'repair', 100)");
             stmt.executeUpdate("INSERT INTO items VALUES (3, 'Ruby', 'shiny Red Gem', 'treasure', 200)");
@@ -139,7 +158,7 @@ public class ItemDatabase {
             stmt.executeUpdate("INSERT INTO items VALUES (5, 'Diamond', 'extremely Shinny Gem', 'treasure', 500)");
             stmt.executeUpdate("INSERT INTO items VALUES (7, 'Rum', 'perfect Drink For Every Sailor', 'repair', 25)");
 
-
+            //add to islands
             stmt.executeUpdate("INSERT INTO islands VALUES (1,0,0)");
             stmt.executeUpdate("INSERT INTO islands VALUES (2,1,0)");
             stmt.executeUpdate("INSERT INTO islands VALUES (3,2,0)");
@@ -177,7 +196,7 @@ public class ItemDatabase {
             stmt.executeUpdate("INSERT INTO islands VALUES (35,4,5)");
             stmt.executeUpdate("INSERT INTO islands VALUES (36,5,5)");
 
-
+            //add to item island
             stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
                     + "VALUES (1,1)");
             stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
@@ -344,8 +363,6 @@ public class ItemDatabase {
                     + "VALUES (36,5)");
             stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
                     + "VALUES (36,7)");
-
-
 
             // Set flag used for quit functionality
             databasePopulated = true;
