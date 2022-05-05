@@ -3,10 +3,13 @@ import MapFiles.Landmass;
 import MapFiles.MainMap;
 import Player.Player;
 import org.apache.derby.jdbc.EmbeddedDataSource;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class RunTime {
 
@@ -14,16 +17,16 @@ public class RunTime {
     public static void main(String[] args) throws IOException, SQLException {
 
         System.out.println("Ahoy there!  Welcome to the Generic Pirate Adventure Game!\n" +
-                "__________________________\n\n"+ "New Game\n" + "High Scores\n\n" +
+                "__________________________\n\n" + "New Game\n" + "High Scores\n\n" +
                 "Make yar selection!\n\n");
-    
+
 
         Scanner userInput = new Scanner(System.in);
 
 
-        while(userInput.hasNext()) {
-           
-          String enteredText = userInput.nextLine();
+        while (userInput.hasNext()) {
+
+            String enteredText = userInput.nextLine();
 
             if (enteredText.toLowerCase().contains("new game")) {
                 //Create random map
@@ -45,11 +48,11 @@ public class RunTime {
 
             }
 
- 
 
-   }
+        }
 
- }
+    }
+}
 
 
 

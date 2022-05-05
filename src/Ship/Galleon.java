@@ -8,7 +8,7 @@ public class Galleon extends Ship {
 
     // Constructor that sets the hit points, cargo capacity and sail distance uniquely based on Galleon class ship
     public Galleon() {
-        super(10,10,1);
+        super(20,10,1);
     }
 
     //Field Getters/Setters
