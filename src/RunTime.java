@@ -15,6 +15,7 @@ public class RunTime {
         System.out.println("Ahoy there!  Welcome to the Generic Pirate Adventure Game!\n" +
                 "__________________________\n\n"+ "New Game\n" + "High Scores\n\n" +
                 "Make yar selection!\n\n");
+        //TEST
 
         Scanner userInput = new Scanner(System.in);
 

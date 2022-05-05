@@ -14,7 +14,7 @@ public class ShipBattle {
 
             Ship playerShip = Player.getInstance().getShip();
 
-
+            // TEST
 
             // Receive user input and parse it
             Scanner userInput = new Scanner(System.in);
