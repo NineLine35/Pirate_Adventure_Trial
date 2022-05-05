@@ -4,12 +4,13 @@ import MapFiles.MainMap;
 import Player.Player;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class RunTime {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
 
         System.out.println("Ahoy there!  Welcome to the Generic Pirate Adventure Game!\n" +
                 "__________________________\n\n"+ "New Game\n" + "High Scores\n\n" +
