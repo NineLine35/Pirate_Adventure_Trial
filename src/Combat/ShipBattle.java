@@ -10,7 +10,7 @@ public class ShipBattle {
         //Simple turn counter to be used in the runtime
         public static int turnCounter = 1;
 
-        public static void main(String[] args) {
+        public static void incomingFire() {
 
             Ship playerShip = Player.getInstance().getShip();
 
