@@ -11,7 +11,7 @@ public enum OpenLoopOptions {
     LOOK("look"),
     STATUS("status"),
     DEBUGBATTLE("debugBattle");
-    //KEEP DEBUG
+
 
     //instantiate sendAction
     private String sendEntry;

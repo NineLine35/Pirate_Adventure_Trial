@@ -19,6 +19,8 @@ public class OpeningLoop {
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
 
         System.out.println();
+        System.out.println("Welcome to the Pirate Game Trial!\n" +
+                "*********************************\n");
 
         System.out.println(
                 """
@@ -157,12 +159,14 @@ public class OpeningLoop {
                     System.out.println("And the sails....take a look.  They are at " + Player.getInstance().getShip().getSailHealth() + "%\n");
 
                 }
+
                 //TODO REMOVE DEBUG BATTLE ENTRY KEEP IN CODE
                 else if (entryValue.equals("debugBattle")){
 
                     Combat.ShipBattle.incomingFire();
 
                 }
+
                 else {
                     goodValue = false;
                     responses();

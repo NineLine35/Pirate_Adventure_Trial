@@ -14,8 +14,6 @@ public class ShipBattle {
 
             Ship playerShip = Player.getInstance().getShip();
 
-            // TEST
-
             // Receive user input and parse it
             Scanner userInput = new Scanner(System.in);
 
@@ -35,8 +33,8 @@ public class ShipBattle {
                     String enteredText = userInput.nextLine();
 
                     if (enteredText.toLowerCase().contains("exit")) {
-                       returnText.accept("Back to the normal loop\n");
-                        return;
+                        returnText.accept("Good bye!");
+                        System.exit(0);
                     } else if (enteredText.toLowerCase().contains("damage report")) {
 
                         int damageCalc = cannonDamage();

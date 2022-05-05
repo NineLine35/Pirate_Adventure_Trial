@@ -1,8 +1,17 @@
 package Inventory;
 
-import java.util.ArrayList;
 
 public class TraderInventory implements Inventory {
+
+    public Item findItem(String itemName){
+        Item foundItem = null;
+        for (int i = 0; i < items.size(); i++){
+            if (items.get(i).getName() == itemName.toUpperCase().replace(" ","_")){
+                foundItem = items.get(i);
+            }
+        }
+        return foundItem;
+    }
 
     public void addItem(Item item, int quantity){
         boolean hasDupe = false;

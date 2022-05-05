@@ -1,15 +1,21 @@
 package GameLoop;
 
 import Hazard.Hazard;
+import Inventory.ItemDatabase;
 import Player.Player;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class IslandLoop extends OpeningLoop{
+    public class IslandLoop extends OpeningLoop{
 
 
-    public static void launch(){
+    public static void launch() throws SQLException {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -124,11 +130,6 @@ public class IslandLoop extends OpeningLoop{
 
                     //go to the calculation to do the losses
                     hazard.hazardCalc(hitPoints, coinLoss,sailDamage);
-
-/*                    if(Player.getInstance().getShip().getHullHitPoints() <= 0){
-                        System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
-                        System.exit(0);
-                    }*/
                 }
             }
         }
@@ -137,7 +138,25 @@ public class IslandLoop extends OpeningLoop{
             System.out.println("no hazard");
         }
 
-        System.out.println();
+        Player.getInstance().displayLocation();
+
+        //get the x and y coordinate
+        int x = Player.getInstance().getLocation().getRow();
+        int y = Player.getInstance().getLocation().getColumn();
+
+        //temporarily print out the coordinates
+        System.out.println(x);
+        System.out.println(y);
+
+        //need to move this later where we populate the database
+        //populate the database
+        ItemDatabase db = new ItemDatabase();
+        db.populateNewItemIslandData();
+
+        //retrieve data for the island the player is on
+        Inventory.ItemDatabase.retrieveIslandItemData(x,y);
+
+        //System.out.println();
         System.out.println("Placeholder for At Island gameplay loop\n");
 
     }
