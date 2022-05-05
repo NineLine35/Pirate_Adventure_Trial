@@ -2,50 +2,29 @@ import GameLoop.OpeningLoop;
 import MapFiles.Landmass;
 import MapFiles.MainMap;
 import Player.Player;
-
-import java.io.IOException;
+import org.apache.derby.jdbc.EmbeddedDataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.sql.Statement;
 
 public class RunTime {
 
-    public static void main(String[] args) throws IOException, SQLException {
-
-        System.out.println("Ahoy there!  Welcome to the Generic Pirate Adventure Game!\n" +
-                "__________________________\n\n"+ "New Game\n" + "High Scores\n\n" +
-                "Make yar selection!\n\n");
-
-        Scanner userInput = new Scanner(System.in);
+  public static void main(String[] args) throws IOException, SQLException {
+    //Create random map
+    Landmass playMap[][] = MainMap.createMap();
 
 
-        while(userInput.hasNext()) {
+    // Assign the player the starting ship, a Sloop using a builder method
+     Player.getInstance().assignShip("sloop", "The Jolly Rodger");
 
-            String enteredText = userInput.nextLine();
+    // Launch opening game play loop
+    OpeningLoop.launch(playMap);
 
-            if (enteredText.toLowerCase().contains("new game")) {
-                //Create random map
-                Landmass playMap[][] = MainMap.createMap();
 
-                // Assign the player the starting ship, a Sloop using a builder method
-                Player.getInstance().assignShip("sloop", "The Jolly Rodger");
+   }
 
-                // Launch opening game play loop
-                OpeningLoop.launch(playMap);
-
-            } else if (enteredText.toLowerCase().contains("high score")) {
-                //High score read file
-            } else if (enteredText.toLowerCase().contains("exit")) {
-                System.out.println("Good bye!");
-                System.exit(0);
-            } else {
-                System.out.println("What are ya talking about?  Do you want to EXIT instead??");
-
-            }
-        }
-
-    }
-}
+ }
 
 
 
