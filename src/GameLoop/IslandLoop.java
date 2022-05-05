@@ -148,10 +148,10 @@ import java.util.function.Supplier;
         System.out.println(x);
         System.out.println(y);
 
-        //need to move this later where we populate the database
+/*        //need to move this later where we populate the database
         //populate the database
         ItemDatabase db = new ItemDatabase();
-        db.populateNewItemIslandData();
+        db.populateNewItemIslandData();*/
 
         //retrieve data for the island the player is on
         Inventory.ItemDatabase.retrieveIslandItemData(x,y);

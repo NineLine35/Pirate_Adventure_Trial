@@ -119,7 +119,7 @@ public class ItemDatabase {
 
             // Create Island_Item Table
             stmt.executeUpdate("CREATE TABLE island_items ("
-                    + "id INTEGER PRIMARY KEY, "
+                    + "id INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                     + "island_id_fk integer REFERENCES islands (island_id), "
                     + "item_id_fK integer REFERENCES items (item_id)) ");
         }catch (SQLException e) {
@@ -132,12 +132,13 @@ public class ItemDatabase {
     public void populateNewItemIslandData() {
         try(Statement stmt = connection.createStatement()) {
 
-            stmt.executeUpdate("INSERT INTO items VALUES (1, 'Plank And Nails', 'Could Be Used To Repair Your Ships Hull', 'repair', 100)");
-            stmt.executeUpdate("INSERT INTO items VALUES (2, 'Patching Kit', 'Could Be Used To Repair Your Ships Sail', 'repair', 100)");
-            stmt.executeUpdate("INSERT INTO items VALUES (3, 'Ruby', 'Shiny Red Gem', 'treasure', 200)");
-            stmt.executeUpdate("INSERT INTO items VALUES (4, 'Sapphire', 'Shiny Blue Gem', 'treasure', 250)");
-            stmt.executeUpdate("INSERT INTO items VALUES (5, 'Diamond', 'Extremely Shinny Gem', 'treasure', 500)");
-            stmt.executeUpdate("INSERT INTO items VALUES (7, 'Rum', 'Perfect Drink For Every Sailor', 'repair', 25)");
+            stmt.executeUpdate("INSERT INTO items VALUES (1, 'Plank And Nails', 'could Be Used To Repair Your Ships Hull', 'repair', 100)");
+            stmt.executeUpdate("INSERT INTO items VALUES (2, 'Patching Kit', 'could Be Used To Repair Your Ships Sail', 'repair', 100)");
+            stmt.executeUpdate("INSERT INTO items VALUES (3, 'Ruby', 'shiny Red Gem', 'treasure', 200)");
+            stmt.executeUpdate("INSERT INTO items VALUES (4, 'Sapphire', 'shiny Blue Gem', 'treasure', 250)");
+            stmt.executeUpdate("INSERT INTO items VALUES (5, 'Diamond', 'extremely Shinny Gem', 'treasure', 500)");
+            stmt.executeUpdate("INSERT INTO items VALUES (7, 'Rum', 'perfect Drink For Every Sailor', 'repair', 25)");
+
 
             stmt.executeUpdate("INSERT INTO islands VALUES (1,0,0)");
             stmt.executeUpdate("INSERT INTO islands VALUES (2,1,0)");
@@ -176,83 +177,174 @@ public class ItemDatabase {
             stmt.executeUpdate("INSERT INTO islands VALUES (35,4,5)");
             stmt.executeUpdate("INSERT INTO islands VALUES (36,5,5)");
 
-            stmt.executeUpdate("INSERT INTO island_items VALUES (1,1,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (2,1,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (3,1,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (4,2,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (5,2,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (6,3,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (7,3,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (8,2,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (9,4,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (10,4,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (11,5,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (12,5,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (13,6,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (14,6,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (15,6,7)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (16,7,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (17,7,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (18,8,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (19,8,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (20,8,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (21,9,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (22,9,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (23,10,7)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (24,11,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (25,12,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (26,12,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (27,13,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (28,14,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (29,14,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (30,15,7)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (31,16,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (32,16,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (33,17,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (34,17,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (35,18,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (36,19,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (37,19,7)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (38,20,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (39,20,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (40,20,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (41,21,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (42,22,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (43,22,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (44,23,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (45,23,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (46,23,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (47,24,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (48,24,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (49,25,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (50,26,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (51,27,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (52,27,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (53,28,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (54,28,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (55,28,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (56,28,7)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (57,29,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (58,29,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (59,30,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (60,30,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (61,30,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (62,30,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (63,30,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (64,30,7)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (65,31,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (66,31,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (67,32,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (68,32,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (69,32,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (70,33,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (71,33,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (72,36,1)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (73,36,2)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (74,36,3)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (75,36,4)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (77,36,5)");
-            stmt.executeUpdate("INSERT INTO island_items VALUES (78,36,7)");
+
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (1,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (1,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (1,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (2,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (2,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (3,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (3,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (2,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (4,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (4,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (5,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (5,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (6,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (6,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (6,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (7,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (7,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (8,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (8,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (8,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (9,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (9,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (10,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (11,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (12,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (12,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (13,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (14,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (14,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (15,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (15,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (15,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (16,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (16,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (17,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (17,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (18,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (19,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (19,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (20,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (20,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (20,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (21,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (22,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (22,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (23,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (23,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (23,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (24,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (24,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (25,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (26,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (27,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (27,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (28,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (28,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (28,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (28,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (29,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (29,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (30,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (30,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (30,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (30,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (30,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (30,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (31,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (31,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (32,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (32,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (32,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (33,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (33,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (34,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (34,7)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (35,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (35,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (36,1)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (36,2)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (36,3)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (36,4)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (36,5)");
+            stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
+                    + "VALUES (36,7)");
+
 
 
             // Set flag used for quit functionality
@@ -277,7 +369,7 @@ public class ItemDatabase {
         Statement stmt = connection.createStatement();
 
         //query to get items
-        ResultSet islandItemPlace = stmt.executeQuery("select i.item_name, i.item_description, i.item_type, "
+        ResultSet islandItemPlace = stmt.executeQuery("select i.item_id, i.item_name, i.item_description, i.item_type, "
                 + " i.item_price"
                 + "	from island_items as ii inner join items as i on ii.item_id_fk = i.item_id inner join islands "
                 + " as isl on isl.island_id = ii.island_id_fk"
@@ -287,23 +379,39 @@ public class ItemDatabase {
         while(islandItemPlace.next()) {
             //get item name
             String itemName = islandItemPlace.getString("item_name");
-            System.out.println("item " + itemName);
+            //System.out.println("item " + itemName);
 
             //get item description
             String itemDescription = islandItemPlace.getString("item_description");
-            System.out.println("itemDescription " + itemDescription);
+            //System.out.println("itemDescription " + itemDescription);
 
             //get item type
             String itemType = islandItemPlace.getString("item_type");
-            System.out.println("itemType " + itemType);
+            //System.out.println("itemType " + itemType);
 
             //get item price
             int itemPrice = islandItemPlace.getInt("item_price");
-            System.out.println("itemPrice " + Integer.toString(itemPrice));
+            //System.out.println("itemPrice " + Integer.toString(itemPrice));
 
+            //get the item id
+            int itemId = islandItemPlace.getInt("item_id");
+
+            //create a link word for a sentence
+            String linkWord = "";
+
+            if(itemId == 1 || itemId == 2){
+                linkWord = " ";
+            }
+            else if(itemId == 5){
+                linkWord = " is an ";
+            }
+            else
+            {
+                linkWord = " is a ";
+            }
             //print the item for the user to see
-            System.out.println(itemName + " has been added to your trade inventory.");
-            System.out.println("item " + itemName);
+            System.out.println(itemName + linkWord + itemDescription + " and has been added to your trade inventory."
+                    + " The value is " + itemPrice + " coins.");
 
             //write the item to a new Item
             Item writeItem = new Item(itemName,itemDescription,itemType,itemPrice);

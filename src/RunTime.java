@@ -1,4 +1,5 @@
 import GameLoop.OpeningLoop;
+import Inventory.ItemDatabase;
 import MapFiles.Landmass;
 import MapFiles.MainMap;
 import Player.Player;
@@ -15,6 +16,11 @@ public class RunTime {
 
 
     public static void main(String[] args) throws IOException, SQLException {
+
+        //need to move this later where we populate the database
+        //populate the database
+        ItemDatabase db = new ItemDatabase();
+        db.populateNewItemIslandData();
 
         System.out.println("Ahoy there!  Welcome to the Generic Pirate Adventure Game!\n" +
                 "__________________________\n\n" + "New Game\n" + "High Scores\n\n" +

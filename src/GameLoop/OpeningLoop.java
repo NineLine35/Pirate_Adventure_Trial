@@ -3,17 +3,19 @@ package GameLoop;
 import Hazard.Actions;
 import Hazard.Item;
 import Hazard.StartTest;
+import Inventory.ItemDatabase;
 import Inventory.ItemTypes;
 import MapFiles.*;
 import Player.Player;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Stream;
 
 public class OpeningLoop {
 
 
-    public static void launch(Landmass[][] playmap) {
+    public static void launch(Landmass[][] playmap) throws SQLException {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -46,6 +48,8 @@ public class OpeningLoop {
         System.out.println("This rickety ship isn't much, in fact it is just a basic Sloop.  But we trust you know" +
                 " how to make us rich.  Or if not......maybe you end up like the last captain.  In fact!  We will" +
                 "give you 10 days, argh, 10 to make us some coin captain.\n");
+
+        Inventory.ItemDatabase.retrieveIslandItemData(2,2);
         System.out.println("So Captain " + Player.getInstance().getName() + " what now?");
         boolean goodValue = false;
         while (!goodValue) {
@@ -104,6 +108,7 @@ public class OpeningLoop {
                 //if (enteredText.toLowerCase().contains("exit")) {
                 if (entryValue.equals("exit")) {
                     System.out.println("Good bye!");
+                    ItemDatabase.closeDatabaseConnection();
                     System.exit(0);
                 } //else if (enteredText.toLowerCase().contains("map")) {
                 else if (entryValue.equals("map")) {
