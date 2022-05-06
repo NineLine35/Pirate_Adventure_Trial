@@ -1,4 +1,4 @@
-package Hazard;
+package HazardOld;
 
 public enum Direction {
     NORTH("north"),

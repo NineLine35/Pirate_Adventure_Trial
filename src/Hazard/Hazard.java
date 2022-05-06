@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * class for Hazard
+ */
 public class Hazard {
     //define the variables
     private int lookUp;
@@ -22,13 +25,14 @@ public class Hazard {
     }
 
     /**
-     * Constructor for hazard with overloads 1.3
+     * Constructor for hazard
      * @param lookUp
      * @param storyMessage
      * @param hullPoints
      * @param sailDamage
      * @param coinToTake
      */
+    //1.3 overloaded constructor
     public Hazard(int lookUp, String storyMessage, int hullPoints, int sailDamage, int coinToTake) {
         this.lookUp = lookUp;
         this.storyMessage = storyMessage;
@@ -101,12 +105,13 @@ public class Hazard {
     }
 
     /**
-     * Method to calculate the hazard loss
+     * Method to calculate the hazard loss and ot know if ship sank
      * @param hitPoints
      * @param coinLoss
      * @param sailDamage
      */
     public void hazardCalc(Supplier<Integer> hitPoints, Supplier<Integer> coinLoss, Supplier<Integer> sailDamage){
+        //these messages can be cleaned up later when we no longer need them, we just need to keep the cacluation portion
         System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
 
         Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - hitPoints.get());
@@ -122,6 +127,7 @@ public class Hazard {
         Player.getInstance().setChest(Player.getInstance().getChest() - coinLoss.get());
         System.out.println("after coin " + + Player.getInstance().getChest());
 
+        //if you are at 0 or less, your ship has sunk
         if(Player.getInstance().getShip().getHullHitPoints() <= 0){
             System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
             System.exit(0);
@@ -129,95 +135,4 @@ public class Hazard {
     }
 }
 
-
-/*package Hazard;
-
-        import Player.Player;
-
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.function.Supplier;
-
-public class Hazard {
-    private String lookUp;
-    private String storyMessage;
-    private String hullPoints;
-    private String sailDamage;
-    private String coinToTake;
-    private ArrayList<Hazard> hazardList;
-
-    public Hazard() {
-    }
-
-    public Hazard(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake) {
-        this.lookUp = lookUp;
-        this.storyMessage = storyMessage;
-        this.hullPoints = hullPoints;
-        this.sailDamage = sailDamage;
-        this.coinToTake = coinToTake;
-    }
-
-    {
-        this.hazardList = new ArrayList<Hazard>();
-    }
-
-    public String getStoryMessage() {
-        return storyMessage;
-    }
-
-    public String getHullPoints() {
-        return hullPoints;
-    }
-
-    public String getSailDamage() {
-        return sailDamage;
-    }
-
-    public String getCoinToTake() {
-        return coinToTake;
-    }
-
-    public String getLookUp() {
-        return lookUp;
-    }
-
-    public ArrayList<Hazard> getHazardList() {
-        return hazardList;
-    }
-
-    public void addHazard(String lookUp, String storyMessage, String hullPoints, String sailDamage, String coinToTake) {
-        //create and load clients list
-        Hazard hazard;
-
-        //create the client
-        hazard = new Hazard(lookUp, storyMessage, hullPoints, sailDamage, coinToTake);
-
-        //add the client to the list
-        addHazardList(hazard);
-    }
-
-    public void addHazardList(Hazard hazard) {
-        //add the client
-        this.hazardList.add(hazard);
-    }
-
-    public void hazardCalc(Supplier<String> hitPoints, Supplier<String> coinLoss, Supplier<String> sailDamage){
-        System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
-
-        Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - Integer.parseInt(hitPoints.get()));
-        System.out.println("after hull points " + + Player.getInstance().getShip().getHullHitPoints());
-
-        System.out.println("current sail points " + Player.getInstance().getShip().getSailHealth());
-
-        Player.getInstance().getShip().setSailHealth(Player.getInstance().getShip().getSailHealth() - Integer.parseInt(sailDamage.get()));
-        System.out.println("after sail points " + + Player.getInstance().getShip().getSailHealth());
-
-        System.out.println("current coin " + Player.getInstance().getChest());
-
-        Player.getInstance().setChest(Player.getInstance().getChest() - Integer.parseInt(coinLoss.get()));
-        System.out.println("after coin " + + Player.getInstance().getChest());
-    }
-}
-
-*/
 

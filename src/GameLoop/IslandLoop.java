@@ -138,20 +138,15 @@ import java.util.function.Supplier;
             System.out.println("no hazard");
         }
 
-        Player.getInstance().displayLocation();
+        //Player.getInstance().displayLocation();
 
         //get the x and y coordinate
         int x = Player.getInstance().getLocation().getRow();
         int y = Player.getInstance().getLocation().getColumn();
 
         //temporarily print out the coordinates
-        System.out.println(x);
-        System.out.println(y);
-
-/*        //need to move this later where we populate the database
-        //populate the database
-        ItemDatabase db = new ItemDatabase();
-        db.populateNewItemIslandData();*/
+        //System.out.println(x);
+        //System.out.println(y);
 
         //retrieve data for the island the player is on
         Inventory.ItemDatabase.retrieveIslandItemData(x,y);
