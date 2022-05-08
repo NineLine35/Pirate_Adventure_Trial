@@ -2,6 +2,7 @@ package Player;
 
 
 import Inventory.Item;
+import Inventory.ItemTypes;
 import Inventory.PlayerInventory;
 import MapFiles.MainMap;
 import Ship.Ship;
@@ -19,7 +20,9 @@ public class Player {
     private MainMap.Coordinates location = new MainMap.Coordinates(2,2);
 
 
-    private Player(){};
+    private Player(){
+        inventory = new PlayerInventory();
+    };
 
     private static final Player instance = new Player();
 
@@ -73,7 +76,7 @@ public class Player {
         }
     }
 
-    public void voidAddItem(Item item, int quantity){
+    public void AddItem(Item item, int quantity){
         inventory.addItem(item, quantity);
     }
 
@@ -94,6 +97,10 @@ public class Player {
         } else {
             System.out.println("You cannot buy an item if you don't have enough coins");
         }
+    }
+
+    public void outputInventory(){
+        inventory.outputInventory();
     }
 
     public void displayLocation(){

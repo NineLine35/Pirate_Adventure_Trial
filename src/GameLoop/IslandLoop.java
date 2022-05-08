@@ -1,7 +1,9 @@
 package GameLoop;
 
 import Hazard.Hazard;
+import Inventory.Item;
 import Inventory.ItemDatabase;
+import Inventory.Trader;
 import Player.Player;
 
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
     public class IslandLoop extends OpeningLoop{
@@ -149,10 +152,20 @@ import java.util.function.Supplier;
         //System.out.println(y);
 
         //retrieve data for the island the player is on
-        Inventory.ItemDatabase.retrieveIslandItemData(x,y);
+        //Inventory.ItemDatabase.retrieveIslandItemData(x,y);
 
         //System.out.println();
         System.out.println("Placeholder for At Island gameplay loop\n");
+
+        Trader trader = new Trader();
+
+        List<Item> traderItems = ItemDatabase.retrieveTraderItems(x, y);
+
+        //TODO Random Quantity
+        for (int i = 0; i < traderItems.size(); i++){
+            trader.addItem(traderItems.get(i), 1);
+        }
+        trader.outputInventory();
 
     }
 }

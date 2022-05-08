@@ -160,6 +160,9 @@ public class OpeningLoop {
                     Combat.ShipBattle.incomingFire();
 
                 }
+                else if (entryValue.equals("inventory")){
+                    Player.getInstance().outputInventory();
+                }
 
                 else {
                     goodValue = false;

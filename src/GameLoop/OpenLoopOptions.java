@@ -10,7 +10,8 @@ public enum OpenLoopOptions {
     HELP("help"),
     LOOK("look"),
     STATUS("status"),
-    DEBUGBATTLE("debugBattle");
+    DEBUGBATTLE("debugBattle"),
+    INVENTORY("inventory");
 
 
     //instantiate sendAction
