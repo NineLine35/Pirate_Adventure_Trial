@@ -2,6 +2,7 @@ package Player;
 
 
 import Inventory.Item;
+import Inventory.ItemTypes;
 import Inventory.PlayerInventory;
 import MapFiles.MainMap;
 import Ship.Ship;
@@ -19,7 +20,9 @@ public class Player {
     private MainMap.Coordinates location = new MainMap.Coordinates(2,2);
 
 
-    private Player(){};
+    private Player(){
+        inventory = new PlayerInventory();
+    };
 
     private static final Player instance = new Player();
 
@@ -59,33 +62,29 @@ public class Player {
     }
 
     public void useRepairItem(String itemName){
-        Item item;
-        item = inventory.findItem(itemName);
+        Item item = inventory.findItem(itemName);
         if (item == null){
             System.out.println("You Do Not Have That Item To Use Sailor");
         } else {
             if (item.getItemType().toLowerCase().equals("repair")){
                 ship.repairShip(item);
-                inventory.useRepairItem(item);
+                if (ship.getSailHealth() < ship.getMaxSailHealth() || ship.getHullHitPoints() < ship.getMaxHullHitPoints())
+                {
+                    inventory.useRepairItem(item);
+                }
             } else {
                 System.out.println("This item cannot repair a ship");
             }
         }
     }
 
-    public void voidAddItem(Item item, int quantity){
+    public void AddItem(Item item, int quantity){
         inventory.addItem(item, quantity);
     }
 
-    public void sellItem(String itemName) {
-        Item item;
-        item = inventory.findItem(itemName);
-        if (item == null){
-            System.out.println("You do not have that item to sell");
-        } else {
-            inventory.sellItem(item);
-            setChest(getChest() + item.getItemPrice());
-        }
+    public void sellItem(Item item) {
+        inventory.sellItem(item);
+        setChest(getChest() + item.getItemPrice());
     }
 
     public void buyItem(Item item){
@@ -94,6 +93,16 @@ public class Player {
         } else {
             System.out.println("You cannot buy an item if you don't have enough coins");
         }
+    }
+
+    public void outputInventory(){
+        System.out.println("You Have " + this.getChest() + " Coins In Your Chest");
+        inventory.outputInventory();
+    }
+
+    public Item findItemInInventory(String itemName) {
+        Item item = inventory.findItem(itemName);
+        return item;
     }
 
     public void displayLocation(){

@@ -11,8 +11,9 @@ public enum OpenLoopOptions {
     LOOK("look"),
     STATUS("status"),
     DEBUGBATTLE("debugBattle"),
+    INVENTORY("inventory"),
+    USE("use");
     DATE("date");
-
 
     //instantiate sendAction
     private String sendEntry;

@@ -1,23 +1,47 @@
 package Inventory;
 
+/**
+ * Class for the individual traders
+ */
 public class Trader {
-    private TraderInventory inventory = new TraderInventory();
+    private TraderInventory traderInventory;
 
+    public Trader() {
+        traderInventory = new TraderInventory();
+    }
+
+    /**
+     * Adds item to traders inventory
+     * @param item
+     * @param quantity
+     */
     public void addItem(Item item, int quantity){
-        inventory.addItem(item, quantity);
+        traderInventory.addItem(item, quantity);
     }
 
-    // Sells item from trader inventory
-    public void sellItem(String itemName) {
-        Item item = inventory.findItem(itemName);
-
-        if (item != null) {
-            inventory.sellItem(item);
-        }
+    /**
+     * Sells item from traders inventory
+     * @param item
+     */
+    public void sellItem(Item item) {
+            traderInventory.sellItem(item);
     }
 
+    /**
+     * Used when trader buys an item
+     * @param item
+     */
     // buys item into trader inventory
     public void buyItem(Item item){
-        inventory.addItem(item,1);
+        traderInventory.addItem(item,1);
+    }
+
+    public Item findItemInInventory(String itemName){
+        Item item = traderInventory.findItem(itemName);
+        return item;
+    }
+
+    public void outputInventory() {
+        traderInventory.outputInventory();
     }
 }

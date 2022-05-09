@@ -4,7 +4,7 @@ public class Item_Testing {
     public static void main(String[] args){
         /*PlayerInventory playerInv = new PlayerInventory();
 
-        Item plank = new Item(ItemTypes.PLANK_NAILS.toString(), "Planks With Nails", "repair", 10);
+        Item plank = new Item(ItemTypes.PLANK_AND_NAILS.toString(), "Planks With Nails", "repair", 10);
         Item ruby = new Item(ItemTypes.RUBY.toString(),  "Shinny Red Gem", "treasure", 15);
 
         playerInv.addItem(plank,5);

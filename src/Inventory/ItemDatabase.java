@@ -1,8 +1,11 @@
 package Inventory;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import GameLoop.OpeningLoop;
+import Player.Player;
 import org.apache.derby.jdbc.EmbeddedDataSource;
 
 /**
@@ -156,7 +159,8 @@ public class ItemDatabase extends OpeningLoop {
                     + "item_id INTEGER PRIMARY KEY, "
                     + "item_name VARCHAR(255), "
                     + "item_description VARCHAR(255), "
-                    + "item_type VARCHAR(255)) ");
+                    + "item_type VARCHAR(255),"
+                    + "item_price INTEGER) ");
 
 
             // Create Island_Item Table
@@ -188,15 +192,15 @@ public class ItemDatabase extends OpeningLoop {
             stmt.executeUpdate("INSERT INTO items VALUES (3, 'Ruby', 'shiny Red Gem', 'treasure', 200)");
             stmt.executeUpdate("INSERT INTO items VALUES (4, 'Sapphire', 'shiny Blue Gem', 'treasure', 250)");
             stmt.executeUpdate("INSERT INTO items VALUES (5, 'Diamond', 'extremely Shinny Gem', 'treasure', 500)");
-            stmt.executeUpdate("INSERT INTO items VALUES (7, 'Rum', 'perfect Drink For Every Sailor', 'repair', 25)");
+            stmt.executeUpdate("INSERT INTO items VALUES (7, 'Rum', 'perfect Drink For Every Sailor', 'treasure', 25)");
 
             //add to trade items
-            stmt.executeUpdate("INSERT INTO items_trade VALUES (1, 'Plank And Nails', 'could Be Used To Repair a Pirate Ships Hull', 'repair')");
-            stmt.executeUpdate("INSERT INTO items_trade VALUES (2, 'Patching Kit', 'could Be Used To Repair a Pirate Ships Sail', 'repair')");
-            stmt.executeUpdate("INSERT INTO items_trade VALUES (3, 'Ruby', 'shiny Red Gem', 'treasure')");
-            stmt.executeUpdate("INSERT INTO items_trade VALUES (4, 'Sapphire', 'shiny Blue Gem', 'treasure')");
-            stmt.executeUpdate("INSERT INTO items_trade VALUES (5, 'Diamond', 'extremely Shinny Gem', 'treasure')");
-            stmt.executeUpdate("INSERT INTO items_trade VALUES (7, 'Rum', 'perfect Drink For Every Pirate', 'repair')");
+            stmt.executeUpdate("INSERT INTO items_trade VALUES (1, 'Plank And Nails', 'could Be Used To Repair a Pirate Ships Hull', 'repair', 100)");
+            stmt.executeUpdate("INSERT INTO items_trade VALUES (2, 'Patching Kit', 'could Be Used To Repair a Pirate Ships Sail', 'repair', 100)");
+            stmt.executeUpdate("INSERT INTO items_trade VALUES (3, 'Ruby', 'shiny Red Gem', 'treasure', 200)");
+            stmt.executeUpdate("INSERT INTO items_trade VALUES (4, 'Sapphire', 'shiny Blue Gem', 'treasure', 250)");
+            stmt.executeUpdate("INSERT INTO items_trade VALUES (5, 'Diamond', 'extremely Shinny Gem', 'treasure', 500)");
+            stmt.executeUpdate("INSERT INTO items_trade VALUES (7, 'Rum', 'perfect Drink For Every Pirate', 'treasure', 25)");
 
             //add to islands
             stmt.executeUpdate("INSERT INTO islands VALUES (1,0,0)");
@@ -626,10 +630,7 @@ public class ItemDatabase extends OpeningLoop {
             //write the item to a new Item
             Item writeItem = new Item(itemName, itemDescription, itemType, itemPrice);
 
-            //NEED TO CHANGE TO PLAYER
-            //add to player inventory
-            //TraderInventory traderInventory = new TraderInventory();
-            //traderInventory.addItem(writeItem,1);
+            Player.getInstance().AddItem(writeItem, 1);
         }
 
         //query to get items
@@ -680,6 +681,80 @@ public class ItemDatabase extends OpeningLoop {
             TraderInventory traderInventory = new TraderInventory();
             traderInventory.addItem(writeItem, 1);
         }
+    }
+
+    public static List<Item> retrieveTraderItems(int x, int y) throws SQLException{
+        List<Item> items = new ArrayList<>();
+
+        //connect
+        Statement stmt = connection.createStatement();
+
+        //query to get items
+        ResultSet islandItemPlaceTrade = stmt.executeQuery("select i.item_id, i.item_name, i.item_description, i.item_type, i.item_price"
+                + "	from island_item_trade as ii inner join items_trade as i on ii.item_id_fk = i.item_id inner join islands "
+                + " as isl on isl.island_id = ii.island_id_fk"
+                + " where ii.island_id_fK =  isl.island_id" + " AND isl.x =  " + x + " AND isl.y =  " + y + " ");
+
+        //loop to go through the results
+        while (islandItemPlaceTrade.next()) {
+            //get item name
+            String itemName = islandItemPlaceTrade.getString("item_name");
+            //System.out.println("item " + itemName);
+
+            //get item description
+            String itemDescription = islandItemPlaceTrade.getString("item_description");
+            //System.out.println("itemDescription " + itemDescription);
+
+            //get item type
+            String itemType = islandItemPlaceTrade.getString("item_type");
+            //System.out.println("itemType " + itemType);
+
+            //get item price
+            int itemPrice = islandItemPlaceTrade.getInt("item_price");
+            //System.out.println("itemPrice " + Integer.toString(itemPrice));
+
+            //get the item id
+            int itemId = islandItemPlaceTrade.getInt("item_id");
+
+            items.add(new Item(itemName, itemDescription, itemType, itemPrice));
+        }
+        return items;
+    }
+
+    public static List<Item> retriveIslandItems(int x, int y) throws SQLException{
+        List<Item> items = new ArrayList<>();
+
+        //connect
+        Statement stmt = connection.createStatement();
+
+        //query to get items
+        ResultSet islandItemPlace = stmt.executeQuery("select i.item_id, i.item_name, i.item_description, i.item_type, "
+                + " i.item_price"
+                + "	from island_items as ii inner join items as i on ii.item_id_fk = i.item_id inner join islands "
+                + " as isl on isl.island_id = ii.island_id_fk"
+                + " where ii.island_id_fK =  isl.island_id" + " AND isl.x =  " + x + " AND isl.y =  " + y + " ");
+
+        //loop to go through the results
+        while (islandItemPlace.next()) {
+            //get item name
+            String itemName = islandItemPlace.getString("item_name");
+            //System.out.println("item " + itemName);
+
+            //get item description
+            String itemDescription = islandItemPlace.getString("item_description");
+            //System.out.println("itemDescription " + itemDescription);
+
+            //get item type
+            String itemType = islandItemPlace.getString("item_type");
+            //System.out.println("itemType " + itemType);
+
+            //get item price
+            int itemPrice = islandItemPlace.getInt("item_price");
+            //System.out.println("itemPrice " + Integer.toString(itemPrice));
+
+            items.add(new Item(itemName, itemDescription, itemType, itemPrice));
+        }
+        return items;
     }
 }
 

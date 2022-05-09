@@ -1,9 +1,10 @@
 package Inventory;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * Interface For Different Inventories
+ */
 public interface Inventory {
-    ArrayList<Item> items = new ArrayList<>();
 
     public void addItem(Item item, int quantity);
     public void outputInventory();

@@ -1,7 +1,9 @@
 package GameLoop;
 
 import Hazard.Hazard;
+import Inventory.Item;
 import Inventory.ItemDatabase;
+import Inventory.Trader;
 import Player.Player;
 
 import java.sql.Connection;
@@ -10,6 +12,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.function.Supplier;
 
     public class IslandLoop extends OpeningLoop{
@@ -149,10 +154,80 @@ import java.util.function.Supplier;
         //System.out.println(y);
 
         //retrieve data for the island the player is on
-        Inventory.ItemDatabase.retrieveIslandItemData(x,y);
+        //Inventory.ItemDatabase.retrieveIslandItemData(x,y);
 
         //System.out.println();
         System.out.println("Placeholder for At Island gameplay loop\n");
 
+        List<Item> islandItems = ItemDatabase.retriveIslandItems(x, y);
+        System.out.print("You Have Found ");
+        for(Item islandItem : islandItems){
+            System.out.print(islandItem.getName() + ",");
+            Player.getInstance().AddItem(islandItem, 1);
+        }
+        System.out.print(" On The Island\n");
+
+        Trader trader = new Trader();
+        List<Item> traderItems = ItemDatabase.retrieveTraderItems(x, y);
+
+        //TODO Random Quantity
+        for (Item traderItem : traderItems) {
+            trader.addItem(traderItem, 1);
+        }
+        trader.outputInventory();
+
+        System.out.println("Would You Like To Trade");
+        Scanner userInput = new Scanner(System.in);
+        String enteredText;
+
+        enteredText = userInput.nextLine();
+
+        while (!enteredText.toLowerCase().equals("leave") && !enteredText.toLowerCase().equals("no")) {
+            if (enteredText.toLowerCase().equals("trade") || enteredText.toLowerCase().equals("yes")){
+                while (!enteredText.toLowerCase().equals("cancel")) {
+                    System.out.println("Would you like to BUY, SELL or CANCEL");
+                    enteredText = userInput.nextLine();
+                    if (enteredText.toLowerCase().equals("buy")) {
+                        trader.outputInventory();
+                        System.out.println("What item would you like to buy");
+                        enteredText = userInput.nextLine();
+                        Item buyItem = trader.findItemInInventory(enteredText);
+                        if (buyItem != null){
+                            if (Player.getInstance().getChest() > buyItem.getItemPrice())
+                            {
+                                trader.sellItem(buyItem);
+                                Player.getInstance().buyItem(buyItem);
+                                System.out.println("You have bought " + buyItem.getName() + " for " + buyItem.getItemPrice() + " coins");
+                            } else {
+                                System.out.println("You do not have the coin for this");
+                            }
+                        } else {
+                            System.out.println("The trader does not have that item to sell");
+                        }
+                    } else if (enteredText.toLowerCase().equals("sell")) {
+                        Player.getInstance().outputInventory();
+                        System.out.println("What item would you like to sell");
+                        enteredText = userInput.nextLine();
+                        Item sellItem = Player.getInstance().findItemInInventory(enteredText);
+                        if (sellItem != null){
+                            Player.getInstance().sellItem(sellItem);
+                            trader.buyItem(sellItem);
+                            System.out.println("You have sold " + sellItem.getName() + " for " + sellItem.getItemPrice() + " coins");
+                        } else {
+                            System.out.println("You do not have that item to sell");
+                        }
+                    } else if (enteredText.toLowerCase().equals("inventory")) {
+                        Player.getInstance().outputInventory();
+                    }
+                }
+            } else if (enteredText.toLowerCase().equals("inventory")){
+                Player.getInstance().outputInventory();
+            } else {
+                System.out.println("LEAVE if you don't want to trade");
+            }
+            System.out.println("Would You Like To LEAVE or TRADE");
+            enteredText = userInput.nextLine();
+        }
+        System.out.println("You go back to your ship");
     }
 }

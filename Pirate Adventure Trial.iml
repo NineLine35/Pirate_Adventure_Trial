@@ -26,6 +26,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="derbyclient" level="project" />
+    <orderEntry type="library" name="derby" level="project" />
   </component>
 </module>
