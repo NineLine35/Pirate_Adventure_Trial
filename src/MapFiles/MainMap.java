@@ -1,10 +1,12 @@
 package MapFiles;
 
+import Combat.ShipBattle;
 import GameLoop.AtSeaLoop;
 import GameLoop.IslandLoop;
 
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class MainMap {
 
@@ -249,8 +251,20 @@ public class MainMap {
                 System.out.println("Nothing but water, as far as the eye can see.");
             }
             else{
-                System.out.println("Nothing but water, as far as the eye can see.");
-                //TODO Combat - Treasure Ship
+                System.out.println("Ahoy! Ship on the horizon!! Look's rich to me matey!  Should we try'un catch her?");
+
+                Scanner userInput = new Scanner(System.in);
+                String enteredText = userInput.nextLine();
+
+                if(enteredText.toLowerCase().contains("yes")){
+                    ShipBattle.battle();
+                }
+                else if(enteredText.toLowerCase().contains("no")){
+                    System.out.println("All right, but you are starting to seem a bit yellow.  Argh.  Another day then!");
+                }
+                else{
+                    System.out.println("A simple YES or NO is needed here captain!");
+                }
             }
         }
 
