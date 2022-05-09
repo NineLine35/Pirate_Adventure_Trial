@@ -11,7 +11,8 @@ public enum OpenLoopOptions {
     LOOK("look"),
     STATUS("status"),
     DEBUGBATTLE("debugBattle"),
-    INVENTORY("inventory");
+    INVENTORY("inventory"),
+    USE("use");
 
 
     //instantiate sendAction

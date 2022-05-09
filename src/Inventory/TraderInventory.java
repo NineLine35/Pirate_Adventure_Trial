@@ -1,12 +1,16 @@
 package Inventory;
 
 
-public class TraderInventory implements Inventory {
+import java.util.ArrayList;
 
+public class TraderInventory implements Inventory {
+    ArrayList<Item> items;
+
+    public TraderInventory() { items = new ArrayList<>(); }
     public Item findItem(String itemName){
         Item foundItem = null;
         for (int i = 0; i < items.size(); i++){
-            if (items.get(i).getName() == itemName.toUpperCase().replace(" ","_")){
+            if (items.get(i).getName().toLowerCase().equals(itemName.toLowerCase().replace("_", " "))){
                 foundItem = items.get(i);
             }
         }
@@ -21,7 +25,7 @@ public class TraderInventory implements Inventory {
         // Runs through list of items to check for duplicates
         for (int i = 0; i < items.size(); i++){
             // Duplicate is found and values are set to be added
-            if (item == this.items.get(i)){
+            if (item.getName().equals(this.items.get(i).getName())){
                 hasDupe = true;
                 dupePos = i;
             }

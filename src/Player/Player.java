@@ -62,14 +62,16 @@ public class Player {
     }
 
     public void useRepairItem(String itemName){
-        Item item;
-        item = inventory.findItem(itemName);
+        Item item = inventory.findItem(itemName);
         if (item == null){
             System.out.println("You Do Not Have That Item To Use Sailor");
         } else {
             if (item.getItemType().toLowerCase().equals("repair")){
                 ship.repairShip(item);
-                inventory.useRepairItem(item);
+                if (ship.getSailHealth() < ship.getMaxSailHealth() || ship.getHullHitPoints() < ship.getMaxHullHitPoints())
+                {
+                    inventory.useRepairItem(item);
+                }
             } else {
                 System.out.println("This item cannot repair a ship");
             }
@@ -80,15 +82,9 @@ public class Player {
         inventory.addItem(item, quantity);
     }
 
-    public void sellItem(String itemName) {
-        Item item;
-        item = inventory.findItem(itemName);
-        if (item == null){
-            System.out.println("You do not have that item to sell");
-        } else {
-            inventory.sellItem(item);
-            setChest(getChest() + item.getItemPrice());
-        }
+    public void sellItem(Item item) {
+        inventory.sellItem(item);
+        setChest(getChest() + item.getItemPrice());
     }
 
     public void buyItem(Item item){
@@ -100,7 +96,13 @@ public class Player {
     }
 
     public void outputInventory(){
+        System.out.println("You Have " + this.getChest() + " Coins In Your Chest");
         inventory.outputInventory();
+    }
+
+    public Item findItemInInventory(String itemName) {
+        Item item = inventory.findItem(itemName);
+        return item;
     }
 
     public void displayLocation(){

@@ -16,20 +16,15 @@ public class Trader {
      * @param quantity
      */
     public void addItem(Item item, int quantity){
-
         traderInventory.addItem(item, quantity);
     }
 
     /**
      * Sells item from traders inventory
-     * @param itemName
+     * @param item
      */
-    public void sellItem(String itemName) {
-        Item item = traderInventory.findItem(itemName);
-
-        if (item != null) {
+    public void sellItem(Item item) {
             traderInventory.sellItem(item);
-        }
     }
 
     /**
@@ -39,6 +34,11 @@ public class Trader {
     // buys item into trader inventory
     public void buyItem(Item item){
         traderInventory.addItem(item,1);
+    }
+
+    public Item findItemInInventory(String itemName){
+        Item item = traderInventory.findItem(itemName);
+        return item;
     }
 
     public void outputInventory() {

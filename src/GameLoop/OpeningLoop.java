@@ -163,6 +163,17 @@ public class OpeningLoop {
                 else if (entryValue.equals("inventory")){
                     Player.getInstance().outputInventory();
                 }
+                else if (entryValue.equals("use")){
+                    System.out.println("Which item would you like to use");
+
+                    String userSelection = userInput.nextLine().toLowerCase();
+
+                    try{
+                        Player.getInstance().useRepairItem(userSelection);
+                    } catch (Exception e) {
+                        System.out.println("This item cannot repair a ship");
+                    }
+                }
 
                 else {
                     goodValue = false;

@@ -74,6 +74,8 @@ public abstract class Ship {
         return maxHullHitPoints;
     }
 
+    public int getMaxSailHealth() { return maxSailHealth; }
+
     public int getFireDamage() {
         return fireDamage;
     }
@@ -99,7 +101,7 @@ public abstract class Ship {
 
     public void repairShip(Item item){
         // Hull Repair Was Used
-        if (item.getName().toLowerCase() == ItemTypes.PLANK_AND_NAILS.toString().toLowerCase().replace("_", " ")){
+        if (item.getName().toLowerCase().equals(ItemTypes.PLANK_AND_NAILS.toString().toLowerCase().replace("_", " "))){
             // Checks if hull has taken damage
             if (this.getHullHitPoints() < maxHullHitPoints){
                 // Hull is repaired by one hitpoint
@@ -110,7 +112,7 @@ public abstract class Ship {
                 // User is told hull is alright
                 System.out.println("Your hull does not need to be repaired");
             }
-        } else if (item.getName().toLowerCase() == ItemTypes.PATCHING_KIT.toString().toLowerCase().replace("_", " ")){
+        } else if (item.getName().toLowerCase().equals(ItemTypes.PATCHING_KIT.toString().toLowerCase().replace("_", " "))){
             // Checks if sail is max health
             if (this.getSailHealth() == this.maxSailHealth){
                 // User is told sail is full health

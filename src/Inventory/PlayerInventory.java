@@ -8,7 +8,9 @@ import java.util.Locale;
  * Implements the inventory class
  */
 public class PlayerInventory implements Inventory{
+    ArrayList<Item> items;
 
+    public PlayerInventory () { items = new ArrayList<>(); }
     /**
      * Finds and returns and item if found in the item list
      * Returns null if item not found
@@ -20,7 +22,7 @@ public class PlayerInventory implements Inventory{
         // Runs through the list of items
         for (int i = 0; i < items.size(); i++){
             // Item is found
-            if (items.get(i).getName() == itemName.toUpperCase().replace(" ","_")){
+            if (items.get(i).getName().toLowerCase().equals(itemName.toLowerCase().replace("_", " "))){
                 // Item is set to found item
                 foundItem = items.get(i);
             }
@@ -41,7 +43,7 @@ public class PlayerInventory implements Inventory{
         // Runs through list of items to check for duplicates
         for (int i = 0; i < items.size(); i++){
             // Duplicate is found and values are set to be added
-            if (item == this.items.get(i)){
+            if (item.getName().equals(this.items.get(i).getName())){
                 hasDupe = true;
                 dupePos = i;
             }
