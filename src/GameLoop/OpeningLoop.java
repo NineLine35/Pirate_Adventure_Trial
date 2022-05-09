@@ -26,7 +26,10 @@ public class OpeningLoop {
                         rolling ocean. Your head throbs after a night of rum and celebration of a mutiny that was long overdue.  
                         Oh well, tis the life of a pirate.  But, now what to do?  You didn't think that far ahead, eyes always on the plunder
                         not the planning.  But now as you walk up to the bridge, with the eyes of your crew bearing down on you
-                        you realize that it is time to take charge.
+                        you realize that it is time to take charge.  You know you have 10 days before the English Navy will be
+                        sailing into the area.
+                        
+                        10 days to trade and plunder as much as possible.  Let's have at it!
                                                 
                         What is yar name pirate??\n"""
 
@@ -41,9 +44,9 @@ public class OpeningLoop {
         Player.getInstance().setName(enteredText);
 
         System.out.println("\nNice to meet ya, " + Player.getInstance().getName());
-        System.out.println("This rickety ship isn't much, in fact it is just a basic Sloop.  But we trust you know" +
+        System.out.println("This rickety ship isn't much, in fact it is just a basic Sloop.  But we trust ya know" +
                 " how to make us rich.  Or if not......maybe you end up like the last captain.  In fact!  We will" +
-                "give you 10 days, argh, 10 to make us some coin captain.\n");
+                "give you 10 days, argh, 10 days total to make us some coin captain.\n");
 
         Inventory.ItemDatabase.retrieveIslandItemData(2,2);
         System.out.println("\nSo Captain " + Player.getInstance().getName() + " what now?  If you are unsure, type help and you can see your options.");
@@ -125,6 +128,7 @@ public class OpeningLoop {
                     try {
                         Player.getInstance().setLocation(MainMap.movePlayer(Player.getInstance().getLocation().getRow(),
                                 Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection), playmap));
+                        TurnTracker.getInstance().endOfTurn();   // Remove a turn from the game
                     } catch (Exception e) {
                         System.out.println("Not a valid direction sailor!");
                     }
@@ -153,11 +157,16 @@ public class OpeningLoop {
                     System.out.println("And the sails....take a look.  They are at " + Player.getInstance().getShip().getSailHealth() + "%\n");
 
                 }
+                //if entered date
+                else if (entryValue.equals("date")){
+                    System.out.println("We have " + TurnTracker.getInstance().getTimeLeft() + " days before the English arrive");
+
+                }
 
                 //TODO REMOVE DEBUG BATTLE ENTRY KEEP IN CODE
                 else if (entryValue.equals("debugBattle")){
 
-                    Combat.ShipBattle.incomingFire();
+                    Combat.ShipBattle.incomingFire(userInput);
 
                 }
 
