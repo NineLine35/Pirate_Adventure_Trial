@@ -12,7 +12,7 @@ public enum OpenLoopOptions {
     STATUS("status"),
     DEBUGBATTLE("debugBattle"),
     INVENTORY("inventory"),
-    USE("use");
+    USE("use"),
     DATE("date");
 
     //instantiate sendAction
