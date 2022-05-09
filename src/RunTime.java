@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class RunTime {
@@ -22,8 +24,12 @@ public class RunTime {
         ItemDatabase db = new ItemDatabase();
         db.populateNewItemIslandData();
 
-        System.out.println("Ahoy there!  Welcome to the Generic Pirate Adventure Game!\n" +
-                "__________________________\n\n" + "New Game\n" + "High Scores\n\n" +
+        Locale us = new Locale("en","US");
+        Locale mx = new Locale("es","MX");
+
+        WelcomeLocalization.introMessage(LocalTime.now(),us);
+
+        System.out.println("New Game\n" + "High Scores\n\n" +
                 "Make yar selection!\n\n");
 
 

@@ -13,7 +13,7 @@ public enum OpenLoopOptions {
     DEBUGBATTLE("debugBattle"),
     INVENTORY("inventory"),
     USE("use");
-
+    DATE("date");
 
     //instantiate sendAction
     private String sendEntry;
