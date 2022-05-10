@@ -4,7 +4,9 @@ import Inventory.ItemDatabase;
 import Inventory.ItemTypes;
 import MapFiles.*;
 import Player.Player;
+import Player.HighScoreTracker;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.function.BiFunction;
@@ -12,7 +14,7 @@ import java.util.function.BiFunction;
 public class OpeningLoop {
 
 
-    public static void launch(Landmass[][] playmap) throws SQLException {
+    public static void launch(Landmass[][] playmap) throws SQLException, IOException {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -96,6 +98,7 @@ public class OpeningLoop {
                 //if exit, exit the came
                 if (entryValue.equals("exit")) {
                     System.out.println("Good bye!");
+                    HighScoreTracker.writeHighScores();
                     ItemDatabase.closeDatabaseConnection();
                     System.exit(0);
                 }
@@ -128,7 +131,7 @@ public class OpeningLoop {
                     try {
                         Player.getInstance().setLocation(MainMap.movePlayer(Player.getInstance().getLocation().getRow(),
                                 Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection), playmap));
-                        TurnTracker.getInstance().endOfTurn();   // Remove a turn from the game
+                        TurnTracker.getInstance().endOfTurn();
                     } catch (Exception e) {
                         System.out.println("Not a valid direction sailor!");
                     }

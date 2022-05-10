@@ -3,8 +3,8 @@ import Inventory.ItemDatabase;
 import MapFiles.Landmass;
 import MapFiles.MainMap;
 import Player.Player;
+import Player.HighScoreTracker;
 import org.apache.derby.jdbc.EmbeddedDataSource;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -51,7 +51,7 @@ public class RunTime {
                 OpeningLoop.launch(playMap);
 
             } else if (enteredText.toLowerCase().contains("high score")) {
-                //High score read file
+                HighScoreTracker.readHighScores();
             } else if (enteredText.toLowerCase().contains("exit")) {
                 System.out.println("Good bye!");
                 System.exit(0);
