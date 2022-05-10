@@ -11,7 +11,7 @@ package GameLoop;/* Singleton class that will act as a "timer" and track game tu
 
 public class TurnTracker {
     // Initial time set at start of game
-    private int timeLeft = 10;
+    private int timeLeft = 20;
 
     // Default constructor
     private TurnTracker(){};
