@@ -16,12 +16,15 @@ public class TurnTracker {
     // Default constructor
     private TurnTracker(){};
 
+    //1.5 and 1.6, use of static and final
     private static final TurnTracker instance = new TurnTracker();
 
+    //get instance
     public static TurnTracker getInstance() {
         return instance;
     }
 
+    //get time left
     public int getTimeLeft() {
         return timeLeft;
     }

@@ -17,9 +17,15 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
-    public class IslandLoop extends OpeningLoop{
+/**
+ * Class for IslandLoop
+ */
+public class IslandLoop extends OpeningLoop{
 
-
+    /**
+     * launch the IslandLoop
+     * @throws SQLException
+     */
     public static void launch() throws SQLException {
 
         // Grab the turns remaining from the Turntracker singleton
@@ -27,6 +33,7 @@ import java.util.function.Supplier;
 
         //int random = (int) (Math.random() * (1 - 0 + 1) + 0);
         int randomHazard = getRandom(0, 1);
+        //TODO can remove
         System.out.println("Hazard or no? " + randomHazard);
         if (randomHazard == 1) {
             //get a random number for hazard
@@ -118,6 +125,7 @@ import java.util.function.Supplier;
                 Supplier<Integer> onLine = () -> hazardItems.getLookUp();
                 //check if it is our look up
                 if (onLine.get() == randomHazard) {
+                    //2.1 lambda
                     //get the message
                     Supplier<String> description = () -> hazardItems.getStoryMessage();
 
@@ -125,12 +133,14 @@ import java.util.function.Supplier;
                     System.out.println(description.get());
 
                     //get the hull points
+                    //2.1 lambda
                     Supplier<Integer> hitPoints = () -> hazardItems.getHullPoints();
 
                     //get the coin
                     Supplier<Integer> coinLoss = () -> hazardItems.getCoinToTake();
 
                     //get the sail damage
+                    //2.1 lambda
                     Supplier<Integer> sailDamage = () -> hazardItems.getSailDamage();
 
                     //go to the calculation to do the losses
@@ -140,6 +150,7 @@ import java.util.function.Supplier;
         }
         else
         {
+            //TODO can probably take this out
             System.out.println("no hazard");
         }
 
@@ -157,9 +168,10 @@ import java.util.function.Supplier;
         //Inventory.ItemDatabase.retrieveIslandItemData(x,y);
 
         //System.out.println();
+        //TODO remove this message
         System.out.println("Placeholder for At Island gameplay loop\n");
 
-        List<Item> islandItems = ItemDatabase.retriveIslandItems(x, y);
+        List<Item> islandItems = ItemDatabase.retrieveIslandItems(x, y);
         System.out.print("You Have Found ");
         for(Item islandItem : islandItems){
             System.out.print(islandItem.getName() + ",");

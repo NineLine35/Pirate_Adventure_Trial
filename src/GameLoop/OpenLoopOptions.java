@@ -1,5 +1,8 @@
 package GameLoop;
 
+/**
+ * Enum for opening loop options
+ */
 public enum OpenLoopOptions {
     EXIT("exit"),
     MAP("map"),
@@ -18,7 +21,10 @@ public enum OpenLoopOptions {
     //instantiate sendAction
     private String sendEntry;
 
-    //constructor for Action
+    /**
+     * Constructor for OpeningLoopOptions
+     * @param sendEntry
+     */
     OpenLoopOptions(String sendEntry){
         this.sendEntry = sendEntry;
     }
