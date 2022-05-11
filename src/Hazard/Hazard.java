@@ -1,10 +1,14 @@
 package Hazard;
 
+import Inventory.ItemDatabase;
 import Player.Player;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import Player.HighScoreTracker;
 
 /**
  * class for Hazard
@@ -113,7 +117,7 @@ public class Hazard {
      * @param sailDamage
      */
     //1.3 overloaded method
-    public void hazardCalc(Supplier<Integer> hitPoints, Supplier<Integer> coinLoss, Supplier<Integer> sailDamage){
+    public void hazardCalc(Supplier<Integer> hitPoints, Supplier<Integer> coinLoss, Supplier<Integer> sailDamage) throws IOException, SQLException {
         //these messages can be cleaned up later when we no longer need them, we just need to keep the calculation portion
         // Use code below for hazard debugging:
     /*      System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
@@ -158,7 +162,25 @@ public class Hazard {
         //if you are at 0 or less, your ship has sunk
         if(Player.getInstance().getShip().getHullHitPoints() <= 0){
             //display message to player that their ship has sunk
-            System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
+            System.out.println("\nOh no! Yer ship been down to Davy Jones' Locker!");
+
+            if(Player.getInstance().getChest() <= 0){
+                System.out.println("You did not collect any coins to track in high score.  Better luck next time!");
+            }
+            else {
+                //report high score
+                HighScoreTracker.writeHighScores();
+
+                //out of 20 days
+                System.out.println("Your ending coin value: " + Player.getInstance().getChest());
+
+                //show high scores
+                System.out.println("Check out where you are in high scores:\n");
+                HighScoreTracker.readHighScores();
+            }
+            //10.2 close database
+            ItemDatabase.closeDatabaseConnection();
+
             System.exit(0);
         }
     }

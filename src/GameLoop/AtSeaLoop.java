@@ -4,6 +4,9 @@ import Hazard.Hazard;
 import Inventory.ItemTypes;
 import MapFiles.*;
 import Player.Player;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -15,7 +18,7 @@ public class AtSeaLoop extends OpeningLoop{
     /**
      * launch the at sea loop
      */
-    public static void launch() {
+    public static void launch() throws IOException, SQLException {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -100,9 +103,6 @@ public class AtSeaLoop extends OpeningLoop{
                     assess yer damage an' 'ave one sail left an' a big 'ole in the ship. Ye need to get to a port before ye 
                     sink, but with one sail, it be slow movin'.\n""", 2,1,0);
 
-            //place holder to display the random hazard number
-            //System.out.println("the second hazard key" + randomHazard);
-
             //get the hazard list
             ArrayList<Hazard> hazardList = hazard.getHazardList();
 
@@ -146,7 +146,7 @@ public class AtSeaLoop extends OpeningLoop{
         System.out.println(
                 """
                         A long day and exceedingly long night of sailing in an endless sea of ocean and sky.  Nothing but
-                        ocean all around you.  What next captain??\n"""
+                        ocean all around you.\n"""
         );
 
         // Receive user input and parse it
