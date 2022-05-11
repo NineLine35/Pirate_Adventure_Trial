@@ -11,6 +11,9 @@ import org.apache.derby.jdbc.EmbeddedDataSource;
 /**
  * class for the database
  */
+//10.1 - Implement database with basic CRUD operations\
+//NOTE:  We did not do Update and Delete since that was already built out in another way for Items and due to time, we just
+//focused on creating and reading a database to loop up items for Player and Trade
 public class ItemDatabase extends OpeningLoop {
     //database name
     private static String databaseName = "island_items";
@@ -19,6 +22,7 @@ public class ItemDatabase extends OpeningLoop {
     private static String databaseUrl = "jdbc:derby:" + databaseName + ";create=true";
 
     //connect
+    //10.2 open database
     private static Connection connection;
 
     //boolean for if the database populated
@@ -34,9 +38,7 @@ public class ItemDatabase extends OpeningLoop {
         return databasePopulated;
     }
 
-    /**
-     * constructor for the database
-     */
+    //constructor for the database
     public ItemDatabase() {
         InitializeDatabase();
     }
@@ -59,19 +61,20 @@ public class ItemDatabase extends OpeningLoop {
             // Create Statement Object on Connection
             Statement stmt = connection.createStatement();
 
+            //drop tables if they were already created
+            //6.1 - use of try catch blocks
+            //try to drop bridge island_items table
             try {
                 stmt.executeUpdate("DROP TABLE island_items");
             } catch (Exception ex) {
                 System.out.println("cannot drop island_items table");
-                // for logging logger.info
             }
 
-            //try to drop bridge items tables
+            //try to drop bridge island_item_trade tables
             try {
                 stmt.executeUpdate("DROP TABLE island_item_trade");
             } catch (Exception ex) {
                 System.out.println("cannot drop items table");
-                // for logging logger.info
             }
 
             //try to drop player items tables
@@ -79,14 +82,13 @@ public class ItemDatabase extends OpeningLoop {
                 stmt.executeUpdate("DROP TABLE items");
             } catch (Exception ex) {
                 System.out.println("cannot drop items table");
-                // for logging logger.info
             }
 
+            //try to drop player items_trade tables
             try {
                 stmt.executeUpdate("DROP TABLE items_trade");
             } catch (Exception ex) {
                 System.out.println("cannot drop trade table");
-                // for logging logger.info
             }
 
             //try to drop island tables
@@ -94,18 +96,7 @@ public class ItemDatabase extends OpeningLoop {
                 stmt.executeUpdate("DROP TABLE islands");
             } catch (Exception ex) {
                 System.out.println("cannot drop islands table");
-                // for logging logger.info
             }
-
-            /*tablesFound = databaseMeta.getTables(null, null, "%", new String[] {"TABLE"});
-            // Iterate through tables, dropping them if they exist
-            while(tablesFound.next()) {
-                //  If the table exists, drop it
-                stmt.executeUpdate("DROP TABLE " + tablesFound.getString("TABLE_NAME"));
-
-                // Commit (save) changes
-                connection.commit();
-            }*/
 
             // Close Statement
             stmt.close();
@@ -113,14 +104,16 @@ public class ItemDatabase extends OpeningLoop {
             // Create Initial Database Tables
             createInitialTables(connection);
 
-        } catch (SQLException ex) {
+        }
+        //catch for SQL and then catch for Exception
+        //6.2 multi catch
+        catch (SQLException ex) {
             System.err.println(ex.getMessage());
             System.err.println(ex.getStackTrace());
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             System.err.println(ex.getStackTrace());
         }
-
     }
 
     /**
@@ -141,6 +134,7 @@ public class ItemDatabase extends OpeningLoop {
 
         try (Statement stmt = conn.createStatement()) {
 
+            //create the island table
             stmt.executeUpdate("CREATE TABLE islands ("
                     + "island_id INTEGER PRIMARY KEY, "
                     + "x INTEGER, "
@@ -162,7 +156,6 @@ public class ItemDatabase extends OpeningLoop {
                     + "item_type VARCHAR(255),"
                     + "item_price INTEGER) ");
 
-
             // Create Island_Item Table
             stmt.executeUpdate("CREATE TABLE island_items ("
                     + "id INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
@@ -174,10 +167,14 @@ public class ItemDatabase extends OpeningLoop {
                     + "id INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                     + "island_id_fk integer REFERENCES islands (island_id), "
                     + "item_id_fK integer REFERENCES items (item_id)) ");
-        } catch (SQLException e) {
-            System.err.println(e.toString());
+        }
+        //6.2 multi catch for SQLException and Exception
+        catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            System.err.println(ex.getStackTrace());
         } catch (Exception ex) {
-            System.err.println(ex.toString());
+            System.err.println(ex.getMessage());
+            System.err.println(ex.getStackTrace());
         }
     }
 
@@ -240,7 +237,7 @@ public class ItemDatabase extends OpeningLoop {
             stmt.executeUpdate("INSERT INTO islands VALUES (35,4,5)");
             stmt.executeUpdate("INSERT INTO islands VALUES (36,5,5)");
 
-            //add to item island
+            //add player items to island
             stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
                     + "VALUES (1,1)");
             stmt.executeUpdate("INSERT INTO island_items (island_id_fk, item_id_fk) "
@@ -409,7 +406,7 @@ public class ItemDatabase extends OpeningLoop {
                     + "VALUES (36,7)");
 
 
-            //add to trader items to  island
+            //add to trader items to island
             stmt.executeUpdate("INSERT INTO island_item_trade (island_id_fk, item_id_fk) "
                     + "VALUES (1,2)");
             stmt.executeUpdate("INSERT INTO island_item_trade (island_id_fk, item_id_fk) "
@@ -566,10 +563,14 @@ public class ItemDatabase extends OpeningLoop {
             // Set flag used for quit functionality
             databasePopulated = true;
 
-        } catch (SQLException e) {
-            System.err.println(e.toString());
+        }
+        //6.2 - multi catch SQLException and Exception
+        catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            System.err.println(ex.getStackTrace());
         } catch (Exception ex) {
-            System.err.println(ex.toString());
+            System.err.println(ex.getMessage());
+            System.err.println(ex.getStackTrace());
         }
     }
 
@@ -581,7 +582,8 @@ public class ItemDatabase extends OpeningLoop {
      * @return
      * @throws SQLException
      */
-    public static void retrieveIslandItemData(int x, int y) throws SQLException {
+    // TODO remove this if we want to
+  /*  public static void retrieveIslandItemData(int x, int y) throws SQLException {
         //connect
         Statement stmt = connection.createStatement();
 
@@ -682,8 +684,10 @@ public class ItemDatabase extends OpeningLoop {
             traderInventory.addItem(writeItem, 1);
         }
     }
+*/
 
     /**
+
      * Retrieves all of the items the trader has to sell
      * @param x
      * @param y
@@ -691,6 +695,8 @@ public class ItemDatabase extends OpeningLoop {
      * @throws SQLException
      */
     public static List<Item> retrieveTraderItems(int x, int y) throws SQLException{
+        //new list for items
+        //3.2 ArrayList
         List<Item> items = new ArrayList<>();
 
         //connect
@@ -723,8 +729,10 @@ public class ItemDatabase extends OpeningLoop {
             //get the item id
             int itemId = islandItemPlaceTrade.getInt("item_id");
 
+            //add the item
             items.add(new Item(itemName, itemDescription, itemType, itemPrice));
         }
+        //return the items
         return items;
     }
 
@@ -735,7 +743,10 @@ public class ItemDatabase extends OpeningLoop {
      * @return
      * @throws SQLException
      */
-    public static List<Item> retriveIslandItems(int x, int y) throws SQLException{
+
+    public static List<Item> retrieveIslandItems(int x, int y) throws SQLException{
+        //3.2 ArrayList
+
         List<Item> items = new ArrayList<>();
 
         //connect
@@ -766,8 +777,10 @@ public class ItemDatabase extends OpeningLoop {
             int itemPrice = islandItemPlace.getInt("item_price");
             //System.out.println("itemPrice " + Integer.toString(itemPrice));
 
+            //add the item
             items.add(new Item(itemName, itemDescription, itemType, itemPrice));
         }
+        //return the items
         return items;
     }
 }

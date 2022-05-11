@@ -3,10 +3,19 @@ package MapFiles;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Class for Island
+ */
 public class Island extends Landmass {
 
     boolean hasPort;
 
+    /**
+     * constructor for Island
+     * @param size
+     * @param name
+     */
+    //1.3 - overloaded constructor
     public Island(int size, String name) {
         super(size); this.setName(name);
     }

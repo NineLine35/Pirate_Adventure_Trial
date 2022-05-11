@@ -4,21 +4,27 @@ import Hazard.Hazard;
 import Inventory.ItemTypes;
 import MapFiles.*;
 import Player.Player;
-
 import java.util.*;
 import java.util.function.Supplier;
 
+/**
+ * This loop is for when the player is at sea. The only thing that can happen at sea is a hazard
+ */
+
 public class AtSeaLoop extends OpeningLoop{
-
-
+    /**
+     * launch the at sea loop
+     */
     public static void launch() {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
 
-        //int random = (int) (Math.random() * (1 - 0 + 1) + 0);
+        //get a randomHazard
         int randomHazard = getRandom(0, 1);
-        System.out.println("Hazard or no? " + randomHazard);
+        //remark to show the result for testing
+        //System.out.println("Hazard or no? " + randomHazard);
+
         if (randomHazard == 1) {
             //create the hazard object
             Hazard hazard = new Hazard();
@@ -95,10 +101,11 @@ public class AtSeaLoop extends OpeningLoop{
                     sink, but with one sail, it be slow movin'.\n""", 2,1,0);
 
             //place holder to display the random hazard number
-            System.out.println("the second hazard key" + randomHazard);
+            //System.out.println("the second hazard key" + randomHazard);
 
             //get the hazard list
             ArrayList<Hazard> hazardList = hazard.getHazardList();
+
             //loop through to find your lookup value
             for (Hazard hazardItems : hazardList) {
                 //get the lookup
@@ -132,6 +139,7 @@ public class AtSeaLoop extends OpeningLoop{
         }
         else
         {
+            //TODO can probably take this out
             System.out.println("no hazard");
         }
 

@@ -1,5 +1,9 @@
 package MapFiles;
 
+/**
+ * Enum for Directions
+ */
+//1.8 - use of Enum
 public enum Direction {
     NORTH,
     SOUTH,
@@ -9,5 +13,4 @@ public enum Direction {
     NORTHWEST,
     SOUTHEAST,
     SOUTHWEST
-
 }
