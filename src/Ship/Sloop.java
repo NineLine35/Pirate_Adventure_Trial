@@ -1,5 +1,8 @@
 package Ship;
 
+/**
+ * Sloop type of Ship
+ */
 public class Sloop extends Ship {
 
     private int numCannons = 2;

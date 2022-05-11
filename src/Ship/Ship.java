@@ -5,6 +5,10 @@ import Inventory.ItemTypes;
 
 import java.util.Random;
 
+/**
+ * Abstract class used a scaffolding for the various player ship types.  Holds all important properties and allows
+ * access through getters/setters
+ */
 public abstract class Ship {
 
     private int hullHitPoints;
@@ -16,6 +20,7 @@ public abstract class Ship {
     private boolean isDestroyed = false;
     private String shipName;
     private int fireDamage = 0;
+    private int numCannons;
 
 
     public Ship(int hullHitPoints, int cargoCapacity, int sailDistance) {
@@ -82,6 +87,14 @@ public abstract class Ship {
 
     public void setFireDamage(int fireDamage) {
         this.fireDamage = fireDamage;
+    }
+
+    public int getNumCannons() {
+        return numCannons;
+    }
+
+    public void setNumCannons(int numCannons) {
+        this.numCannons = numCannons;
     }
 
     /**

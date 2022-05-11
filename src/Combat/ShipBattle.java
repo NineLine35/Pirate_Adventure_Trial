@@ -5,19 +5,28 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.function.*;
 
+/**
+ * Class responsible for representing a ship battle.  Kicked off during an enemy sighting in OpeningLoop
+ */
+
+
 public class ShipBattle {
 
     static Ship playerShip = Player.getInstance().getShip();
 
-    //Simple turn counter to be used in the runtime
+    //Simple turn counter to be used in the runtime, used for fire spread
     public static int turnCounter = 1;
 
 
-
+    /**
+     * Main battle method. Various loops for closing with, firing on, and winning/losing the battle are housed here
+     * Links to other methods in the class, such as enemyCannonFire, incomingFire and cannonDamage.
+     */
     public static void battle(){
 
         //DEBUG
-        System.out.println("Battle Code");
+        System.out.println("Entering battle!");
+        System.out.println("**********************");
 
         int enemyShipHP = randomRoll.get();
         boolean enemyShipArmed = false;
@@ -65,13 +74,48 @@ public class ShipBattle {
 
             }
             if(enteredText.toLowerCase().contains("fire")){
-                //Cannon firing code
+                double toHit = (Player.getInstance().getShip().getNumCannons() / enemyDistance)*10;
+                int result = randomRoll.get();
+
+                returnText.accept("The cannon fire is deafening!  We wait to see if we can make contact....");
+
+                if(result < toHit){
+                    returnText.accept("Argh!! She is hit!!  Smoke bellows and splinters fill the air");
+                    enemyShipHP = enemyShipHP - Player.getInstance().getShip().getNumCannons();
+
+                    if(enemyShipHP < 0){
+                        returnText.accept("The enemy surrenders!  Let us claim her treasures!");
+                        int winnings = randomRoll.get() * 100;
+                        returnText.accept("We have added " + winnings + " to our chest!  The rum be flowin tonight!");
+                        Player.getInstance().setChest(Player.getInstance().getChest() + winnings);
+                        return;
+                    }
+
+                    returnText.accept("A few more hits should do it!  They have " + enemyShipHP + " hits left!");
+
+                }
+                else{
+                    returnText.accept("You see splashes of cannon balls all around as they miss the target");
+                    if(randomRoll.get() < 2){
+                        enemyDistance++;
+                        returnText.accept("The enemy is moving away from us!");
+                    }
+                }
+
+
             }
 
         }
 
     }
 
+    /**
+     * Method returning a boolean notifying the battle method if the enemy cannon shot hits the player ship
+     * @param enemyArmed - Is the enemy an armed ship
+     * @param distance - Distance between the two ships
+     * @param userInput
+     * @return - Boolean
+     */
     public static boolean enemyCannonFire(boolean enemyArmed, int distance,Scanner userInput){
 
         returnText.accept("The enemy ship turns and takes aim. Give us your best shot, you varmin!");
@@ -98,6 +142,10 @@ public class ShipBattle {
     }
 
 
+    /**
+     * Main method responsible for results of incoming fire and calculations of player ship damage
+     * @param userInput
+     */
     public static void incomingFire(Scanner userInput) {
 
 
@@ -106,6 +154,8 @@ public class ShipBattle {
                 The crew looks around slowly and waits.  The sound of the waves slapping the ship seems deafening
                 then a WOOOOSH and without warning the loud crash of impact
                 and shutters of splintered wood throw you to the deck.\n""");
+
+        returnText.accept("We have been hit captain!!  Let's see the DAMAGE REPORT!");
 
 
         // Game loop open while input stream is active

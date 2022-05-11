@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Class to read in high score text file and add player results to the file at the end of the game
+ */
 public class HighScoreTracker {
 
     public static void readHighScores(){

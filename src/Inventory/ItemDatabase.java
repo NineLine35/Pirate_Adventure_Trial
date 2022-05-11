@@ -583,7 +583,7 @@ public class ItemDatabase extends OpeningLoop {
      * @throws SQLException
      */
     // TODO remove this if we want to
-  /*  public static void retrieveIslandItemData(int x, int y) throws SQLException {
+    public static void retrieveIslandItemData(int x, int y) throws SQLException {
         //connect
         Statement stmt = connection.createStatement();
 
@@ -684,7 +684,7 @@ public class ItemDatabase extends OpeningLoop {
             traderInventory.addItem(writeItem, 1);
         }
     }
-*/
+
 
     /**
 

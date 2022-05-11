@@ -16,11 +16,11 @@ import java.util.stream.Stream;
 
 public class OpeningLoop {
 
-     * launch map and game
+     /** launch map and game
      * @param playmap
      * @throws SQLException
      * @throws IOException
-     */
+     **/
 
     public static void launch(Landmass[][] playmap) throws SQLException, IOException {
 
@@ -28,10 +28,9 @@ public class OpeningLoop {
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
         System.out.println();
-        //welcome message
-        System.out.println("Welcome to the Pirate Game Trial!\n" +
-                "*********************************\n");
-        //welcome message
+
+        System.out.println("*********************************\n");
+
         System.out.println(
                 """
                         You awaken to the sound of distant gulls and the creaking of worn planks as the ship slowly sways in the 
@@ -214,7 +213,7 @@ public class OpeningLoop {
                 //TODO REMOVE DEBUG BATTLE ENTRY KEEP IN CODE
                 else if (entryValue.equals("debugBattle")){
 
-                    Combat.ShipBattle.incomingFire(userInput);
+                    Combat.ShipBattle.battle();
 
                 }
                 //check the inventory
