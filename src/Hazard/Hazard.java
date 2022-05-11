@@ -115,8 +115,8 @@ public class Hazard {
     //1.3 overloaded method
     public void hazardCalc(Supplier<Integer> hitPoints, Supplier<Integer> coinLoss, Supplier<Integer> sailDamage){
         //these messages can be cleaned up later when we no longer need them, we just need to keep the calculation portion
-        // TODO decide if we want this section or parts of this section commented out
-  /*      System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
+        // Use code below for hazard debugging:
+    /*      System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
 
         Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - hitPoints.get());
         System.out.println("after hull points " + + Player.getInstance().getShip().getHullHitPoints());
@@ -132,9 +132,7 @@ public class Hazard {
         System.out.println("after coin " + + Player.getInstance().getChest());*/
 
         //I added this in place of the above if we rather use this
-        // TODO decide if we want this section or not, also do we do something with the coin?
-        //System.out.println();
-        //System.out.println("Other option");
+
         System.out.println("You took " +  hitPoints.get() + " hits to your hull.");
         //remove the hits from the total hull points
         Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - hitPoints.get());

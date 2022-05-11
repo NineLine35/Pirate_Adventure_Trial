@@ -139,8 +139,8 @@ public class AtSeaLoop extends OpeningLoop{
         }
         else
         {
-            //TODO can probably take this out
-            System.out.println("no hazard");
+
+            System.out.println("Made it safely!");
         }
 
         System.out.println(
