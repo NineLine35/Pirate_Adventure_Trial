@@ -166,7 +166,8 @@ public class IslandLoop extends OpeningLoop{
 
 
         // Sets the island items list
-        List<Item> islandItems = ItemDatabase.retriveIslandItems(x, y);
+        List<Item> islandItems = ItemDatabase.retrieveIslandItems(x,y);
+
 
         // This loops through the items found list and adds items while telling user what they found
 

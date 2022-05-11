@@ -65,6 +65,7 @@ public class Player {
     public void assignShip(String type, String shipName){
         ship = ShipBuilder.getShip(type);
         ship.setShipName(shipName);
+        ship.setNumCannons(2);
     }
 
     /**
