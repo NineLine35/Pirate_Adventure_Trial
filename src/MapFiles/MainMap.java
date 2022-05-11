@@ -4,6 +4,7 @@ import Combat.ShipBattle;
 import GameLoop.AtSeaLoop;
 import GameLoop.IslandLoop;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
@@ -126,7 +127,7 @@ public class MainMap {
      * tile landmass
      * @param tile - Pass in the correct landmass tile type
      */
-    public static void instanceCheck(Landmass tile) throws SQLException {
+    public static void instanceCheck(Landmass tile) throws SQLException, IOException {
 
         //if OpenWater, launch AtSeaLoop
          if(tile instanceof OpenWater){
@@ -150,7 +151,7 @@ public class MainMap {
      * @return
      * @throws SQLException
      */
-    public static Coordinates movePlayer(int x, int y, Direction direction, Landmass[][] playMap) throws SQLException {
+    public static Coordinates movePlayer(int x, int y, Direction direction, Landmass[][] playMap) throws SQLException, IOException {
 
         //create a new instance
          Coordinates returnCoord = new Coordinates(x,y);

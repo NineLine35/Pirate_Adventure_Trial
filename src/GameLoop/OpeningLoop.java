@@ -59,7 +59,7 @@ public class OpeningLoop {
         System.out.println("\nNice to meet ya, " + Player.getInstance().getName());
         System.out.println("This rickety ship isn't much, in fact it is just a basic Sloop.  But we trust ya know" +
                 " how to make us rich.  Or if not......maybe you end up like the last captain.  In fact!  We will" +
-                "give you 10 days, argh, 10 days total to make us some coin captain.\n");
+                "give you 20 days, argh, 20 days total to make us some coin captain.\n");
 
         //assign initial items to the player and trade
 
@@ -130,10 +130,9 @@ public class OpeningLoop {
                 if (entryValue.equals("exit")) {
                     System.out.println("Good bye!");
 
+                    //HighScoreTracker.writeHighScores();
+
                     //10.2 close database
-
-                    HighScoreTracker.writeHighScores();
-
                     ItemDatabase.closeDatabaseConnection();
                     System.exit(0);
                 }
@@ -241,11 +240,29 @@ public class OpeningLoop {
 
             }
         }
-        //out of 10 days
-        System.out.println("out of turns");
+
+        if(Player.getInstance().getChest() <= 0){
+            System.out.println("Looks like you have sailed 20 days!  GAME OVER!\n You did not collect any coins to track in high score.  Better luck next time!");
+        }
+        else {
+
+
+            //report high score
+            HighScoreTracker.writeHighScores();
+
+            //out of 20 days
+            System.out.println("Looks like you have sailed 20 days!  GAME OVER! \nYour ending coin value: " + Player.getInstance().getChest());
+
+            //show high scores
+            System.out.println("Check out where you are in high scores:\n");
+            HighScoreTracker.readHighScores();
+        }
+
         //10.2 close database
         ItemDatabase.closeDatabaseConnection();
-        }
+
+        System.exit(0);
+    }
         //}
 
 

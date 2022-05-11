@@ -6,6 +6,7 @@ import Inventory.ItemDatabase;
 import Inventory.Trader;
 import Player.Player;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -23,7 +24,7 @@ public class IslandLoop extends OpeningLoop{
      * launch the IslandLoop
      * @throws SQLException
      */
-    public static void launch() throws SQLException {
+    public static void launch() throws SQLException, IOException {
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -110,9 +111,6 @@ public class IslandLoop extends OpeningLoop{
                 at work. Ye only 'ave one main sail that there be good, but all the others need to be replaced. Ye be
                 delayed to yer next port, now that there ye must sail very slow.\n"""
                     , 0,50,0);
-
-            //this is just to display the hazard picked
-            System.out.println("the second hazard key" + randomHazard);
 
             //get the Hazard list
             ArrayList<Hazard> hazardList = hazard.getHazardList();
