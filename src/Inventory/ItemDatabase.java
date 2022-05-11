@@ -574,7 +574,7 @@ public class ItemDatabase extends OpeningLoop {
     }
 
     /**
-     * Retrieves the island it is on and the items on that island and then adds items to tradeinventory
+     * Retrieves the island it is on and the items on that island and then adds items to trade inventory
      *
      * @param x
      * @param y
@@ -683,6 +683,13 @@ public class ItemDatabase extends OpeningLoop {
         }
     }
 
+    /**
+     * Retrieves all of the items the trader has to sell
+     * @param x
+     * @param y
+     * @return
+     * @throws SQLException
+     */
     public static List<Item> retrieveTraderItems(int x, int y) throws SQLException{
         List<Item> items = new ArrayList<>();
 
@@ -721,6 +728,13 @@ public class ItemDatabase extends OpeningLoop {
         return items;
     }
 
+    /**
+     * Retrieves all of the items that the island has for the player to find
+     * @param x
+     * @param y
+     * @return
+     * @throws SQLException
+     */
     public static List<Item> retriveIslandItems(int x, int y) throws SQLException{
         List<Item> items = new ArrayList<>();
 

@@ -2,8 +2,6 @@ package Inventory;
 
 /**
  * Class for game items
- *
- *
  */
 public class Item {
     private String name;

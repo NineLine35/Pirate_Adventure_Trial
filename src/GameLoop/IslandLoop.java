@@ -11,10 +11,7 @@ import java.sql.DriverManager;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.Supplier;
 
     public class IslandLoop extends OpeningLoop{
@@ -156,10 +153,10 @@ import java.util.function.Supplier;
         //retrieve data for the island the player is on
         //Inventory.ItemDatabase.retrieveIslandItemData(x,y);
 
-        //System.out.println();
-        System.out.println("Placeholder for At Island gameplay loop\n");
-
+        // Sets the island items list
         List<Item> islandItems = ItemDatabase.retriveIslandItems(x, y);
+
+        // This loops through the items found list and adds items while telling user what they found
         System.out.print("You Have Found ");
         for(Item islandItem : islandItems){
             System.out.print(islandItem.getName() + ",");
@@ -167,67 +164,97 @@ import java.util.function.Supplier;
         }
         System.out.print(" On The Island\n");
 
+        // Sets trader inventory
         Trader trader = new Trader();
         List<Item> traderItems = ItemDatabase.retrieveTraderItems(x, y);
 
-        //TODO Random Quantity
+        // Loops through islands trader items and adds to traders list
         for (Item traderItem : traderItems) {
             trader.addItem(traderItem, 1);
         }
+        // Outputs trader inventory
         trader.outputInventory();
 
+        // Checks if user wants to trade
         System.out.println("Would You Like To Trade");
         Scanner userInput = new Scanner(System.in);
         String enteredText;
-
         enteredText = userInput.nextLine();
 
+        // Loop to put user in trading system
         while (!enteredText.toLowerCase().equals("leave") && !enteredText.toLowerCase().equals("no")) {
-            if (enteredText.toLowerCase().equals("trade") || enteredText.toLowerCase().equals("yes")){
+            // Checks if user wants to trade
+            if (enteredText.toLowerCase().equals("trade") || enteredText.toLowerCase().equals("yes")) {
+                // Loop for buying and selling
                 while (!enteredText.toLowerCase().equals("cancel")) {
+                    // Checks what user wants to do
                     System.out.println("Would you like to BUY, SELL or CANCEL");
                     enteredText = userInput.nextLine();
+                    // User wants to buy items
                     if (enteredText.toLowerCase().equals("buy")) {
+                        // Outputs the traders inventory
                         trader.outputInventory();
+                        // User types what they want to buy
                         System.out.println("What item would you like to buy");
                         enteredText = userInput.nextLine();
+                        // Checks if trader has the item
                         Item buyItem = trader.findItemInInventory(enteredText);
+                        // Checks if the item typed was a valid item
                         if (buyItem != null){
+                            // Makes sure user has enough money
                             if (Player.getInstance().getChest() > buyItem.getItemPrice())
                             {
+                                // Sells the item from the trader
                                 trader.sellItem(buyItem);
+                                // Buys the item for the player
                                 Player.getInstance().buyItem(buyItem);
+                                // Output to user to tell them that the item has been bought
                                 System.out.println("You have bought " + buyItem.getName() + " for " + buyItem.getItemPrice() + " coins");
                             } else {
+                                // Tells user they do not have enough money
                                 System.out.println("You do not have the coin for this");
                             }
                         } else {
+                            // Tells user that trader does not have item
                             System.out.println("The trader does not have that item to sell");
                         }
                     } else if (enteredText.toLowerCase().equals("sell")) {
+                        // Outputs players inventory
                         Player.getInstance().outputInventory();
+                        // Checks what item user wants to sell
                         System.out.println("What item would you like to sell");
                         enteredText = userInput.nextLine();
+                        // Checks if player has item
                         Item sellItem = Player.getInstance().findItemInInventory(enteredText);
+                        // Checks if item typed is valid
                         if (sellItem != null){
+                            // Sells item from player
                             Player.getInstance().sellItem(sellItem);
+                            // Buys item for trader
                             trader.buyItem(sellItem);
+                            // Tells user the item they have sold
                             System.out.println("You have sold " + sellItem.getName() + " for " + sellItem.getItemPrice() + " coins");
                         } else {
+                            // Tells user they do not have the item
                             System.out.println("You do not have that item to sell");
                         }
                     } else if (enteredText.toLowerCase().equals("inventory")) {
+                        // Outputs user inventory
                         Player.getInstance().outputInventory();
                     }
                 }
             } else if (enteredText.toLowerCase().equals("inventory")){
+                // Outputs user inventory
                 Player.getInstance().outputInventory();
             } else {
+                // User typed something that wasn't valid and gives a hint
                 System.out.println("LEAVE if you don't want to trade");
             }
+            // Prompts user to type something valid
             System.out.println("Would You Like To LEAVE or TRADE");
             enteredText = userInput.nextLine();
         }
+        // Loop is left and the user is told
         System.out.println("You go back to your ship");
     }
 }
