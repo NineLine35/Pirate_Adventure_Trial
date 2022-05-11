@@ -99,6 +99,10 @@ public abstract class Ship {
         setSailHealth((int) (sailHealth - x));
     }
 
+    /**
+     * Repairs the ship and updates hitpoints to reflect item used
+     * @param item
+     */
     public void repairShip(Item item){
         // Hull Repair Was Used
         if (item.getName().toLowerCase().equals(ItemTypes.PLANK_AND_NAILS.toString().toLowerCase().replace("_", " "))){
