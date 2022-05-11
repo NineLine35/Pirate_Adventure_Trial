@@ -1,9 +1,12 @@
 package Combat;
 import Player.Player;
 import Ship.Ship;
+
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.function.*;
+import Player.HighScoreTracker;
 
 /**
  * Class responsible for representing a ship battle.  Kicked off during an enemy sighting in OpeningLoop
@@ -41,7 +44,7 @@ public class ShipBattle {
         Scanner userInput = new Scanner(System.in);
 
 
-        while(userInput.hasNext()) {
+        while(userInput.hasNext() || Player.getInstance().getShip().getHullHitPoints() >0) {
 
             if(enemyDistance > 5){
                 returnText.accept("We lost the ship captain!  She lives to fight another day, but so do we!");
@@ -105,6 +108,22 @@ public class ShipBattle {
 
             }
 
+        }
+
+        if(Player.getInstance().getShip().getHullHitPoints() >0){
+            //report high score
+            try {
+                HighScoreTracker.writeHighScores();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //out of 20 days
+            System.out.println("Looks like you are headed to Davy Jones Locker!  GAME OVER! \nYour ending coin value: " + Player.getInstance().getChest());
+
+            //show high scores
+            System.out.println("Check out where you are in high scores:\n");
+            HighScoreTracker.readHighScores();
         }
 
     }
