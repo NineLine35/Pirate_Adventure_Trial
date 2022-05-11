@@ -84,9 +84,9 @@ public class MainMap {
     }
 
     /**
-     * Class to hold coordinates of player
+     * Class to hold coordinates of player - Example of Inner Class
      */
-    // TODO nested class?
+    // 1.7 Nested classes
     public static class Coordinates{
         //define the variables
         //1.1 - Proper use of visibility modifiers
@@ -228,8 +228,8 @@ public class MainMap {
          Landmass returnLandmass;
 
          returnLandmass = map[currentLocation.row][currentLocation.column];
-         // TODO may need to comment out
-         System.out.println(returnLandmass.toString());  //Used to debug
+
+         //System.out.println(returnLandmass.toString());  //Used to debug
 
         //return the landmass
         return returnLandmass;

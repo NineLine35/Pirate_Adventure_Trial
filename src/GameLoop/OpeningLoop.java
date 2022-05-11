@@ -62,7 +62,7 @@ public class OpeningLoop {
                 "give you 10 days, argh, 10 days total to make us some coin captain.\n");
 
         //assign initial items to the player and trade
-        // TODO do we want this
+
         List<Item> islandItems = ItemDatabase.retrieveIslandItems(2, 2);
         System.out.print("You Have Found ");
         for(Item islandItem : islandItems){
@@ -70,8 +70,7 @@ public class OpeningLoop {
             Player.getInstance().AddItem(islandItem, 1);
         }
 
-        // TODO can probably take this boolean out now that we have a turn tracker
-        boolean goodValue = false;
+
         String daysOrDay;
         //while there are turns left
         while (TurnTracker.getInstance().getTimeLeft() > 0) {
@@ -124,7 +123,7 @@ public class OpeningLoop {
             if (countEntries > 1 && !entryValue.equals("where am i")) {
                 //System.out.println("you have too many entries");
                 responses();
-                goodValue = false;
+                //goodValue = false;
             }
             else {
                 //if exit, exit the came
@@ -159,7 +158,7 @@ public class OpeningLoop {
                     }
                 }
                 //if entered sail
-                // TODO object compare - i think so since it has to utilize .equals vs ==, if so this would take care of
+                // 2.5 Object comparison
                 else if (entryValue.equals("sail")) {
                     //goodValue = true;
                     System.out.println("Which direction shall we sail captain??");
@@ -210,7 +209,7 @@ public class OpeningLoop {
 
                 }
 
-                //TODO REMOVE DEBUG BATTLE ENTRY KEEP IN CODE
+
                 else if (entryValue.equals("debugBattle")){
 
                     Combat.ShipBattle.battle();
@@ -236,7 +235,7 @@ public class OpeningLoop {
                 }
                 //if got here, there is not a valid command
                 else {
-                    goodValue = false;
+                    //goodValue = false;
                     responses();
                 }
 

@@ -30,8 +30,8 @@ public class IslandLoop extends OpeningLoop{
 
         //int random = (int) (Math.random() * (1 - 0 + 1) + 0);
         int randomHazard = getRandom(0, 1);
-        //TODO can remove
-        System.out.println("Hazard or no? " + randomHazard);
+
+        //DEBUG: System.out.println("Hazard or no? " + randomHazard);
         if (randomHazard == 1) {
             //get a random number for hazard
             randomHazard = getRandom(6, 11);
@@ -147,8 +147,8 @@ public class IslandLoop extends OpeningLoop{
         }
         else
         {
-            //TODO can probably take this out
-            System.out.println("no hazard");
+
+            System.out.println("Made it safely!");
         }
 
         //Player.getInstance().displayLocation();

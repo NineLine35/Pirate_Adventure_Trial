@@ -8,3 +8,4 @@ steve - 0 coin
 carla - 0 coin
 aaron - 200 coin
 aaron - 700 coin
+aaron - -200 coin

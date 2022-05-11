@@ -7,7 +7,7 @@ package MapFiles;
 public enum IslandNames {
     //1.4 and 1.7 - override
     //find the name and return a readable name
-    // TODO double check this is 1.4 and 1.7
+
     STORMY_ATOLL{
         @Override
         public String toString() {
