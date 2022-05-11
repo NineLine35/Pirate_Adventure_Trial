@@ -43,9 +43,11 @@ public class Hazard {
 
     //getters and setters
     {
+        //3.2 ArrayList
         this.hazardList = new ArrayList<Hazard>();
     }
 
+    // 2.2 - Valid use of encapsulation
     //get story message
     public String getStoryMessage() {
         return storyMessage;
@@ -85,13 +87,13 @@ public class Hazard {
      * @param coinToTake
      */
    public void addHazard(int lookUp, String storyMessage, int hullPoints, int sailDamage, int coinToTake) {
-        //create and load clients list
+        //create and load hazard list
        Hazard hazard;
 
-        //create the client
+        //create the hazard
        hazard = new Hazard(lookUp, storyMessage, hullPoints, sailDamage, coinToTake);
 
-      //add the client to the list
+      //add the hazard to the list
        addHazardList(hazard);
     }
 
@@ -100,7 +102,7 @@ public class Hazard {
      * @param hazard
      */
     public void addHazardList(Hazard hazard) {
-        //add the client
+        //add the hazard
         this.hazardList.add(hazard);
     }
 
@@ -110,9 +112,11 @@ public class Hazard {
      * @param coinLoss
      * @param sailDamage
      */
+    //1.3 overloaded method
     public void hazardCalc(Supplier<Integer> hitPoints, Supplier<Integer> coinLoss, Supplier<Integer> sailDamage){
-        //these messages can be cleaned up later when we no longer need them, we just need to keep the cacluation portion
-        System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
+        //these messages can be cleaned up later when we no longer need them, we just need to keep the calculation portion
+        // TODO decide if we want this section or parts of this section commented out
+  /*      System.out.println("current hull points " + Player.getInstance().getShip().getHullHitPoints());
 
         Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - hitPoints.get());
         System.out.println("after hull points " + + Player.getInstance().getShip().getHullHitPoints());
@@ -125,10 +129,37 @@ public class Hazard {
         System.out.println("current coin " + Player.getInstance().getChest());
 
         Player.getInstance().setChest(Player.getInstance().getChest() - coinLoss.get());
-        System.out.println("after coin " + + Player.getInstance().getChest());
+        System.out.println("after coin " + + Player.getInstance().getChest());*/
+
+        //I added this in place of the above if we rather use this
+        // TODO decide if we want this section or not, also do we do something with the coin?
+        //System.out.println();
+        //System.out.println("Other option");
+        System.out.println("You took " +  hitPoints.get() + " hits to your hull.");
+        //remove the hits from the total hull points
+        Player.getInstance().getShip().setHullHitPoints(Player.getInstance().getShip().getHullHitPoints() - hitPoints.get());
+
+        System.out.println("You lost " +  sailDamage.get() + " percent of your sails.");
+        //remove the damage to the total sail points
+        Player.getInstance().getShip().setSailHealth(Player.getInstance().getShip().getSailHealth() - sailDamage.get());
+
+        //remove the coin from the chest
+        Player.getInstance().setChest(Player.getInstance().getChest() - coinLoss.get());
+
+        //get what the player now has for coin
+        int coins = Player.getInstance().getChest();
+
+        if(coins < 0){
+            System.out.println("You lost " +  coinLoss.get() + " coins from your chest and it looks like you are in the negative.  Better get trading!");
+        }
+        else
+        {
+            System.out.println("You lost " +  coinLoss.get() + " coins from your chest.");
+        }
 
         //if you are at 0 or less, your ship has sunk
         if(Player.getInstance().getShip().getHullHitPoints() <= 0){
+            //display message to player that their ship has sunk
             System.out.println("Looks like yer ship been down to Davy Jones' Locker!  Better luck next time!");
             System.exit(0);
         }
