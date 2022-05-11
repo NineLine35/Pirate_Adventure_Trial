@@ -12,6 +12,8 @@ import java.util.List;
 /**
  * Class to read in high score text file and add player results to the file at the end of the game
  */
+
+// 8.1,2 & 9.1 - File manipulation
 public class HighScoreTracker {
 
     public static void readHighScores(){

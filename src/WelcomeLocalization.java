@@ -8,6 +8,8 @@ public class WelcomeLocalization {
      * @param x - LocalTime
      * @param locale - Locale
      */
+
+    // 5.1, 5.3 Dates and time calculation as well as String Localization w/bundles
     public static void introMessage(LocalTime x, Locale locale) {
 
         //Create resource bundle object
