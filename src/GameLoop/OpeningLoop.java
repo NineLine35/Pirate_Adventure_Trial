@@ -6,19 +6,24 @@ import Inventory.ItemTypes;
 import Inventory.Trader;
 import MapFiles.*;
 import Player.Player;
+import Player.HighScoreTracker;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
 public class OpeningLoop {
-    /**
+
      * launch map and game
      * @param playmap
      * @throws SQLException
+     * @throws IOException
      */
-    public static void launch(Landmass[][] playmap) throws SQLException {
+
+    public static void launch(Landmass[][] playmap) throws SQLException, IOException {
+
 
         // Grab the turns remaining from the Turntracker singleton
         int time_remaining = TurnTracker.getInstance().getTimeLeft();
@@ -126,7 +131,11 @@ public class OpeningLoop {
                 //if exit, exit the came
                 if (entryValue.equals("exit")) {
                     System.out.println("Good bye!");
+
                     //10.2 close database
+
+                    HighScoreTracker.writeHighScores();
+
                     ItemDatabase.closeDatabaseConnection();
                     System.exit(0);
                 }
@@ -162,7 +171,8 @@ public class OpeningLoop {
                         //move the player to location
                         Player.getInstance().setLocation(MainMap.movePlayer(Player.getInstance().getLocation().getRow(),
                                 Player.getInstance().getLocation().getColumn(), Direction.valueOf(userSelection), playmap));
-                                TurnTracker.getInstance().endOfTurn();   // Remove a turn from the game
+                         TurnTracker.getInstance().endOfTurn();
+
                     } catch (Exception e) {
                         //check the entry to see if we are just going off the map or if the user had a bad input
                         CheckMapMove(userSelection,entryValue);
